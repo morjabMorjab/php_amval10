@@ -1,0 +1,148 @@
+<?php
+require_once '../config/database.php';
+require_once '../includes/functions.php';
+checkAuth(); if(!isAdmin()) redirect('../index.php');$db = getDB(); $msg = ''; $msgType = 'success';
+
+if($_SERVER['REQUEST_METHOD']=='POST' && isset($_POST['save'])){
+    $u = $_POST['username']; $f = $_POST['fullname']; $r = $_POST['role'];
+    $cid = $_POST['center_id'] ?: null; $active = isset($_POST['is_active'])?1:0;
+    try {
+        if($_POST['user_id']){
+            // گرفتن نام قدیمی قبل از آپدیت
+            $oldStmt = $db->prepare("SELECT fullname FROM users WHERE id = ?");
+            $oldStmt->execute([$_POST['user_id']]);
+            $oldRow = $oldStmt->fetch();
+            $oldFullname = $oldRow ? $oldRow['fullname'] : "";
+            
+            // آپدیت کاربر
+            $db->prepare("UPDATE users SET username=?, fullname=?, role=?, center_id=?, is_active=? WHERE id=?")->execute([$u, $f, $r, $cid, $active, $_POST['user_id']]);
+            
+            // ذخیره مراکز انتخاب شده
+            if(isset($_POST["center_names"]) && is_array($_POST["center_names"])) {
+                $db->prepare("DELETE FROM user_centers WHERE user_id = ?")->execute([$_POST['user_id']]);
+                $ins = $db->prepare("INSERT IGNORE INTO user_centers (user_id, center_name) VALUES (?, ?)");
+                foreach($_POST["center_names"] as $cn) {
+                    $ins->execute([$_POST['user_id'], $cn]);
+                }
+            }
+            
+            // همگام‌سازی کامل assets
+            if(!empty($oldFullname) && $oldFullname != $f) {
+                $db->prepare("UPDATE assets SET recipient = ? WHERE recipient = ?")->execute([$f, $oldFullname]);
+            }
+            $db->prepare("UPDATE assets SET created_by = ? WHERE recipient = ? AND (created_by IS NULL OR created_by = 0)")->execute([$_POST['user_id'], $f]);
+            if($_POST['password']) $db->prepare("UPDATE users SET password=? WHERE id=?")->execute([password_hash($_POST['password'],PASSWORD_DEFAULT),$_POST['user_id']]);
+            
+            // همگام‌سازی recipient در assets
+            if(!empty($oldFullname) && $oldFullname != $f) {
+                $upd = $db->prepare("UPDATE assets SET recipient = ? WHERE recipient = ?");
+                $upd->execute([$f, $oldFullname]);
+            }
+            
+            $msg = '✅ کاربر ویرایش شد'; $msgType = 'success';
+        } else {
+            $db->prepare("INSERT INTO users (username,password,fullname,role,center_id,is_active) VALUES (?,?,?,?,?,?)")->execute([$u,password_hash($_POST['password']?:'123456',PASSWORD_DEFAULT),$f,$r,$cid,$active]);
+            $msg = '✅ کاربر جدید اضافه شد'; $msgType = 'success';
+        }
+    } catch(Exception $e) { $msg = '❌ '.$e->getMessage(); $msgType = 'error'; }
+}
+if(isset($_GET['toggle'])){ $db->prepare("UPDATE users SET is_active=? WHERE id=?")->execute([$_GET['toggle'],$_GET['id']]); redirect('users.php'); }
+if(isset($_GET['delete']) && isAdmin()){
+    $delId = intval($_GET['delete']);
+    if($delId == $_SESSION['user_id']){
+        $msg = '❌ نمیتوانید خودتان را حذف کنید!'; $msgType = 'error';
+    } else {
+        $db->prepare("DELETE FROM users WHERE id=?")->execute([$delId]);
+        redirect('users.php');
+    }
+}
+
+$users = $db->query("SELECT u.*,c.name as cname FROM users u LEFT JOIN centers c ON u.center_id=c.id ORDER BY u.created_at DESC");
+$centers = $db->query("SELECT id,name FROM centers WHERE is_active=1");
+?><!DOCTYPE html><html lang="fa" dir="rtl"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no"><title>کاربران | اموال</title><link rel="stylesheet" href="../css/app.css"></head>
+<body>
+<header class="top-bar"><a href="../index.php" style="text-decoration:none;font-size:18px">←</a><h1>👥 کاربران</h1><button onclick="o()" style="width:34px;height:34px;border-radius:50%;border:none;background:#4361ee;color:#fff;font-size:18px;cursor:pointer">＋</button></header>
+<div class="content">
+<div id="toastContainer" class="toast-container"></div>
+<?php foreach($users as $u): $badge = $u['is_active']?'<span style="background:#d1fae5;color:#065f46;padding:2px 8px;border-radius:10px;font-size:11px">فعال</span>':'<span style="background:#fee2e2;color:#991b1b;padding:2px 8px;border-radius:10px;font-size:11px">غیرفعال</span>'; ?>
+<div style="background:#fff;border-radius:12px;padding:14px;margin-bottom:8px;box-shadow:0 1px 3px rgba(0,0,0,.04);display:flex;justify-content:space-between;align-items:center">
+<div><div style="font-weight:700"><?=htmlspecialchars($u['fullname'])?></div><div style="font-size:11px;color:#94a3b8">@<?=htmlspecialchars($u['username'])?> · <?=htmlspecialchars(getRoleName($u['role']))?> · <?=htmlspecialchars($u['cname']?:'—')?></div></div>
+<div style="display:flex;gap:6px;align-items:center"><?=$badge?><button onclick="e(<?=$u['id']?>)" style="background:#fef3c7;color:#92400e;border:none;padding:4px 10px;border-radius:6px;cursor:pointer;font-size:11px">✏️</button><a href="?toggle=<?=$u['is_active']?0:1?>&id=<?=$u['id']?>" style="background:<?=$u['is_active']?'#fee2e2':'#d1fae5'?>;color:<?=$u['is_active']?'#991b1b':'#065f46'?>;padding:4px 10px;border-radius:6px;text-decoration:none;font-size:11px"><?=$u['is_active']?'🚫':'✅'?></a><a href="#" onclick="confirmDelete(<?=$u['id']?>,'<?=$u['fullname']?>')" style="background:#fecaca;color:#dc2626;padding:4px 10px;border-radius:6px;text-decoration:none;font-size:11px;font-weight:700;">حذف</a></div>
+</div>
+<?php endforeach; ?>
+</div>
+
+<div class="modal-overlay" id="m"><div class="modal-sheet"><div class="modal-handle"></div><h3 id="mt">➕ کاربر جدید</h3>
+<form method="POST" id="userForm"><input type="hidden" name="user_id" id="uid">
+<div class="input-group"><label>نام کاربری <span style="color:#ef4444">*</span></label><input name="username" id="uname" class="input-field" required></div>
+<div class="input-group"><label>رمز عبور <span id="prq" style="color:#ef4444">*</span></label><input type="password" name="password" id="upass" class="input-field" placeholder="حداقل ۶ کاراکتر"></div>
+<div class="input-group"><label>نام کامل</label><input name="fullname" id="fname" class="input-field" required></div>
+<div class="input-group"><label>نقش</label><select name="role" id="urole" class="input-field" required><option value="admin">👑 مدیر</option><option value="keeper">📦 جمعدار</option><option value="viewer">👁️ مهمان</option></select></div>
+<div class="input-group"><label>مراکز</label><div style="max-height:150px;overflow-y:auto;border:1px solid #e2e8f0;border-radius:10px;padding:8px">
+<?php foreach($centers as $c):?>
+<label style="display:flex;align-items:center;gap:6px;padding:4px 0;font-size:12px;cursor:pointer">
+<input type="checkbox" name="center_names[]" value="<?=$c['name']?>" class="center-check" style="width:16px;height:16px"> <?=$c['name']?>
+</label>
+<?php endforeach?>
+</div></div>
+<input type="hidden" name="center_id" id="ucid" value="">
+<div class="checkbox-group"><input type="checkbox" name="is_active" id="uactive" checked><label>کاربر فعال باشد</label></div>
+<button name="save" class="btn btn-primary">💾 ذخیره</button>
+<button type="button" onclick="c()" class="btn btn-light" style="margin-top:8px;">انصراف</button></form></div></div>
+
+<?php include '../includes/bottom_nav.php'; ?>
+
+<script>
+function showToast(msg, type){
+    var container = document.getElementById('toastContainer');
+    var el = document.createElement('div');
+    el.className = 'toast-msg toast-' + type;
+    el.textContent = msg;
+    container.appendChild(el);
+    setTimeout(function(){ el.style.animation = 'slideUp 0.3s ease forwards'; setTimeout(function(){ el.remove(); }, 300); }, 2500);
+}
+function confirmDelete(id, name){
+    var container = document.getElementById('toastContainer');
+    var el = document.createElement('div');
+    el.className = 'toast-msg toast-confirm';
+    el.innerHTML = '<div>⚠️ حذف «' + name + '»؟</div><div class="toast-confirm-buttons"><button class="toast-btn-yes" id="btnYes">حذف</button><button class="toast-btn-no" id="btnNo">انصراف</button></div>';
+    container.appendChild(el);
+    document.getElementById('btnYes').onclick = function(){ window.location.href = '?delete=' + id; };
+    document.getElementById('btnNo').onclick = function(){ el.remove(); };
+}
+function o(){
+    document.getElementById('mt').textContent = '➕ کاربر جدید';
+    document.getElementById('uid').value = '';
+    document.querySelector('#userForm').reset();
+    document.getElementById('upass').required = true;
+    document.getElementById('prq').style.display = 'inline';
+    document.getElementById('m').classList.add('show');
+}
+function c(){ document.getElementById('m').classList.remove('show'); }
+async function e(id){
+    try {
+        let r = await fetch('../api_get_user.php?id=' + id);
+        let u = await r.json();
+        document.getElementById('mt').textContent = '✏️ ویرایش کاربر';
+        document.getElementById('uid').value = u.id;
+        document.getElementById('uname').value = u.username || '';
+        document.getElementById('upass').value = '';
+        document.getElementById('upass').required = false;
+        document.getElementById('prq').style.display = 'none';
+        document.getElementById('fname').value = u.fullname || '';
+        document.getElementById('urole').value = u.role || '';
+        document.getElementById('ucid').value = u.center_id || '';
+            // بارگذاری مراکز کاربر
+            fetch('../api_get_user_centers.php?id=' + u.id).then(r=>r.json()).then(centers => {
+                document.querySelectorAll('.center-check').forEach(cb => {
+                    cb.checked = centers.includes(cb.value);
+                });
+            });
+        document.getElementById('uactive').checked = u.is_active == 1;
+        document.getElementById('m').classList.add('show');
+    } catch(e) { showToast('خطا در دریافت اطلاعات', 'error'); }
+}
+document.getElementById('m').addEventListener('click', function(e){ if(e.target === this) c(); });
+<?php if($msg): ?>showToast('<?=$msg?>', '<?=$msgType?>');<?php endif; ?>
+</script>
+</body></html>
