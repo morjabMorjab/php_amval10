@@ -5,6 +5,21 @@ import sys
 WAMP64_BASE = r"C:\wamp64\www\amval"
 WAMP_BASE = r"C:\wamp\www\amval"
 
+# کدهای استایل هماهنگ‌کننده پلاک، نام و تگ‌های اطلاعاتی (لبه ۵ پیکسلی و بک‌گراند یکنواخت)
+PATCH_CSS = """
+/* ==========================================================================
+   PATCH_SPECIFIC_THEME_09: یکسان‌سازی استایل، رنگ خاکستری و لبه ۵ پیکسل برای پلاک، نام و متادیتا
+   ========================================================================== */
+.meta-tag, .plate-badge, .asset-name {
+    background: #e2e8f0 !important;   /* رنگ خاکستری ملایم کاملاً هماهنگ */
+    border-radius: 5px !important;     /* لبه‌های گرد ۵ پیکسلی برای تمام بخش‌ها */
+    color: #000000 !important;          /* متن تیره با کنتراست عالی */
+    padding: 4px 8px !important;        /* پدینگ عمودی و افقی کاملاً یکسان */
+    font-weight: bold !important;       /* متون ضخیم و خوانا */
+    border: none !important;
+}
+"""
+
 def get_project_dir():
     if os.path.exists(WAMP64_BASE):
         return WAMP64_BASE
@@ -18,64 +33,26 @@ def get_project_dir():
         print("❌ مسیر نامعتبر است.")
         sys.exit(1)
 
-def update_footer_padding():
+def apply_patch():
     project_dir = get_project_dir()
-    nav_file = os.path.join(project_dir, "includes", "bottom_nav.php")
-    app_css = os.path.join(project_dir, "css", "app.css")
+    app_css_path = os.path.join(project_dir, "css", "app.css")
     
-    # ۱. اصلاح پدینگ‌های درون‌خطی در فایل bottom_nav.php به ۱۰ پیکسل
-    if os.path.exists(nav_file):
+    if os.path.exists(app_css_path):
         try:
-            with open(nav_file, "r", encoding="utf-8") as f:
+            with open(app_css_path, "r", encoding="utf-8") as f:
                 content = f.read()
             
-            modified = False
-            # جایگزینی پدینگ‌های قبلی به مقدار ۱۰ پیکسل
-            if "padding:2px 4px;" in content:
-                content = content.replace("padding:2px 4px;", "padding:10px 4px;")
-                modified = True
-            elif "padding:8px 4px;" in content:
-                content = content.replace("padding:8px 4px;", "padding:10px 4px;")
-                modified = True
-                
-            if "padding-bottom:max(2px," in content:
-                content = content.replace("padding-bottom:max(2px,", "padding-bottom:max(10px,")
-                modified = True
-            elif "padding-bottom:max(8px," in content:
-                content = content.replace("padding-bottom:max(8px,", "padding-bottom:max(10px,")
-                modified = True
-            
-            if modified:
-                with open(nav_file, "w", encoding="utf-8") as f:
-                    f.write(content)
-                print("✅ پدینگ عمودی منوی ناوبری در فایل bottom_nav.php به ۱۰ پیکسل تغییر یافت.")
+            # جلوگیری از تکرار چندباره کد در صورت اجرای مکرر اسکریپت
+            if "PATCH_SPECIFIC_THEME_09" not in content:
+                with open(app_css_path, "a", encoding="utf-8") as f:
+                    f.write(PATCH_CSS)
+                print("✅ پچ یکسان‌سازی گرافیکی و لبه‌های ۵ پیکسلی تگ‌ها با موفقیت اعمال شد.")
             else:
-                print("ℹ️ ساختار پدینگ درون‌خطی متفاوتی پیدا شد یا قبلاً به ۱۰ پیکسل تغییر یافته است.")
-        except Exception as e:
-            print(f"❌ خطا در ویرایش فایل bottom_nav.php: {e}")
-            
-    # ۲. اصلاح یا الحاق پدینگ کمکی ۱۰ پیکسلی در فایل استایل سراسری app.css
-    if os.path.exists(app_css):
-        try:
-            with open(app_css, "r", encoding="utf-8") as f:
-                content = f.read()
-            
-            # در صورتی که پدینگ ۲ پیکسلی قبلی در فایل باشد، آن را جایگزین می‌کند
-            if "padding-top: 2px !important;" in content or "padding-bottom: 2px !important;" in content:
-                content = content.replace("padding-top: 2px !important;", "padding-top: 10px !important;")
-                content = content.replace("padding-bottom: 2px !important;", "padding-bottom: 10px !important;")
-                with open(app_css, "w", encoding="utf-8") as f:
-                    f.write(content)
-                print("✅ پدینگ‌های قبلی در فایل app.css به ۱۰ پیکسل به‌روزرسانی شدند.")
-            else:
-                # در غیر این صورت، پدینگ ۱۰ پیکسلی جدید را الحاق می‌کند
-                override_css = "\n\nnav { padding-top: 10px !important; padding-bottom: 10px !important; }\n"
-                if "padding-top: 10px !important;" not in content:
-                    with open(app_css, "a", encoding="utf-8") as f:
-                        f.write(override_css)
-                    print("✅ پدینگ ۱۰ پیکسلی کمکی مکمل به فایل app.css الحاق شد.")
+                print("ℹ️ این پچ قبلاً روی فایل app.css اعمال شده است.")
         except Exception as e:
             print(f"❌ خطا در ویرایش فایل app.css: {e}")
+    else:
+        print("❌ فایل css/app.css یافت نشد.")
 
 if __name__ == "__main__":
-    update_footer_padding()
+    apply_patch()

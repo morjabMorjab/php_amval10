@@ -151,18 +151,16 @@ date_default_timezone_set('Asia/Tehran'); else: ?>
 <?php
 date_default_timezone_set('Asia/Tehran'); while($a = $assets_list->fetch()): ?>
 <div class="asset-card">
-<div class="asset-header">
-<span class="plate-badge">🔢 <?=$a["plate"]?></span>
-<div style="display:flex;gap:4px">
-<?php
-date_default_timezone_set('Asia/Tehran'); if(isAdmin() || isKeeper()): ?><button onclick="editAsset(<?=$a["id"]?>)" style="background:#fef3c7;color:#92400e;border:none;padding:4px 10px;border-radius:6px;cursor:pointer;font-size:10px">✏️</button><?php
-date_default_timezone_set('Asia/Tehran'); endif; ?>
-<?php
-date_default_timezone_set('Asia/Tehran'); if(isAdmin()): ?><a href="?delete=<?=$a["id"]?>&center=<?=urlencode($center)?>" onclick="event.preventDefault(); showConfirm('آیا از حذف این مورد اطمینان دارید؟', () => { window.location.href='?delete=<?=$a['id']?>&center=<?=urlencode($center)?>'; })" style="background:#fee2e2;color:#dc2626;padding:4px 10px;border-radius:6px;text-decoration:none;font-size:10px">🗑️</a><?php
-date_default_timezone_set('Asia/Tehran'); endif; ?>
+<div class="asset-header" style="display:flex;justify-content:space-between;align-items:center">
+<div style="display:flex;align-items:center;gap:8px;flex:1;overflow:hidden">
+<span class="plate-badge" style="flex-shrink:0;background:#e2e8f0 !important;border-radius:5px !important;color:#000000 !important;padding:4px 8px !important;border:none !important;font-weight:bold !important"><?=$a["plate"]?></span>
+<div class="asset-name" style="margin:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;background:#e2e8f0 !important;border-radius:5px !important;color:#000000 !important;padding:4px 8px !important;border:none !important;font-weight:bold !important"><?=htmlspecialchars($a["name"])?></div>
+</div>
+<div style="display:flex;gap:4px;flex-shrink:0;margin-right:8px">
+<?php if(isAdmin() || isKeeper()): ?><button onclick="editAsset(<?=$a["id"]?>)" style="background:#fef3c7;color:#92400e;border:none;padding:4px 10px;border-radius:6px;cursor:pointer;font-size:10px">✏️</button><?php endif; ?>
+<?php if(isAdmin()): ?><a href="?delete=<?=$a["id"]?>&center=<?=urlencode($center)?>" onclick="event.preventDefault(); showConfirm('آیا از حذف این مورد اطمینان دارید؟', () => { window.location.href='?delete=<?=$a['id']?>&center=<?=urlencode($center)?>'; })" style="background:#fee2e2;color:#dc2626;padding:4px 10px;border-radius:6px;text-decoration:none;font-size:10px">🗑️</a><?php endif; ?>
 </div>
 </div>
-<div class="asset-name"><?=htmlspecialchars($a["name"])?></div>
 <div class="asset-meta">
 <?php
 date_default_timezone_set('Asia/Tehran'); if($a["floor"]): ?><span class="meta-tag">🏗️ <?=htmlspecialchars($a["floor"])?></span><?php
