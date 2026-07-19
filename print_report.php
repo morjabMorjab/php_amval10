@@ -60,7 +60,7 @@ td { padding: 3px; border: 1px solid #000; font-size: 8px; text-align: center; }
 
 <div class="no-print" style="margin-bottom:10px;">
     <button onclick="window.print()" class="btn">🖨️ پرینت</button>
-    <a href="report.php" class="btn" style="background:#666;">← بازگشت</a>
+    <a href="report.php" class="btn" style="background:#666;">→ بازگشت</a>
 </div>
 
 <div class="page">

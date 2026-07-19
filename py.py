@@ -5,20 +5,49 @@ import sys
 WAMP64_BASE = r"C:\wamp64\www\amval"
 WAMP_BASE = r"C:\wamp\www\amval"
 
-# کدهای استایل هماهنگ‌کننده پلاک، نام و تگ‌های اطلاعاتی (لبه ۵ پیکسلی و بک‌گراند یکنواخت)
-PATCH_CSS = """
-/* ==========================================================================
-   PATCH_SPECIFIC_THEME_09: یکسان‌سازی استایل، رنگ خاکستری و لبه ۵ پیکسل برای پلاک، نام و متادیتا
-   ========================================================================== */
-.meta-tag, .plate-badge, .asset-name {
-    background: #e2e8f0 !important;   /* رنگ خاکستری ملایم کاملاً هماهنگ */
-    border-radius: 5px !important;     /* لبه‌های گرد ۵ پیکسلی برای تمام بخش‌ها */
-    color: #000000 !important;          /* متن تیره با کنتراست عالی */
-    padding: 4px 8px !important;        /* پدینگ عمودی و افقی کاملاً یکسان */
-    font-weight: bold !important;       /* متون ضخیم و خوانا */
-    border: none !important;
+# ساختار کارت‌های قدیمی برای جستجو
+OLD_HTML_BLOCK = """<div class="center-grid">
+<?php foreach($centers as $c): ?>
+<a href="?center=<?=urlencode($c["center"])?>" class="center-card-item">
+<span class="center-icon-big">🏢</span><div class="center-name"><?=htmlspecialchars($c["center"])?></div><span class="center-count"><?=$c["total"]?> مال</span>
+</a>
+<?php endforeach; ?>
+</div>"""
+
+# کدهای جدید دکمه‌های مینی‌مال، شیک و ۳ ستونه
+NEW_HTML_BLOCK = """<style>
+/* استایل دکمه‌های شیک و کم‌ارتفاع مراکز */
+.center-btn {
+    background: #fdfbf7 !important;
+    border: 1.5px solid #cbd5e1 !important;
+    border-radius: 10px !important;
+    padding: 6px 8px !important;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 4px;
+    text-decoration: none !important;
+    height: 44px !important;
+    box-shadow: none !important;
+    transition: all 0.2s ease !important;
 }
-"""
+.center-btn:hover {
+    background: #ffffff !important;
+    border-color: #4f46e5 !important;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(79, 70, 229, 0.1) !important;
+}
+</style>
+
+<!-- دکمه‌های ۳تایی هم‌ردیف، باریک و شیک مراکز -->
+<div style="display:grid; grid-template-columns:repeat(3, 1fr); gap:8px; margin-bottom:16px;">
+<?php foreach($centers as $c): ?>
+<a href="?center=<?=urlencode($c["center"])?>" class="center-btn" title="<?=htmlspecialchars($c["center"])?>">
+    <span style="font-weight:900 !important; font-size:11px !important; color:#1c1917 !important; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;"><?=htmlspecialchars($c["center"])?></span>
+    <span style="background:#e9e4d9 !important; color:#57534e !important; padding:2px 6px !important; border-radius:6px !important; font-size:10px !important; font-weight:900 !important; flex-shrink:0; border:1px solid #d4cebe !important;"><?=number_format($c["total"])?></span>
+</a>
+<?php endforeach; ?>
+</div>"""
 
 def get_project_dir():
     if os.path.exists(WAMP64_BASE):
@@ -33,26 +62,31 @@ def get_project_dir():
         print("❌ مسیر نامعتبر است.")
         sys.exit(1)
 
-def apply_patch():
+def restyle_centers():
     project_dir = get_project_dir()
-    app_css_path = os.path.join(project_dir, "css", "app.css")
+    assets_file = os.path.join(project_dir, "assets.php")
     
-    if os.path.exists(app_css_path):
+    if os.path.exists(assets_file):
         try:
-            with open(app_css_path, "r", encoding="utf-8") as f:
+            with open(assets_file, "r", encoding="utf-8") as f:
                 content = f.read()
             
-            # جلوگیری از تکرار چندباره کد در صورت اجرای مکرر اسکریپت
-            if "PATCH_SPECIFIC_THEME_09" not in content:
-                with open(app_css_path, "a", encoding="utf-8") as f:
-                    f.write(PATCH_CSS)
-                print("✅ پچ یکسان‌سازی گرافیکی و لبه‌های ۵ پیکسلی تگ‌ها با موفقیت اعمال شد.")
+            # همسان‌سازی نوع خطوط جهت افزایش دقت جایگزینی
+            content_normalized = content.replace("\r\n", "\n")
+            old_html = OLD_HTML_BLOCK.replace("\r\n", "\n")
+            new_html = NEW_HTML_BLOCK.replace("\r\n", "\n")
+            
+            if old_html in content_normalized:
+                content_normalized = content_normalized.replace(old_html, new_html)
+                with open(assets_file, "w", encoding="utf-8", newline="") as f:
+                    f.write(content_normalized)
+                print("✅ کارت‌های پهن مراکز با موفقیت به دکمه‌های ۳ ستونه و مینی‌مال تبدیل شدند.")
             else:
-                print("ℹ️ این پچ قبلاً روی فایل app.css اعمال شده است.")
+                print("⚠️ الگوی کارت مراکز در فایل assets.php پیدا نشد (احتمالاً پچ قبلاً اعمال شده است).")
         except Exception as e:
-            print(f"❌ خطا در ویرایش فایل app.css: {e}")
+            print(f"❌ خطا در زمان ویرایش فایل: {e}")
     else:
-        print("❌ فایل css/app.css یافت نشد.")
+        print("❌ فایل assets.php یافت نشد.")
 
 if __name__ == "__main__":
-    apply_patch()
+    restyle_centers()

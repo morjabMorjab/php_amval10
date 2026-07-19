@@ -859,3 +859,238 @@ table td, table th, .t-cell {
     font-weight: bold !important;       /* متون ضخیم و خوانا */
     border: none !important;
 }
+
+/* ==========================================================================
+   PATCH_SPECIFIC_THEME_10: تم گرم مراقبت از چشم (Warm Eye-Care Sepia/Oatmeal Theme)
+   ========================================================================== */
+:root {
+    --bg-darker: #dcd7cc;   /* پس‌زمینه بیرونی گرم و ملایم (خاکستری-ماسی) */
+    --bg-dark: #f4f0e6;     /* پس‌زمینه صفحات برنامه (کاغذ گرم ارگانیک) */
+    --bg-card: #ffffff;     /* پس‌زمینه کارت‌ها */
+    --bg-input: #faf8f5;    /* پس‌زمینه ورودی‌ها */
+    --text-main: #1c1917;   /* متن اصلی زغالی گرم (خوانایی بالا و بسیار نرم‌تر از مشکی مطلق) */
+    --text-muted: #57534e;  /* متن ثانویه ماسی تیره */
+    --border-color: #cbd5e1;/* حاشیه و خطوط جداکننده */
+    --accent: #4f46e5;      /* رنگ شاخص بنفش/نیلی ملایم */
+}
+
+html {
+    background: var(--bg-darker) !important;
+}
+
+body {
+    background: var(--bg-dark) !important;
+    color: var(--text-main) !important;
+}
+
+@media screen and (min-width: 768px) {
+    body {
+        background: var(--bg-dark) !important;
+        box-shadow: 0 0 60px rgba(28, 25, 23, 0.05) !important;
+    }
+}
+
+/* اصلاح رنگ متون اصلی به زغالی گرم */
+body, h1, h2, h3, h4, .top-bar h1, .modal-sheet h3, .asset-name, .user-name, .center-name, .stats-line .val, .stat-box .val, .plate-badge {
+    color: var(--text-main) !important;
+}
+
+.user-meta, .asset-meta, .log-time, .log-action, .center-count, .stats-line .lbl, .breadcrumb, .log-user, .user-info {
+    color: var(--text-muted) !important;
+}
+
+/* هماهنگی کادر متادیتا با رنگ ملایم ماسی */
+.meta-tag, .badge-active, .badge-inactive, .badge, .t-header, .history-item {
+    color: var(--text-main) !important;
+    background: #e9e4d9 !important; /* ماسی مینی‌مال */
+    border: 1px solid #d4cebe !important;
+}
+
+/* اصلاح مجدد باج‌ها به رنگ ماسی ملایم جهت کاهش درخشندگی خیره‌کننده */
+.meta-tag, .plate-badge, .asset-name {
+    background: #e9e4d9 !important;
+    color: var(--text-main) !important;
+    border: 1px solid #d4cebe !important;
+}
+
+/* ==========================================================================
+   PATCH_SPECIFIC_THEME_11: بازنویسی کامل تم گرم مراقبت از چشم بدون رنگ سفید خیره‌کننده در کارت‌های محتوا
+   ========================================================================== */
+:root {
+    --bg-darker: #dcd7cc;   /* پس‌زمینه بیرونی گرم و ملایم (خاکستری-ماسی) */
+    --bg-dark: #f4f0e6;     /* پس‌زمینه صفحات برنامه (کاغذ گرم ارگانیک) */
+    --bg-card: #fdfbf7;     /* پس‌زمینه کارت‌ها و محتوا (کرم عاجی فوق‌العاده ملایم - به جای سفید مطلق) */
+    --bg-input: #f4f0e6;    /* پس‌زمینه ورودی‌ها */
+    --text-main: #1c1917;   /* متن اصلی زغالی گرم */
+    --text-muted: #57534e;  /* متن ثانویه ماسی تیره */
+    --border-color: #cbd5e1;/* حاشیه و خطوط جداکننده */
+    --accent: #4f46e5;      /* رنگ شاخص متمایز */
+}
+
+html {
+    background: var(--bg-darker) !important;
+}
+
+body {
+    background: var(--bg-dark) !important;
+    color: var(--text-main) !important;
+}
+
+@media screen and (min-width: 768px) {
+    body {
+        background: var(--bg-dark) !important;
+        box-shadow: 0 0 60px rgba(28, 25, 23, 0.05) !important;
+    }
+}
+
+/* نوارهای بالا و منوی پایینی - حذف کامل رنگ سفید از فضاها */
+.top-bar, nav {
+    background: var(--bg-card) !important;
+    border-color: var(--border-color) !important;
+    color: var(--text-main) !important;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.06) !important;
+}
+.top-bar h1 {
+    color: var(--text-main) !important;
+}
+
+/* کارت‌ها، ردیف‌ها و کادرهای اطلاعاتی حاوی محتوا */
+.asset-card, .user-row, .center-card, .report-card, .filter-card, .tr-card, .form-card, .log-card, .stat-box, .center-card-item, .card, .sql-box {
+    background: var(--bg-card) !important;
+    color: var(--text-main) !important;
+    border: 1px solid var(--border-color) !important;
+    box-shadow: 0 4px 12px rgba(28, 25, 23, 0.04) !important;
+}
+
+/* اصلاح کادرهای متفرقه مستقیم کدهای PHP به کرم ملایم */
+div[style*="background:#fff"], div[style*="background: #fff"], div[style*="background:white"] {
+    background: var(--bg-card) !important;
+    color: var(--text-main) !important;
+    border-color: var(--border-color) !important;
+}
+
+/* متون اصلی و فرعی */
+body, h1, h2, h3, h4, .top-bar h1, .modal-sheet h3, .asset-name, .user-name, .center-name, .stats-line .val, .stat-box .val, .plate-badge {
+    color: var(--text-main) !important;
+}
+
+.user-meta, .asset-meta, .log-time, .log-action, .center-count, .stats-line .lbl, .breadcrumb, .log-user, .user-info {
+    color: var(--text-muted) !important;
+}
+
+/* هماهنگی کادر متادیتا و باج‌ها با رنگ ماسی گرم */
+.meta-tag, .badge-active, .badge-inactive, .badge, .t-header, .history-item, .plate-badge, .asset-name {
+    color: var(--text-main) !important;
+    background: #e9e4d9 !important; /* رنگ ماسی مینی‌مال گرم */
+    border: 1px solid #d4cebe !important;
+}
+
+/* کادرها و فرم‌ها */
+input, select, textarea, .input-field, .search-box, .search-box input {
+    background: var(--bg-input) !important;
+    color: var(--text-main) !important;
+    border: 1.5px solid var(--border-color) !important;
+}
+
+/* دکمه‌ها */
+button, input[type="button"], input[type="submit"], .btn-light, .toast-btn-no, .btn-outline {
+    background: var(--bg-input) !important;
+    color: var(--text-main) !important;
+    border: 1px solid var(--border-color) !important;
+}
+button:hover, input[type="button"]:hover, input[type="submit"]:hover, .btn-light:hover, .btn-outline:hover {
+    background: var(--bg-card) !important;
+    color: var(--text-main) !important;
+}
+
+/* مودال‌ها */
+.modal-sheet {
+    background: var(--bg-card) !important;
+    color: var(--text-main) !important;
+    border: 1px solid var(--border-color) !important;
+}
+.modal-sheet h3 {
+    color: var(--text-main) !important;
+    border-bottom: 1px solid var(--border-color) !important;
+}
+
+
+nav { background: #dcd7cc !important; border-top: 1px solid #cbd5e1 !important; }
+
+/* ==========================================================================
+   PATCH_SPECIFIC_THEME_12: استایل متمایز غیر قابل ویرایش برای شماره اموال جمعدار
+   ========================================================================== */
+input[readonly] {
+    background-color: #e9e4d9 !important;
+    cursor: not-allowed !important;
+    color: #57534e !important;
+    border-color: #d4cebe !important;
+}
+
+
+/* ==========================================================================
+   PATCH_SPECIFIC_THEME_13: بهینه‌سازی فرم سرچ و غیرفعال‌سازی فیلد شماره اموال
+   ========================================================================== */
+/* حذف بوردر و تنظیم پدینگ عمودی باکس سرچ */
+.search-box {
+    border: none !important;
+    box-shadow: none !important;
+    padding: 5px 14px !important;
+}
+.search-box input {
+    border: none !important;
+    box-shadow: none !important;
+    padding: 0 !important;
+}
+
+/* قفل مینی‌مال و غیرقابل تغییر کردن فیلد شماره اموال (فقط ریداونلی) */
+input[readonly] {
+    background-color: #e9e4d9 !important;
+    cursor: not-allowed !important;
+    color: #475569 !important;
+    pointer-events: auto !important; /* فقط ریداونلی باشد، با قابلیت کپی و انتخاب متن */
+    border-color: #d4cebe !important;
+}
+
+/* ==========================================================================
+   PATCH_SPECIFIC_THEME_14: یکپارچه‌سازی نهایی و شیک فوتر با بک‌گراند قرمز برای دکمه فعال
+   ========================================================================== */
+nav a {
+    font-weight: 900 !important;
+    color: #000000 !important;           /* رنگ مشکی پیش‌فرض برای دکمه‌های غیرفعال */
+    background: transparent !important;
+    border-radius: 8px !important;
+}
+
+nav a.active {
+    background: #dc2626 !important;     /* بک‌گراند قرمز چشم‌نواز برای دکمه فعال */
+    color: #ffffff !important;          /* متن و آیکون سفید برای کنتراست بالا */
+}
+
+nav a span {
+    color: inherit !important;           /* به ارث بردن رنگ والد (سفید یا مشکی) */
+    font-weight: 900 !important;         /* کاملاً ضخیم و بولد */
+}
+
+/* ==========================================================================
+   PATCH_SPECIFIC_THEME_15: حل باگ گوشه‌های تیز و حذف‌شده هدر چسبنده (Sticky Header Corners)
+   ========================================================================== */
+.t-header {
+    border-top-left-radius: 16px !important;
+    border-top-right-radius: 16px !important;
+}
+
+/* ==========================================================================
+   PATCH_SPECIFIC_THEME_16: بهینه‌سازی و کاهش پدینگ و مارجین عمودی کارت‌های اموال
+   ========================================================================== */
+.asset-card {
+    padding: 8px 12px !important;       /* کاهش پدینگ عمودی کارت از 14 به 8 پیکسل */
+    margin-bottom: 6px !important;      /* کاهش مارجین پایین کارت به 6 پیکسل */
+}
+.asset-header {
+    margin-bottom: 4px !important;      /* کاهش فاصله عمودی هدر تا تگ‌ها */
+}
+.asset-meta {
+    gap: 3px !important;                /* فشرده‌تر کردن فاصله بین تگ‌های متادیتا */
+    margin-top: 2px !important;         /* کاهش فاصله بالایی متادیتا */
+}

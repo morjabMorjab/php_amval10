@@ -49,7 +49,7 @@ $centers=$db->query("SELECT c.*,COUNT(a.id) as cnt FROM centers c LEFT JOIN asse
 .cnt{background:#4361ee;color:#fff;padding:2px 8px;border-radius:10px;font-size:11px;font-weight:700}
 </style></head>
 <body>
-<header class="top-bar"><a href="index.php" style="text-decoration:none;font-size:18px">←</a><h1>🏢 مراکز</h1><button onclick="openModal()" class="btn-circle btn-add" title="افزودن مرکز جدید" aria-label="افزودن مرکز جدید">＋</button></header>
+<header class="top-bar"><a href="index.php" style="text-decoration:none;font-size:18px">→</a><h1>🏢 مراکز</h1><button onclick="openModal()" class="btn-circle btn-add" title="افزودن مرکز جدید" aria-label="افزودن مرکز جدید">＋</button></header>
 <div class="content">
 <?php if($msg):?><div class="toast <?php echo strpos($msg,'✅')!==false?'toast-success':'toast-error';?>"><?php echo htmlspecialchars($msg);?></div>
 

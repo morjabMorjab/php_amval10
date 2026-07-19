@@ -57,7 +57,7 @@ $centers = $db->query("SELECT id, name FROM centers WHERE is_active=1");
 .badge-inactive{background:#fee2e2;color:#991b1b;padding:2px 8px;border-radius:10px;font-size:10px}
 </style></head>
 <body>
-<header class="top-bar"><a href="index.php" style="text-decoration:none;font-size:18px">←</a><h1>👥 کاربران</h1><button onclick="openModal()" style="width:34px;height:34px;border-radius:50%;border:none;background:#4361ee;color:#fff;font-size:18px;cursor:pointer">＋</button></header>
+<header class="top-bar"><a href="index.php" style="text-decoration:none;font-size:18px">→</a><h1>👥 کاربران</h1><button onclick="openModal()" style="width:34px;height:34px;border-radius:50%;border:none;background:#4361ee;color:#fff;font-size:18px;cursor:pointer">＋</button></header>
 <div class="content">
 <?php if($msg):?><div class="toast <?php echo strpos($msg,'✅')!==false?'toast-success':'toast-error';?>"><?php echo $msg;?></div><?php endif?>
 

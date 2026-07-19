@@ -255,7 +255,7 @@ $fname = $_SESSION['import_filename'] ?? '';
 <body>
 
 <header class="top-bar">
-    <a href="assets.php" style="text-decoration:none;font-size:18px;color:#0f172a">←</a>
+    <a href="assets.php" style="text-decoration:none;font-size:18px;color:#0f172a">→</a>
     <h1>ورود اطلاعات</h1>
     <div style="width:20px"></div>
 </header>

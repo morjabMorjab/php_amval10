@@ -61,42 +61,79 @@ if(isset($_GET["delete_transfer"]) && isAdmin()) {
     header("Location: transfers.php"); exit;
 }
 
-// واکشی لیست برای تاریخچه
-if($role === "keeper") {
-    $transfers = $db->prepare("
-        SELECT 
-            t.transfer_code, 
-            t.transfer_type, 
-            t.transfer_date, 
-            t.from_center, 
-            t.to_center, 
-            MAX(t.id) as id,
-            COUNT(t.id) as total_assets,
-            GROUP_CONCAT(CONCAT(a.name, ' (', a.plate, ')') SEPARATOR '، ') as asset_names
-        FROM transfers t 
-        JOIN assets a ON t.asset_id=a.id 
-        WHERE a.center IN (SELECT name FROM centers WHERE is_active=1) 
-        GROUP BY t.transfer_code, t.transfer_type, t.transfer_date, t.from_center, t.to_center
-        ORDER BY t.id DESC LIMIT 50
-    ");
-    $transfers->execute();
-} else {
-    $transfers = $db->query("
-        SELECT 
-            t.transfer_code, 
-            t.transfer_type, 
-            t.transfer_date, 
-            t.from_center, 
-            t.to_center, 
-            MAX(t.id) as id,
-            COUNT(t.id) as total_assets,
-            GROUP_CONCAT(CONCAT(a.name, ' (', a.plate, ')') SEPARATOR '، ') as asset_names
-        FROM transfers t 
-        JOIN assets a ON t.asset_id=a.id 
-        GROUP BY t.transfer_code, t.transfer_type, t.transfer_date, t.from_center, t.to_center
-        ORDER BY t.id DESC LIMIT 50
-    ");
+// --- واکشی مراکز مجاز جمعدار (Keeper) براساس لاگین و دسترسی‌ها ---
+$user_allowed_centers = [];
+if ($role === "keeper") {
+    // ۱. مرکز متصل به اکانت کاربر
+    $c_stmt = $db->prepare("SELECT name FROM centers WHERE id = ? AND is_active = 1");
+    $c_stmt->execute([$_SESSION['center_id'] ?? 0]);
+    $c_name = $c_stmt->fetchColumn();
+    if ($c_name) {
+        $user_allowed_centers[] = $c_name;
+    }
+    
+    // ۲. مراکز اضافی مجاز کاربر از جدول دسترسی چندمرکزی user_centers
+    $uc_stmt = $db->prepare("SELECT center_name FROM user_centers WHERE user_id = ?");
+    $uc_stmt->execute([$user_id]);
+    $extra_centers = $uc_stmt->fetchAll(PDO::FETCH_COLUMN);
+    if (!empty($extra_centers)) {
+        $user_allowed_centers = array_merge($user_allowed_centers, $extra_centers);
+    }
+    
+    // ۳. در صورتی که هیچ مرکزی تعریف نشده بود، به عنوان سوپاپ اطمینان، مراکزی که جمعدار اموالش است را بردار
+    if (empty($user_allowed_centers)) {
+        $my_c_stmt = $db->prepare("SELECT DISTINCT center FROM assets WHERE recipient LIKE ? OR created_by = ?");
+        $my_c_stmt->execute(["%" . $user_name . "%", $user_id]);
+        $my_c = $my_c_stmt->fetchAll(PDO::FETCH_COLUMN);
+        if (!empty($my_c)) {
+            $user_allowed_centers = array_merge($user_allowed_centers, $my_c);
+        }
+    }
+    
+    $user_allowed_centers = array_unique(array_filter($user_allowed_centers));
 }
+
+// --- پارامترهای جستجو و فیلترینگ شدید امنیتی بر اساس مراکز مجاز ---
+$search = $_GET["search"] ?? "";
+$where = "1=1";
+$params = [];
+
+if($role === "keeper") {
+    if (!empty($user_allowed_centers)) {
+        $placeholders = implode(',', array_fill(0, count($user_allowed_centers), '?'));
+        // بررسی مطابقت مبدا، مقصد یا مرکز فعلی دارایی با مراکز مجاز جمعدار
+        $where = "(a.center IN ($placeholders) OR t.from_center IN ($placeholders) OR t.to_center IN ($placeholders))";
+        $params = array_merge($user_allowed_centers, $user_allowed_centers, $user_allowed_centers);
+    } else {
+        // در صورتی که جمعدار هیچ مرکز مجازی ندارد، به جهت امنیت اطلاعات هیچ هسیتوری نشان داده نمی‌شود
+        $where = "1=0";
+    }
+}
+
+if($search) {
+    $where .= " AND (t.transfer_code LIKE ? OR a.plate LIKE ?)";
+    $params[] = "%" . $search . "%";
+    $params[] = "%" . $search . "%";
+}
+
+$transfers = $db->prepare("
+    SELECT 
+        t.transfer_code, 
+        t.transfer_type, 
+        t.transfer_date, 
+        t.from_center, 
+        t.to_center, 
+        MAX(t.id) as id,
+        COUNT(t.id) as total_assets,
+        GROUP_CONCAT(CONCAT(a.name, ' (', a.plate, ')') SEPARATOR '، ') as asset_names
+    FROM transfers t 
+    JOIN assets a ON t.asset_id=a.id 
+    WHERE $where
+    GROUP BY t.transfer_code, t.transfer_type, t.transfer_date, t.from_center, t.to_center
+    ORDER BY t.id DESC LIMIT 50
+");
+$transfers->execute($params);
+
 $centers = $db->query("SELECT name as center FROM centers WHERE is_active = 1 ORDER BY name")->fetchAll();
 ?>
 <!DOCTYPE html>
@@ -118,13 +155,40 @@ $centers = $db->query("SELECT name as center FROM centers WHERE is_active = 1 OR
 .modal-overlay.show{opacity:1;visibility:visible}
 .modal-sheet{background:#fff;border-radius:20px;width:calc(100% - 40px);max-width:380px;max-height:85vh;overflow-y:auto;padding:20px;transform:scale(.9);transition:transform .3s ease;box-shadow:0 25px 80px rgba(0,0,0,.25);margin:16px}
 .modal-overlay.show .modal-sheet{transform:scale(1)}
-.pick-item{display:block;padding:11px 12px;text-decoration:none;color:#0f172a;border-bottom:1px solid #f1f5f9;font-size:12px;font-weight:600}
+
+/* پدینگ مینی‌مال عمودی ۵پیکسلی جهت ایجاد دقیق ۱۰پیکسل فاصله در لیست تبلت/مکان */
+.pick-item{display:block;padding:5px 12px !important;text-decoration:none;color:#1c1917;border-bottom:1px solid #e9e4d9;font-size:12.5px;font-weight:700}
 .pick-item:hover{background:#f8fafc}
 .btn-light{background:#f1f5f9;color:#64748b; border:none; padding:10px; border-radius:10px; cursor:pointer;}
+
+/* بهینه‌سازی کادر دراپ‌داون نتایج جستجو به صورت نسبی جهت هل دادن عناصر پایینی به جای همپوشانی */
+#searchResults {
+    display: none;
+    max-height: 150px;
+    overflow-y: auto;
+    background: #fdfbf7 !important; /* رنگ هماهنگ با کاغذ گرم پوستی */
+    border: 1px solid #cbd5e1 !important;
+    border-radius: 12px !important;
+    position: relative !important;   /* تغییر موقعیت به نسبی جهت هل دادن محتوای زیرین به پایین و جلوگیری از همپوشانی */
+    margin-top: 8px !important;
+    z-index: 50 !important;
+    box-shadow: none !important;
+}
 </style>
+<script>
+function toEnglishNum(str){
+    var persian = ["۰","۱","۲","۳","۴","۵","۶","۷","۸","۹"];
+    var arabic = ["٠","١","٢","٣","٤","٥","٦","٧","٨","٩"];
+    for(var i=0;i<10;i++){
+        str = str.replace(new RegExp(persian[i],"g"), i);
+        str = str.replace(new RegExp(arabic[i],"g"), i);
+    }
+    return str;
+}
+</script>
 </head>
 <body>
-<header class="top-bar"><a href="index.php">←</a><h1>🔄 جابجایی</h1><button onclick="openTransferModal()" style="width:34px;height:34px;border-radius:50%;border:none;background:#4361ee;color:#fff;font-size:18px;cursor:pointer">＋</button></header>
+<header class="top-bar"><a href="index.php">→</a><h1>🔄 جابجایی</h1><button onclick="openTransferModal()" style="width:34px;height:34px;border-radius:50%;border:none;background:#4361ee;color:#fff;font-size:18px;cursor:pointer">＋</button></header>
 
 <div class="content">
     <?php if($msg):?><div class="toast <?=$msgType=="error"?"toast-error":"toast-success"?>"><?=$msg?></div><?php endif?>
@@ -136,30 +200,40 @@ $centers = $db->query("SELECT name as center FROM centers WHERE is_active = 1 OR
     </div>
     <?php unset($_SESSION["last_transfer_code"]); endif?>
 
-    <div style="font-weight:700;color:#64748b;margin-bottom:8px">📋 تاریخچه اخیر</div>
-    <?php while($t=$transfers->fetch()): ?>
-    <div class="tr-card" onclick="window.location='print_transfer.php?id=' + <?=$t['id']?>">
-        <div style="display:flex;justify-content:space-between;margin-bottom:6px">
-            <span style="font-size:11px;color:#94a3b8;font-weight:bold;">کد: <?=$t["transfer_code"]?> (<?=$t["total_assets"]?> کالا)</span>
-            <?php 
-            $typeLabels = [
-                "internal" => "داخلی",
-                "permanent" => "انتقال دائم",
-                "temporary" => "امانی",
-                "repair" => "تعمیرات",
-                "scrap" => "اسقاط",
-                "return" => "برگشت"
-            ];
-            $currentLabel = $typeLabels[$t["transfer_type"]] ?? $t["transfer_type"];
-            ?>
-            <span class="tr-type t-<?=$t["transfer_type"]?>"><?=$currentLabel?></span>
-        </div>
-        <div style="font-weight:600;font-size:13px;line-height:1.5;color:#1e293b;margin-bottom:4px;">
-            📦 <?=htmlspecialchars($t["asset_names"])?>
-        </div>
-        <div style="font-size:10px;color:#94a3b8"><?=$t["from_center"]?> → <?=$t["to_center"]?></div>
+    <!-- فیلد جستجوی شماره جابجایی یا پلاک اموال در بالای تاریخچه -->
+    <div class="search-box" style="margin-bottom:12px;position:sticky;top:52px;z-index:40;background:#fff;box-shadow:0 2px 8px rgba(0,0,0,0.05);padding:10px 14px;border-radius:12px;transform:translateZ(0);-webkit-transform:translateZ(0)">
+        <span class="search-icon">🔍</span>
+        <input type="text" placeholder="جستجوی شماره جابجایی یا پلاک..." value="<?=htmlspecialchars($search)?>" onchange="var v=toEnglishNum(this.value); location='?search='+v">
     </div>
-    <?php endwhile?>
+
+    <div style="font-weight:700;color:#64748b;margin-bottom:8px">📋 تاریخچه اخیر</div>
+    <?php if($transfers->rowCount() > 0): ?>
+        <?php while($t=$transfers->fetch()): ?>
+        <div class="tr-card" onclick="window.location='print_transfer.php?id=' + <?=$t['id']?>">
+            <div style="display:flex;justify-content:space-between;margin-bottom:6px">
+                <span style="font-size:11px;color:#94a3b8;font-weight:bold;">کد: <?=$t["transfer_code"]?> (<?=$t["total_assets"]?> کالا)</span>
+                <?php 
+                $typeLabels = [
+                    "internal" => "داخلی",
+                    "permanent" => "انتقال دائم",
+                    "temporary" => "امانی",
+                    "repair" => "تعمیرات",
+                    "scrap" => "اسقاط",
+                    "return" => "برگشت"
+                ];
+                $currentLabel = $typeLabels[$t["transfer_type"]] ?? $t["transfer_type"];
+                ?>
+                <span class="tr-type t-<?=$t["transfer_type"]?>"><?=$currentLabel?></span>
+            </div>
+            <div style="font-weight:600;font-size:13px;line-height:1.5;color:#1e293b;margin-bottom:4px;">
+                📦 <?=htmlspecialchars($t["asset_names"])?>
+            </div>
+            <div style="font-size:10px;color:#94a3b8"><?=$t["from_center"]?> → <?=$t["to_center"]?></div>
+        </div>
+        <?php endwhile?>
+    <?php else: ?>
+        <div style="text-align:center;padding:40px;color:#94a3b8">📭 موردی یافت نشد</div>
+    <?php endif; ?>
 </div>
 
 <!-- مودال اصلی جابجایی -->
@@ -170,17 +244,29 @@ $centers = $db->query("SELECT name as center FROM centers WHERE is_active = 1 OR
         <input type="hidden" name="asset_id" id="asset_id">
         <input type="hidden" name="asset_ids" id="asset_ids">
 
-        <div class="type-select">
-            <div class="type-opt sel" onclick="selectType('internal',this)"><span class="ticon">🏢</span>داخلی</div>
-            <div class="type-opt" onclick="selectType('permanent',this)"><span class="ticon">📦</span>انتقال</div>
-            <div class="type-opt" onclick="selectType('temporary',this)"><span class="ticon">🤝</span>امانی</div>
-            <div class="type-opt" onclick="selectType('repair',this)"><span class="ticon">🔧</span>تعمیر</div>
+        <!-- سطر افقی شیک دکمه‌های رادیویی هم‌ردیف و مینی‌مال فاقد اسکرول -->
+        <div style="display:flex; justify-content:space-between; align-items:center; gap:6px; margin-bottom:15px; font-size:11.5px; white-space:nowrap; overflow:hidden; background:rgba(255,255,255,0.02); padding:10px 8px; border-radius:10px; border:1px solid rgba(0,0,0,0.05);">
+            <label style="display:flex; align-items:center; gap:4px; cursor:pointer; font-weight:bold;">
+                <input type="radio" name="transfer_type_radio" value="internal" checked onclick="selectType('internal')" style="width:15px; height:15px; accent-color:#4f46e5; margin:0; cursor:pointer;"> داخلی
+            </label>
+            <label style="display:flex; align-items:center; gap:4px; cursor:pointer; font-weight:bold;">
+                <input type="radio" name="transfer_type_radio" value="permanent" onclick="selectType('permanent')" style="width:15px; height:15px; accent-color:#4f46e5; margin:0; cursor:pointer;"> انتقال
+            </label>
+            <label style="display:flex; align-items:center; gap:4px; cursor:pointer; font-weight:bold;">
+                <input type="radio" name="transfer_type_radio" value="temporary" onclick="selectType('temporary')" style="width:15px; height:15px; accent-color:#4f46e5; margin:0; cursor:pointer;"> امانی
+            </label>
+            <label style="display:flex; align-items:center; gap:4px; cursor:pointer; font-weight:bold;">
+                <input type="radio" name="transfer_type_radio" value="repair" onclick="selectType('repair')" style="width:15px; height:15px; accent-color:#4f46e5; margin:0; cursor:pointer;"> تعمیر
+            </label>
+            <label style="display:flex; align-items:center; gap:4px; cursor:pointer; font-weight:bold;">
+                <input type="radio" name="transfer_type_radio" value="scrap" onclick="selectType('scrap')" style="width:15px; height:15px; accent-color:#4f46e5; margin:0; cursor:pointer;"> اسقاط
+            </label>
         </div>
 
         <div class="input-group" style="position:relative">
             <input type="text" id="assetSearch" class="input-field" placeholder="🔍 جستجوی نام یا پلاک اموال..." oninput="searchAssets()" autocomplete="off">
             <div id="selectedCount" style="background:#eff6ff;color:#4361ee;padding:6px 10px;border-radius:8px;font-size:12px;margin-top:6px;display:none;align-items:center;justify-content:space-between;"></div>
-            <div id="searchResults" style="display:none;max-height:180px;overflow-y:auto;background:#fff;border:1px solid #e2e8f0;border-radius:10px;position:absolute;top:45px;left:0;right:0;z-index:50;box-shadow:0 10px 20px rgba(0,0,0,0.1)"></div>
+            <div id="searchResults"></div>
         </div>
 
         <div id="internalFields">
@@ -217,7 +303,7 @@ $centers = $db->query("SELECT name as center FROM centers WHERE is_active = 1 OR
 <div class="modal-overlay" id="pickModal" onclick="if(event.target==this) this.classList.remove('show')"><div class="modal-sheet">
     <h3 id="pickTitle">انتخاب</h3>
     <div id="pickList" style="max-height:250px;overflow-y:auto;"></div>
-    <button onclick="pickManual()" class="pick-item" style="color:#4361ee;width:100%;text-align:center;border:none;background:none;">➕ تعریف مقدار جدید</button>
+    <button onclick="pickManual()" class="pick-item" style="color:#4361ee;width:100%;text-align:center;border:none;background:none;font-weight:800;">➕ تعریف مقدار جدید</button>
 </div></div>
 
 <!-- مودال تایید حذف انتخاب -->
@@ -251,13 +337,14 @@ function searchAssets(){
     allAssets.forEach(a => {
         if(a.name.toLowerCase().includes(q) || a.plate.toLowerCase().includes(q)){
             let checked = selectedAssets.includes(a.id) ? 'checked' : '';
-            html += `<label style="display:flex;align-items:center;gap:10px;padding:10px;border-bottom:1px solid #eee;cursor:pointer">
-                <input type="checkbox" onchange="toggleAsset(${a.id}, this)" ${checked}> 
-                <span style="font-size:12px">${a.plate} - ${a.name} (${a.center})</span>
+            // تنظیم دقیق پدینگ ۵پیکسلی (فاصله عمودی ۱۰پیکسلی مجموع) و کدهای استایل ماسی شیک
+            html += `<label style="display:flex;align-items:center;gap:10px;padding:5px 10px;border-bottom:1px solid #e9e4d9;cursor:pointer;margin:0;">
+                <input type="checkbox" onchange="toggleAsset(${a.id}, this)" ${checked} style="width:14px;height:14px;accent-color:#4f46e5;margin:0;cursor:pointer;"> 
+                <span style="font-size:12.5px;font-weight:700;color:#1c1917;">${a.plate} - ${a.name} (${a.center})</span>
             </label>`;
         }
     });
-    res.innerHTML = html || '<div style="padding:10px;color:#999">یافت نشد</div>';
+    res.innerHTML = html || '<div style="padding:10px;color:#94a3b8;font-size:11px;">موردی یافت نشد</div>';
     res.style.display = 'block';
 }
 
@@ -286,10 +373,8 @@ function doClearSelection(){
     document.getElementById('searchResults').style.display='none';
 }
 
-function selectType(t, el){
+function selectType(t){
     document.getElementById('tt').value = t;
-    document.querySelectorAll('.type-opt').forEach(o=>o.classList.remove('sel'));
-    el.classList.add('sel');
     document.getElementById('internalFields').classList.toggle('hidden', t!=='internal');
     document.getElementById('permanentFields').classList.toggle('hidden', t!=='permanent');
 }
@@ -307,7 +392,7 @@ function openPickModal(type){
     list.forEach(item => {
         html += `<div class="pick-item" onclick="setPick('${item}')">${item}</div>`;
     });
-    document.getElementById('pickList').innerHTML = html || '<div style="padding:15px;color:#999;font-size:11px">داده‌ای یافت نشد</div>';
+    document.getElementById('pickList').innerHTML = html || '<div style="padding:15px;color:#94a3b8;font-size:11px">داده‌ای یافت نشد</div>';
     document.getElementById('pickModal').classList.add('show');
 }
 

@@ -56,7 +56,7 @@ body{background:#f1f5f9}
 </style>
 </head>
 <body>
-<header class="top-bar"><a href="index.php">←</a><h1>پروفایل</h1></header>
+<header class="top-bar"><a href="index.php">→</a><h1>پروفایل</h1></header>
 <div class="content">
 <?php if($msg):?><div class="toast <?=$msgType=="error"?"toast-error":"toast-success"?>" style="margin-bottom:8px;font-size:11px"><?=$msg?></div><?php endif?>
 

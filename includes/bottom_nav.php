@@ -35,13 +35,13 @@ $viewer = [
 $links = match($r) { 'admin' => $admin, 'keeper' => $keeper, default => $viewer };
 ?>
 
-<nav style="position:fixed;bottom:0;left:0;right:0;background:#fff;display:flex;justify-content:space-around;padding:10px 4px;padding-bottom:max(10px,env(safe-area-inset-bottom));box-shadow:0 -2px 10px rgba(0,0,0,0.06);z-index:100;transition:none!important;animation:none!important">
+<nav style="position:fixed;bottom:0;left:0;right:0;background:#dcd7cc;display:flex;justify-content:space-around;padding:10px 4px;padding-bottom:max(10px,env(safe-area-inset-bottom));box-shadow:0 -2px 10px rgba(0,0,0,0.06);z-index:100;transition:none!important;animation:none!important">
     <?php foreach($links as $l): 
         $active = (basename($_SERVER['SCRIPT_NAME']) === basename($l['href']));
     ?>
-    <a href="<?=$l['href']?>" style="display:flex;flex-direction:column;align-items:center;gap:2px;text-decoration:none;transition:none!important;color:<?=$active?'#4361ee':'#94a3b8'?>;font-size:11px;font-weight:500;padding:4px 8px;border-radius:8px;min-width:50px;">
+    <a href="<?=$l['href']?>" class="<?= $active ? 'active' : '' ?>" style="display:flex;flex-direction:column;align-items:center;gap:2px;text-decoration:none;transition:none!important;font-size:11.5px;font-weight:900;padding:6px 10px;border-radius:8px;min-width:55px;">
         <span style="font-size:22px;"><?=$l['icon']?></span>
-        <span><?=$l['label']?></span>
+        <span style="font-weight:900 !important;"><?=$l['label']?></span>
     </a>
     <?php endforeach; ?>
 </nav>

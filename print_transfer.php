@@ -170,7 +170,7 @@ if (!function_exists('toPersianNum')) {
 
 <div class="no-print" style="text-align:center; margin-bottom:15px; padding:10px; background:#f1f5f9; border-bottom:1px solid #e2e8f0;">
     <button onclick="window.print()" style="background:#4361ee; color:#fff; border:none; padding:8px 20px; border-radius:8px; font-weight:bold; cursor:pointer; font-family:tahoma; font-size:11px;">🖨️ چاپ رسید (A5)</button>
-    <a href="transfers.php" style="background:#64748b; color:#fff; text-decoration:none; padding:8px 20px; border-radius:8px; font-weight:bold; font-family:tahoma; font-size:11px; margin-right:8px; display:inline-block;">← بازگشت</a>
+    <a href="transfers.php" style="background:#64748b; color:#fff; text-decoration:none; padding:8px 20px; border-radius:8px; font-weight:bold; font-family:tahoma; font-size:11px; margin-right:8px; display:inline-block;">→ بازگشت</a>
 </div>
 
 <div class="page">

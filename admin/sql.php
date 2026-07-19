@@ -53,7 +53,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["sql"])) {
 </style>
 </head>
 <body>
-<header class="top-bar"><a href="index.php">←</a><h1>🔧 کنسول SQL</h1></header>
+<header class="top-bar"><a href="index.php">→</a><h1>🔧 کنسول SQL</h1></header>
 <div class="content">
 
 <div class="sql-box">

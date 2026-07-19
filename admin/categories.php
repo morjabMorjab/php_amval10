@@ -14,7 +14,7 @@ if($_SERVER['REQUEST_METHOD']=='POST' && isset($_POST['save'])){
 $cats = $db->query("SELECT c.*, p.name as parent_name, COUNT(a.id) as cnt FROM categories c LEFT JOIN categories p ON c.parent_id=p.id LEFT JOIN assets a ON c.id=a.center_id GROUP BY c.id ORDER BY c.name");
 ?><!DOCTYPE html><html lang="fa" dir="rtl"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0"><title>دسته‌بندی | اموال</title><link rel="stylesheet" href="../css/app.css"></head>
 <body>
-<header class="top-bar"><a href="../index.php" style="text-decoration:none;font-size:18px">←</a><h1>📂 دسته‌بندی</h1><button onclick="o()" style="width:34px;height:34px;border-radius:50%;border:none;background:#4361ee;color:#fff;font-size:18px;cursor:pointer">＋</button></header>
+<header class="top-bar"><a href="../index.php" style="text-decoration:none;font-size:18px">→</a><h1>📂 دسته‌بندی</h1><button onclick="o()" style="width:34px;height:34px;border-radius:50%;border:none;background:#4361ee;color:#fff;font-size:18px;cursor:pointer">＋</button></header>
 <div class="content">
 <?php if($msg):?><div class="toast <?=strpos($msg,'✅')!==false?'toast-success':'toast-error'?>"><?=$msg?></div><?php endif?>
 <?php foreach($cats as $c):?>

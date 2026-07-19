@@ -79,7 +79,7 @@ textarea{width:100%;padding:10px;border:1.5px solid #e2e8f0;border-radius:10px;f
 </style>
 </head>
 <body>
-<header class="top-bar"><a href="index.php">←</a><h1>📨 پیام‌ها <?php if($unread > 0): ?><span style="background:#ef4444;color:#fff;padding:2px 8px;border-radius:10px;font-size:11px"><?=$unread?></span><?php endif?></h1></header>
+<header class="top-bar"><a href="index.php">→</a><h1>📨 پیام‌ها <?php if($unread > 0): ?><span style="background:#ef4444;color:#fff;padding:2px 8px;border-radius:10px;font-size:11px"><?=$unread?></span><?php endif?></h1></header>
 <div class="content">
 
 <?php if($role === "admin"): ?>

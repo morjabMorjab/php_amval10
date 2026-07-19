@@ -41,7 +41,7 @@ $total = $db->query("SELECT COUNT(*) FROM activity_logs")->fetchColumn();
 </style>
 </head>
 <body>
-<header class="top-bar"><a href="index.php">←</a><h1>📋 لاگ فعالیت</h1></header>
+<header class="top-bar"><a href="index.php">→</a><h1>📋 لاگ فعالیت</h1></header>
 <div class="content">
 <?php
 foreach($logs as $l): 
