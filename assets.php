@@ -135,42 +135,17 @@ function toEnglishNum(str){
 <?php if($msg): ?><div class="toast <?=$msgType=="error"?"toast-error":"toast-success"?>"><?=$msg?></div><?php endif; ?>
 
 <?php if(!$center && $role === "admin"): ?>
-<style>
-/* استایل دکمه‌های شیک و کم‌ارتفاع مراکز */
-.center-btn {
-    background: #fdfbf7 !important;
-    border: 1.5px solid #cbd5e1 !important;
-    border-radius: 10px !important;
-    padding: 6px 8px !important;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 4px;
-    text-decoration: none !important;
-    height: 44px !important;
-    box-shadow: none !important;
-    transition: all 0.2s ease !important;
-}
-.center-btn:hover {
-    background: #ffffff !important;
-    border-color: #4f46e5 !important;
-    transform: translateY(-1px);
-    box-shadow: 0 4px 12px rgba(79, 70, 229, 0.1) !important;
-}
-</style>
-
-<!-- دکمه‌های ۳تایی هم‌ردیف، باریک و شیک مراکز -->
+<!-- دکمه‌های ۳تایی هم‌ردیف، باریک و شیک مراکز برای ادمین -->
 <div style="display:grid; grid-template-columns:repeat(3, 1fr); gap:8px; margin-bottom:16px;">
 <?php foreach($centers as $c): ?>
-<a href="?center=<?=urlencode($c["center"])?>" class="center-btn" title="<?=htmlspecialchars($c["center"])?>">
-    <span style="font-weight:900 !important; font-size:11px !important; color:#1c1917 !important; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;"><?=htmlspecialchars($c["center"])?></span>
-    <span style="background:#e9e4d9 !important; color:#57534e !important; padding:2px 6px !important; border-radius:6px !important; font-size:10px !important; font-weight:900 !important; flex-shrink:0; border:1px solid #d4cebe !important;"><?=number_format($c["total"])?></span>
+<a href="?center=<?=urlencode($c["center"])?>" class="btn" style="background:#fdfbf7 !important; border:1.5px solid #cbd5e1 !important; border-radius:10px !important; padding:6px 8px !important; display:flex; align-items:center; justify-content:space-between; gap:4px; text-decoration:none !important; height:44px !important; box-shadow:none !important; margin:0 !important; width:100% !important;">
+<span style="font-weight:900 !important; font-size:11.5px !important; color:#1c1917 !important; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;" title="<?=htmlspecialchars($c["center"])?>"><?=htmlspecialchars($c["center"])?></span>
+<span style="background:#e9e4d9 !important; color:#57534e !important; padding:2px 6px !important; border-radius:6px !important; font-size:10px !important; font-weight:900 !important; flex-shrink:0; border:1px solid #d4cebe !important;"><?=number_format($c["total"])?></span>
 </a>
 <?php endforeach; ?>
 </div>
 
 <?php else: ?>
-<!-- کادر قدیمی جستجو که زیر هدر قرار داشت به طور کامل از این بخش حذف گردید -->
 
 <?php while($a = $assets_list->fetch()): ?>
 <div class="asset-card">
@@ -185,9 +160,10 @@ function toEnglishNum(str){
 </div>
 </div>
 <div class="asset-meta">
-<?php if($a["floor"]): ?><span class="meta-tag">🏗️ <?=htmlspecialchars($a["floor"])?></span><?php endif; ?>
-<?php if($a["location"]): ?><span class="meta-tag">📍 <?=htmlspecialchars($a["location"])?></span><?php endif; ?>
-<?php if($a["recipient"]): ?><span class="meta-tag">👤 <?=htmlspecialchars($a["recipient"])?></span><?php endif; ?>
+<?php if($a["floor"]): ?><span class="meta-tag"><?=htmlspecialchars($a["floor"])?></span><?php endif; ?>
+<?php if($a["location"]): ?><span class="meta-tag"><?=htmlspecialchars($a["location"])?></span><?php endif; ?>
+<?php if($a["recipient"]): ?><span class="meta-tag"><?=htmlspecialchars($a["recipient"])?></span><?php endif; ?>
+<?php if(!empty($a["date"])): ?><span class="meta-tag"><?=htmlspecialchars(formatDate($a["date"]))?></span><?php endif; ?>
 </div>
 </div>
 <?php endwhile; ?>
@@ -249,8 +225,9 @@ function toEnglishNum(str){
 const _isKeeper = <?= ($role === 'keeper') ? 'true' : 'false' ?>;
 
 function openModal() {
-    document.getElementById('mt').textContent = '➕ ثبت اموال جدید';
-    document.getElementById('asset_id').value = '';
+    // اصلاح شناسه modalTitle جهت جلوگیری از خطای کرش جاوااسکریپت و باز شدن تضمینی مودال ثبت دستی
+    if(document.getElementById('modalTitle')) document.getElementById('modalTitle').textContent = '➕ ثبت اموال جدید';
+    if(document.getElementById('asset_id')) document.getElementById('asset_id').value = '';
     document.querySelector('form').reset();
     if(document.getElementById('plate')) {
         document.getElementById('plate').readOnly = false;
@@ -272,8 +249,8 @@ async function editAsset(id) {
             return;
         }
         
-        document.getElementById('modalTitle').textContent = '✏️ ویرایش اموال';
-        document.getElementById('asset_id').value = d.id;
+        if(document.getElementById('modalTitle')) document.getElementById('modalTitle').textContent = '✏️ ویرایش اموال';
+        if(document.getElementById('asset_id')) document.getElementById('asset_id').value = d.id;
         
         // بررسی نقش کاربر به صورت کاملاً پویا و بدون خطای ران‌تایم
         if (typeof _isKeeper === 'undefined' || !_isKeeper) {
@@ -295,7 +272,7 @@ async function editAsset(id) {
             if(document.getElementById('plate')) {
                 document.getElementById('plate').value = d.plate || '';
                 document.getElementById('plate').readOnly = true;
-                document.getElementById('plate').style.pointerEvents = 'auto'; // فقط ریداونلی تعاملی
+                document.getElementById('plate').style.pointerEvents = 'auto';
             }
             if(document.getElementById('name')) document.getElementById('name').value = d.name || '';
             if(document.getElementById('floor_keeper')) document.getElementById('floor_keeper').value = d.floor || '';
