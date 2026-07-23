@@ -1,12 +1,15 @@
 import os
 import sys
+from ftplib import FTP
 
-# مسیرهای پیش‌فرض پروژه در ومپ‌سرور
-WAMP64_BASE = r"C:\wamp64\www\amval"
-WAMP_BASE = r"C:\wamp\www\amval"
+FTP_HOST = "ftp.amval10.ir"
+FTP_PORT = 21
+FTP_USER = "deploy@amval10.ir"
+FTP_PASS = "Deploy@4#14"
+LOCAL_DIR = r"C:\wamp64\www\amval"
 
-# کدهای کامل و نهایی فایل assets.php مجهز به مدیریت پویای کادر ثبت جدید و ویرایش جمعدار
-FINAL_ASSETS_DYNAMIC_CONTENT = r"""<?php
+# کدهای یکپارچه و واحد برای assets.php (بدون if/else برای فرم‌ها)
+FINAL_ASSETS_CONTENT = r"""<?php
 require_once "config/database.php";
 require_once "includes/functions.php";
 checkAuth();
@@ -34,8 +37,9 @@ if($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["save"])) {
     try {
         if(isset($_POST["asset_id"]) && $_POST["asset_id"]) {
             if($role === "keeper") {
-                // جمعدار فقط نام رو میتونه عوض کنه
-                $db->prepare("UPDATE assets SET name=? WHERE id=?")->execute([$name, $_POST["asset_id"]]);
+                // جمعدار نمیتواند پلاک را تغییر دهد، بقیه موارد ذخیره میشود
+                $db->prepare("UPDATE assets SET name=?, status=?, type=?, floor=?, location=?, recipient=?, center=?, date=?, description=? WHERE id=?")
+                   ->execute([$name, $status, $type, $floor, $location, $recipient, $c, $date, $description, $_POST["asset_id"]]);
             } else {
                 $db->prepare("UPDATE assets SET plate=?, name=?, status=?, type=?, floor=?, location=?, recipient=?, center=?, date=?, description=? WHERE id=?")
                    ->execute([$plate, $name, $status, $type, $floor, $location, $recipient, $c, $date, $description, $_POST["asset_id"]]);
@@ -89,19 +93,17 @@ if($role === "admin") {
 <title>اموال | مدیریت اموال</title>
 <link rel="stylesheet" href="css/app.css">
 <style>
-.asset-card{background:#fff;border-radius:16px;padding:14px;margin-bottom:8px;box-shadow:0 1px 3px rgba(0,0,0,.04)}
-.asset-header{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:6px}
-.plate-badge{background:#4361ee;color:#fff;padding:3px 10px;border-radius:20px;font-size:10px;font-weight:700}
-.asset-name{font-weight:700;font-size:14px;color:#0f172a;margin-bottom:4px}
-.asset-meta{display:flex;flex-wrap:wrap;gap:4px;font-size:10px;color:#64748b}
-.meta-tag{background:#f8fafc;padding:2px 8px;border-radius:20px;display:flex;align-items:center;gap:3px;font-size:10px}
-.center-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-.center-card-item{background:#fff;border-radius:16px;padding:18px 14px;text-align:center;cursor:pointer;text-decoration:none;color:#0f172a;border:2px solid transparent;box-shadow:0 2px 8px rgba(0,0,0,.03)}
-.center-icon-big{font-size:32px;display:block;margin-bottom:8px}
-.center-name{font-weight:700;font-size:13px}.center-count{font-size:11px;color:#64748b;background:#f1f5f9;padding:2px 12px;border-radius:10px;display:inline-block}
+.asset-card{background:#fff;border-radius:16px;padding:8px 12px !important;margin-bottom:6px !important;box-shadow:0 1px 3px rgba(0,0,0,.04)}
+.asset-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:4px !important;}
+.plate-badge{background:#e2e8f0 !important;border-radius:5px !important;color:#000000 !important;padding:4px 8px !important;border:none !important;font-weight:bold !important; flex-shrink:0;}
+.asset-name{margin:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;background:#e2e8f0 !important;border-radius:5px !important;color:#000000 !important;padding:4px 8px !important;border:none !important;font-weight:bold !important}
+.asset-meta{display:flex;flex-wrap:wrap;gap:3px !important;font-size:10px;color:#64748b;margin-top:2px !important;}
+.meta-tag{background:#e2e8f0 !important;border-radius:5px !important;color:#000000 !important;padding:4px 8px !important;font-weight:bold !important;border:none !important;}
+.center-grid{display:grid;grid-template-columns:repeat(3, 1fr);gap:8px;margin-bottom:16px;}
+.center-btn{background:#fdfbf7 !important;border:1.5px solid #cbd5e1 !important;border-radius:10px !important;padding:6px 8px !important;display:flex;align-items:center;justify-content:space-between;gap:4px;text-decoration:none !important;height:44px !important;transition:all 0.2s ease !important;}
+.center-btn:hover{background:#ffffff !important;border-color:#4f46e5 !important;transform:translateY(-1px);}
 .empty-state{text-align:center;padding:60px 20px;color:#94a3b8}
 </style>
-
 <script>
 function toEnglishNum(str){
     var persian = ["۰","۱","۲","۳","۴","۵","۶","۷","۸","۹"];
@@ -122,7 +124,6 @@ function toEnglishNum(str){
     </div>
     <?php endif; ?>
     
-    <!-- فیلد جستجوی فشرده با بوردر باکس زیبا در هدر در کنار دکمه پلاس -->
     <div class="search-box" style="flex:1; margin:0; display:flex; align-items:center; gap:6px; background:#faf8f5 !important; border:1.5px solid #cbd5e1 !important; padding:6px 12px !important; border-radius:10px !important; box-shadow:none !important; height:34px !important;">
         <span class="search-icon" style="font-size:13px; color:#64748b;">🔍</span>
         <input type="text" placeholder="جستجو..." value="<?=htmlspecialchars($search)?>" onchange="var v=toEnglishNum(this.value); location='?<?=$center ? "center=".urlencode($center)."&" : ""?>search='+v" style="border:none !important; background:transparent !important; padding:0 !important; height:100% !important; font-size:12px !important; width:100% !important; color:#000000 !important; font-weight:bold !important; outline:none !important;">
@@ -143,29 +144,26 @@ function toEnglishNum(str){
 <?php if($msg): ?><div class="toast <?=$msgType=="error"?"toast-error":"toast-success"?>"><?=$msg?></div><?php endif; ?>
 
 <?php if(!$center && $role === "admin"): ?>
-<!-- دکمه‌های ۳تایی هم‌ردیف، باریک و شیک مراکز برای ادمین -->
 <div style="display:grid; grid-template-columns:repeat(3, 1fr); gap:8px; margin-bottom:16px;">
 <?php foreach($centers as $c): ?>
-<a href="?center=<?=urlencode($c["center"])?>" class="btn" style="background:#fdfbf7 !important; border:1.5px solid #cbd5e1 !important; border-radius:10px !important; padding:6px 8px !important; display:flex; align-items:center; justify-content:space-between; gap:4px; text-decoration:none !important; height:44px !important; box-shadow:none !important; margin:0 !important; width:100% !important;">
-<span style="font-weight:900 !important; font-size:11.5px !important; color:#1c1917 !important; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;" title="<?=htmlspecialchars($c["center"])?>"><?=htmlspecialchars($c["center"])?></span>
+<a href="?center=<?=urlencode($c["center"])?>" class="center-btn" title="<?=htmlspecialchars($c["center"])?>">
+<span style="font-weight:900 !important; font-size:11.5px !important; color:#1c1917 !important; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;"><?=htmlspecialchars($c["center"])?></span>
 <span style="background:#e9e4d9 !important; color:#57534e !important; padding:2px 6px !important; border-radius:6px !important; font-size:10px !important; font-weight:900 !important; flex-shrink:0; border:1px solid #d4cebe !important;"><?=number_format($c["total"])?></span>
 </a>
 <?php endforeach; ?>
 </div>
-
 <?php else: ?>
-<!-- کادر قدیمی جستجو که زیر هدر قرار داشت به طور کامل از این بخش حذف گردید -->
 
 <?php while($a = $assets_list->fetch()): ?>
 <div class="asset-card">
-<div class="asset-header" style="display:flex;justify-content:space-between;align-items:center">
+<div class="asset-header">
 <div style="display:flex;align-items:center;gap:8px;flex:1;overflow:hidden">
-<span class="plate-badge" style="flex-shrink:0;background:#e2e8f0 !important;border-radius:5px !important;color:#000000 !important;padding:4px 8px !important;border:none !important;font-weight:bold !important"><?=$a["plate"]?></span>
-<div class="asset-name" style="margin:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;background:#e2e8f0 !important;border-radius:5px !important;color:#000000 !important;padding:4px 8px !important;border:none !important;font-weight:bold !important"><?=htmlspecialchars($a["name"])?></div>
+<span class="plate-badge"><?=$a["plate"]?></span>
+<div class="asset-name"><?=htmlspecialchars($a["name"])?></div>
 </div>
 <div style="display:flex;gap:4px;flex-shrink:0;margin-right:8px">
-<?php if(isAdmin() || isKeeper()): ?><button onclick="editAsset(<?=$a["id"]?>)" style="background:#fef3c7;color:#92400e;border:none;padding:4px 10px;border-radius:6px;cursor:pointer;font-size:10px">✏️</button><?php endif; ?>
-<?php if(isAdmin()): ?><a href="?delete=<?=$a["id"]?>&center=<?=urlencode($center)?>" onclick="event.preventDefault(); showConfirm('آیا از حذف این مورد اطمینان دارید؟', () => { window.location.href='?delete=<?=$a['id']?>&center=<?=urlencode($center)?>'; })" style="background:#fee2e2;color:#dc2626;padding:4px 10px;border-radius:6px;text-decoration:none;font-size:10px">🗑️</a><?php endif; ?>
+<?php if(isAdmin() || isKeeper()): ?><button type="button" onclick="editAsset(<?=$a["id"]?>)" style="background:#fef3c7;color:#92400e;border:none;padding:4px 10px;border-radius:6px;cursor:pointer;font-size:10px">✏️</button><?php endif; ?>
+<?php if(isAdmin()): ?><a href="?delete=<?=$a["id"]?>&center=<?=urlencode($center)?>" onclick="return confirm('آیا از حذف این مورد اطمینان دارید؟')" style="background:#fee2e2;color:#dc2626;padding:4px 10px;border-radius:6px;text-decoration:none;font-size:10px">🗑️</a><?php endif; ?>
 </div>
 </div>
 <div class="asset-meta">
@@ -179,54 +177,58 @@ function toEnglishNum(str){
 <?php endif; ?>
 </div>
 
+<!-- فرم واحد و یکپارچه برای همه (ادمین و جمعدار) - بدون هیچ شرط if در HTML -->
 <div class="modal-overlay" id="assetModal"><div class="modal-sheet">
     <h3 id="modalTitle">➕ ثبت اموال جدید</h3>
     <form method="POST">
-    <input type="hidden" name="asset_id" id="asset_id">
+        <input type="hidden" name="asset_id" id="asset_id">
 
-    <div style="display:grid; grid-template-columns:1fr 1fr; gap:6px; margin-bottom:6px;">
-        <input name="plate" id="plate" class="input-field" placeholder="شماره اموال *" required>
-        <input name="name" id="name" class="input-field" placeholder="نام اموال *" required>
-    </div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:12px;">
+            <input name="plate" id="plate" class="input-field" placeholder="شماره اموال *" required>
+            <input name="name" id="name" class="input-field" placeholder="نام اموال *" required>
+            
+            <select name="type" id="type" class="input-field">
+                <option>ثابت</option><option>مصرفی</option><option>جاری</option>
+            </select>
+            <select name="status" id="status" class="input-field">
+                <option>سالم</option><option>خراب</option><option>در تعمیر</option><option>اسقاط</option>
+            </select>
+            
+            <input name="center" id="center" class="input-field" placeholder="مرکز" value="<?=htmlspecialchars($center ?? '')?>">
+            <input name="floor" id="floor" class="input-field" placeholder="طبقه">
+            
+            <input name="location" id="location" class="input-field" placeholder="محل استقرار">
+            <input name="recipient" id="recipient" class="input-field" placeholder="جمعدار" value="<?= $role === 'keeper' ? htmlspecialchars($_SESSION['fullname']) : '' ?>">
+            
+            <input name="date" id="date" class="input-field" value="<?=jalali_date()?>" style="grid-column:1/-1;">
+            <input name="description" id="description" class="input-field" placeholder="توضیحات" style="grid-column:1/-1;">
+        </div>
 
-    <!-- فیلدهای تکمیلی که برای جمعدار در حالت ویرایش پنهان می‌شوند، اما در ساخت جدید کامل نشان داده می‌شوند -->
-    <div id="extraFieldsContainer" style="display:grid; grid-template-columns:1fr 1fr; gap:6px;">
-        <select name="type" id="type" class="input-field"><option>ثابت</option><option>مصرفی</option><option>جاری</option></select>
-        <select name="status" id="status" class="input-field"><option>سالم</option><option>خراب</option><option>در تعمیر</option><option>اسقاط</option></select>
-        <input name="center" id="center" class="input-field" placeholder="مرکز" value="<?=htmlspecialchars($center ?? '')?>">
-        <input name="floor" id="floor" class="input-field" placeholder="طبقه">
-        <input name="location" id="location" class="input-field" placeholder="محل استقرار">
-        <input name="recipient" id="recipient" class="input-field" placeholder="جمعدار" value="<?= $role === 'keeper' ? htmlspecialchars($_SESSION['fullname']) : '' ?>">
-        <input name="date" id="date" class="input-field" value="<?=jalali_date()?>">
-        <input name="description" id="description" class="input-field" placeholder="توضیحات" style="grid-column:1/-1">
-    </div>
-
-    <div style="display:flex;gap:6px;margin-top:12px">
-        <button name="save" class="btn btn-primary" style="flex:1">💾 ذخیره</button>
-        <button type="button" onclick="closeModal()" class="btn btn-light" style="flex:1">انصراف</button>
-    </div>
-    </form></div></div>
+        <div style="display:flex;gap:6px;">
+            <button type="button" onclick="closeModal()" class="btn btn-light" style="flex:1">انصراف</button>
+            <button name="save" class="btn btn-primary" style="flex:1">💾 ذخیره</button>
+        </div>
+    </form>
+</div></div>
 
 <?php include "includes/bottom_nav.php"; ?>
 
 <script>
-// تعریف سراسری متغیر نقش جمعدار براساس سشن PHP پروژه شما
+// متغیر سراسری نقش کاربر برای کنترل رفتار فرم در جاوااسکریپت
 const _isKeeper = <?= ($role === 'keeper') ? 'true' : 'false' ?>;
 
 function openModal() {
-    if(document.getElementById('modalTitle')) document.getElementById('modalTitle').textContent = '➕ ثبت اموال جدید';
-    if(document.getElementById('asset_id')) document.getElementById('asset_id').value = '';
+    document.getElementById('modalTitle').textContent = '➕ ثبت اموال جدید';
+    document.getElementById('asset_id').value = '';
     document.querySelector('form').reset();
     
-    // در حالت ثبت اموال جدید، فیلد پلاک برای همه باز و قابل نوشتن است
-    if(document.getElementById('plate')) {
-        document.getElementById('plate').readOnly = false;
-        document.getElementById('plate').style.pointerEvents = 'auto';
+    // در زمان ثبت جدید، پلاک همیشه باز است
+    var p = document.getElementById('plate');
+    if(p) {
+        p.readOnly = false;
+        p.style.pointerEvents = 'auto';
     }
-    // در حالت ثبت جدید، تمام فیلدها برای جمعدار هم کامل باز هستند
-    if(document.getElementById('extraFieldsContainer')) {
-        document.getElementById('extraFieldsContainer').style.display = 'grid';
-    }
+    
     document.getElementById('assetModal').classList.add('show');
 }
 
@@ -243,39 +245,29 @@ async function editAsset(id) {
             return;
         }
         
-        if(document.getElementById('modalTitle')) document.getElementById('modalTitle').textContent = '✏️ ویرایش اموال';
-        if(document.getElementById('asset_id')) document.getElementById('asset_id').value = d.id;
+        document.getElementById('modalTitle').textContent = '✏️ ویرایش اموال';
+        document.getElementById('asset_id').value = d.id;
         
-        // لود کامل اطلاعات مشترک
-        if(document.getElementById('plate')) document.getElementById('plate').value = d.plate || '';
-        if(document.getElementById('name')) document.getElementById('name').value = d.name || '';
-        if(document.getElementById('type')) document.getElementById('type').value = d.type || 'ثابت';
-        if(document.getElementById('status')) document.getElementById('status').value = d.status || 'سالم';
-        if(document.getElementById('floor')) document.getElementById('floor').value = d.floor || '';
-        if(document.getElementById('location')) document.getElementById('location').value = d.location || '';
-        if(document.getElementById('recipient')) document.getElementById('recipient').value = d.recipient || '';
-        if(document.getElementById('center')) document.getElementById('center').value = d.center || '';
-        if(document.getElementById('date')) document.getElementById('date').value = d.date || '';
-        if(document.getElementById('description')) document.getElementById('description').value = d.description || '';
+        // قرار دادن مقادیر در فرم واحد
+        document.getElementById('plate').value = d.plate || '';
+        document.getElementById('name').value = d.name || '';
+        document.getElementById('type').value = d.type || 'ثابت';
+        document.getElementById('status').value = d.status || 'سالم';
+        document.getElementById('floor').value = d.floor || '';
+        document.getElementById('location').value = d.location || '';
+        document.getElementById('recipient').value = d.recipient || '';
+        document.getElementById('center').value = d.center || '';
+        document.getElementById('date').value = d.date || '';
+        document.getElementById('description').value = d.description || '';
         
-        // بررسی نقش کاربر به صورت کاملاً پویا و بدون خطای ران‌تایم در حالت ویرایش
-        if (typeof _isKeeper === 'undefined' || !_isKeeper) {
-            if(document.getElementById('plate')) {
-                document.getElementById('plate').readOnly = false;
-                document.getElementById('plate').style.pointerEvents = 'auto';
-            }
-            if(document.getElementById('extraFieldsContainer')) {
-                document.getElementById('extraFieldsContainer').style.display = 'grid';
-            }
+        // اگر جمعدار باشد، در حالت ویرایش پلاک فقط‌خواندنی می‌شود
+        var p = document.getElementById('plate');
+        if (_isKeeper) {
+            p.readOnly = true;
+            p.style.pointerEvents = 'auto'; // اجازه کپی متن
         } else {
-            if(document.getElementById('plate')) {
-                document.getElementById('plate').value = d.plate || '';
-                document.getElementById('plate').readOnly = true;
-                document.getElementById('plate').style.pointerEvents = 'auto'; // فقط ریداونلی تعاملی
-            }
-            if(document.getElementById('extraFieldsContainer')) {
-                document.getElementById('extraFieldsContainer').style.display = 'none'; // مخفی کردن فیلدهای فرعی برای جمعدار در حالت ویرایش
-            }
+            p.readOnly = false;
+            p.style.pointerEvents = 'auto';
         }
         
         document.getElementById('assetModal').classList.add('show');
@@ -300,107 +292,93 @@ document.addEventListener('click', function(e) {
     }
 });
 </script>
-
-<div class="modal-overlay" id="floorPickerModal" onclick="closeFloorPicker(event)"><div class="modal-sheet">
-<h3>🏗️ انتخاب طبقه</h3>
-<div id="floorPickerList" style="max-height:250px;overflow-y:auto"></div>
-<button onclick="document.getElementById('floorPickerModal').classList.remove('show')" class="btn btn-light" style="margin-top:8px">انصراف</button>
-</div></div>
-
-<div class="modal-overlay" id="locationPickerModal" onclick="closeLocationPicker(event)"><div class="modal-sheet">
-<h3>📍 انتخاب محل استقرار</h3>
-<div id="locationPickerList" style="max-height:250px;overflow-y:auto"></div>
-<button onclick="document.getElementById('locationPickerModal').classList.remove('show')" class="btn btn-light" style="margin-top:8px">انصراف</button>
-</div></div>
-
-<script>
-function openFloorPicker(){
-    document.getElementById("floorPickerModal").classList.add("show");
-    var center = document.getElementById("center_keeper") ? document.getElementById("center_keeper").value : "";
-    if(!center || center === "") {
-        fetch("api_get_my_center.php")
-        .then(r => r.json())
-        .then(c => {
-            if(c && c.center) {
-                document.getElementById("center_keeper").value = c.center;
-                loadFloors(c.center);
-            }
-        });
-        return;
-    }
-    loadFloors(center);
-}
-function loadFloors(center){
-    fetch("api_get_floors.php?center=" + encodeURIComponent(center))
-    .then(r => r.json())
-    .then(d => {
-        var html = "";
-        d.forEach(function(f){ html += `<a href="#" onclick="pickFloor('${f}')" style="display:block;padding:10px;text-decoration:none;color:#0f172a;border-bottom:1px solid #f1f5f9;font-size:12px">${f}</a>`; });
-        document.getElementById("floorPickerList").innerHTML = html || "<div style=\"padding:10px;color:#94a3b8\">موردی یافت نشد</div>";
-    });
-}
-function pickFloor(f){
-    document.getElementById("floor_keeper").value = f;
-    document.getElementById("floorText").textContent = f;
-    document.getElementById("floorPickerModal").classList.remove("show");
-}
-function closeFloorPicker(e){if(!e||e.target.id==="floorPickerModal")document.getElementById("floorPickerModal").classList.remove("show")}
-
-function openLocationPicker(){
-    document.getElementById("locationPickerModal").classList.add("show");
-    var center = document.getElementById("center_keeper") ? document.getElementById("center_keeper").value : "";
-    if(!center || center === "") {
-        fetch("api_get_my_center.php")
-        .then(r => r.json())
-        .then(c => {
-            if(c && c.center) {
-                document.getElementById("center_keeper").value = c.center;
-                loadLocations(c.center);
-            }
-        });
-        return;
-    }
-    loadLocations(center);
-}
-function loadLocations(center){
-    fetch("api_get_locations.php?center=" + encodeURIComponent(center))
-    .then(r => r.json())
-    .then(d => {
-        var html = "";
-        d.forEach(function(l){ html += `<a href="#" onclick="pickLocation('${l}')" style="display:block;padding:10px;text-decoration:none;color:#0f172a;border-bottom:1px solid #f1f5f9;font-size:12px">${l}</a>`; });
-        document.getElementById("locationPickerList").innerHTML = html || "<div style=\"padding:10px;color:#94a3b8\">موردی یافت نشد</div>";
-    });
-}
-</script>
 </body></html>"""
 
-def get_project_dir():
-    if os.path.exists(WAMP64_BASE):
-        return WAMP64_BASE
-    elif os.path.exists(WAMP_BASE):
-        return WAMP_BASE
-    else:
-        print("❌ پوشه پروژه در مسیرهای پیش‌فرض ومپ‌سرور پیدا نشد.")
-        user_input = input("لطفاً مسیر پوشه پروژه خود را به صورت دستی وارد کنید (مثال C:\\wamp64\\www\\amval): ")
-        if os.path.exists(user_input):
-            return user_input
-        print("❌ مسیر نامعتبر است.")
-        sys.exit(1)
+# فایل بمب کش (نابودگر PWA و OPcache)
+NUKE_PHP_CONTENT = """<?php
+if (function_exists('opcache_reset')) { opcache_reset(); }
+clearstatcache();
+?>
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<title>در حال پاکسازی سیستم...</title>
+<style>body{font-family:Tahoma;text-align:center;padding:50px;background:#f4f0e6;color:#1c1917;}</style>
+</head>
+<body>
+    <h2>🚀 در حال نصب اجباری کدهای جدید روی مرورگر شما...</h2>
+    <p>لطفاً چند ثانیه صبر کنید.</p>
+    <script>
+    // کشتن PWA
+    if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.getRegistrations().then(function(registrations) {
+            for(let registration of registrations) {
+                registration.unregister();
+            }
+        });
+    }
+    // پاک کردن حافظه کش مرورگر
+    if(window.caches) {
+        caches.keys().then(function(names) {
+            for (let name of names) caches.delete(name);
+        });
+    }
+    // ریدایرکت با پارامتر تصادفی برای شکستن قطعی کش
+    setTimeout(function(){
+        window.location.href = 'assets.php?nocache=' + new Date().getTime();
+    }, 2000);
+    </script>
+</body>
+</html>"""
 
-def apply_dynamic_modal_fix():
-    project_dir = get_project_dir()
-    assets_file = os.path.join(project_dir, "assets.php")
+def deploy():
+    print("🚀 شروع فرآیند دپلوی قطعی (دور زدن کش مرورگر و سرور)...")
     
-    if os.path.exists(assets_file):
-        try:
-            # بازنویسی کامل فایل assets.php برای جداسازی کامل و داینامیک ثبت جدید و ویرایش جمعدار
-            with open(assets_file, "w", encoding="utf-8") as f:
-                f.write(FINAL_ASSETS_DYNAMIC_CONTENT)
-            print("✅ فایل assets.php با موفقیت بازنویسی شد؛ اکنون جمعدار در ثبت جدید فرم کامل و در ویرایش فقط فیلد نام کالا را مشاهده می‌کند.")
-        except Exception as e:
-            print(f"❌ خطا در زمان ویرایش فایل assets.php: {e}")
-    else:
-        print("❌ فایل assets.php یافت نشد.")
+    if not os.path.exists(LOCAL_DIR):
+        print("❌ پوشه لوکال پیدا نشد.")
+        return
+
+    # ۱. بازنویسی قطعی لوکال
+    assets_file = os.path.join(LOCAL_DIR, "assets.php")
+    with open(assets_file, "w", encoding="utf-8") as f:
+        f.write(FINAL_ASSETS_CONTENT)
+        
+    nuke_file = os.path.join(LOCAL_DIR, "nuke.php")
+    with open(nuke_file, "w", encoding="utf-8") as f:
+        f.write(NUKE_PHP_CONTENT)
+
+    # ۲. آپلود FTP
+    ftp = FTP()
+    try:
+        print("🔌 اتصال به سرور...")
+        ftp.connect(FTP_HOST, FTP_PORT, timeout=30)
+        ftp.login(FTP_USER, FTP_PASS)
+        
+        # آپلود در ریشه اصلی سایت (همان محلی که اکانت شما لندینگ می‌کند)
+        print("📤 آپلود assets.php")
+        with open(assets_file, 'rb') as f:
+            ftp.storbinary("STOR assets.php", f)
+            
+        print("📤 آپلود nuke.php")
+        with open(nuke_file, 'rb') as f:
+            ftp.storbinary("STOR nuke.php", f)
+            
+        print("🎉 آپلود تمام شد!")
+        
+    except Exception as e:
+        print(f"❌ خطا در FTP: {e}")
+    finally:
+        ftp.quit()
+        if os.path.exists(nuke_file):
+            os.remove(nuke_file)
+
+    print("\n=============================================")
+    print("🔥 مرحله طلایی نهایی:")
+    print("برای اینکه مرورگر شما مجبور شود کدهای جدید را دانلود کند، لینک زیر را باز کنید:")
+    print("👉  http://amval10.ir/nuke.php  👈")
+    print("این صفحه کش مرورگر را پاک کرده و شما را به صفحه اموال هدایت می‌کند.")
+    print("=============================================")
 
 if __name__ == "__main__":
-    apply_dynamic_modal_fix()
+    deploy()
