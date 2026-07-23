@@ -1,0 +1,9 @@
+:root { --bg-darker: #dcd7cc; --bg-dark: #f4f0e6; --bg-card: #fdfbf7; --bg-input: #f4f0e6; --text-main: #1c1917; --text-muted: #57534e; --border-color: #cbd5e1; --accent: #4f46e5; }
+body { background: var(--bg-dark) !important; color: var(--text-main) !important; font-size: 15.5px !important; font-weight: bold !important; line-height: 1.6 !important; max-width: 480px !important; margin: 0 auto !important; }
+.asset-card, .user-row, .card, .tr-card { background: var(--bg-card) !important; padding: 8px 12px !important; margin-bottom: 6px !important; border-radius: 12px; border: 1px solid var(--border-color); }
+.asset-name, .plate-badge, .meta-tag { background: #e2e8f0 !important; border-radius: 5px !important; color: #000 !important; padding: 4px 8px !important; font-weight: 900 !important; display: inline-block; border: none !important; margin: 2px; }
+nav { position:fixed; bottom:0; left:0; right:0; background: #dcd7cc !important; border-top: 1px solid #cbd5e1 !important; display:flex; justify-content:space-around; padding:10px 4px !important; z-index:100; }
+nav a { display:flex; flex-direction:column; align-items:center; text-decoration:none; color:#000 !important; font-weight:900 !important; font-size:11.5px; gap:1px !important; }
+nav a.active { background: #dc2626 !important; color: #fff !important; border-radius: 8px; padding: 5px 10px; }
+.search-box { border: 1.5px solid #cbd5e1 !important; border-radius: 10px !important; background: #faf8f5 !important; padding: 5px 14px !important; }
+.t-header { background: #e9e4d9 !important; border-top-left-radius: 16px !important; border-top-right-radius: 16px !important; font-weight:900; }
