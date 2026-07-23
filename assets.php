@@ -146,6 +146,7 @@ function toEnglishNum(str){
 </div>
 
 <?php else: ?>
+<!-- کادر قدیمی جستجو که زیر هدر قرار داشت به طور کامل از این بخش حذف گردید -->
 
 <?php while($a = $assets_list->fetch()): ?>
 <div class="asset-card">
@@ -175,46 +176,26 @@ function toEnglishNum(str){
     <form method="POST">
     <input type="hidden" name="asset_id" id="asset_id">
 
-    <?php if(isAdmin()): ?>
-    <!-- مودال کامل برای ادمین -->
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;">
-    <input name="plate" id="plate" class="input-field" placeholder="شماره اموال *" required>
-    <select name="type" id="type" class="input-field"><option>ثابت</option><option>مصرفی</option><option>جاری</option></select>
-    <input name="name" id="name" class="input-field" placeholder="نام اموال *" required style="grid-column:1/-1">
-    <select name="status" id="status" class="input-field"><option>سالم</option><option>خراب</option><option>در تعمیر</option><option>اسقاط</option></select>
-    <input name="center" id="center" class="input-field" placeholder="مرکز" value="<?=htmlspecialchars($center ?? '')?>">
-    <input name="floor" id="floor" class="input-field" placeholder="طبقه">
-    <input name="location" id="location" class="input-field" placeholder="محل استقرار">
-    <input name="recipient" id="recipient" class="input-field" placeholder="جمعدار">
-    <input name="date" id="date" class="input-field" value="<?=jalali_date()?>">
-    <input name="description" id="description" class="input-field" placeholder="توضیحات" style="grid-column:1/-1">
+    <div style="display:grid; grid-template-columns:1fr 1fr; gap:6px; margin-bottom:6px;">
+        <input name="plate" id="plate" class="input-field" placeholder="شماره اموال *" required>
+        <input name="name" id="name" class="input-field" placeholder="نام اموال *" required>
     </div>
-    <?php else: ?>
-    <!-- مودال ساده برای جمعدار -->
-    <input type="hidden" name="type" value="ثابت">
-    <input type="hidden" name="status" value="سالم">
-    <input type="hidden" name="recipient" value="<?=$_SESSION["fullname"]?>">
-    <input type="hidden" name="date" value="<?=jalali_date()?>">
-    <input type="hidden" name="description" value="">
-    <input type="hidden" name="floor" id="floor_keeper">
-    <input type="hidden" name="location" id="location_keeper">
-    <input type="hidden" name="center" id="center_keeper" value="<?=htmlspecialchars($center ?? '')?>">
 
-    <div style="display:grid;grid-template-columns:1fr;gap:10px;">
-        <div class="input-group">
-            <label style="display:block;font-size:11px;font-weight:700;color:#64748b;margin-bottom:4px">شماره اموال</label>
-            <input name="plate" id="plate" class="input-field" placeholder="شماره اموال" required>
-        </div>
-        <div class="input-group">
-            <label style="display:block;font-size:11px;font-weight:700;color:#64748b;margin-bottom:4px">نام اموال</label>
-            <input name="name" id="name" class="input-field" placeholder="نام کامل اموال" required>
-        </div>
+    <!-- فیلدهای تکمیلی که برای جمعدار در حالت ویرایش پنهان می‌شوند، اما در ساخت جدید کامل نشان داده می‌شوند -->
+    <div id="extraFieldsContainer" style="display:grid; grid-template-columns:1fr 1fr; gap:6px;">
+        <select name="type" id="type" class="input-field"><option>ثابت</option><option>مصرفی</option><option>جاری</option></select>
+        <select name="status" id="status" class="input-field"><option>سالم</option><option>خراب</option><option>در تعمیر</option><option>اسقاط</option></select>
+        <input name="center" id="center" class="input-field" placeholder="مرکز" value="<?=htmlspecialchars($center ?? '')?>">
+        <input name="floor" id="floor" class="input-field" placeholder="طبقه">
+        <input name="location" id="location" class="input-field" placeholder="محل استقرار">
+        <input name="recipient" id="recipient" class="input-field" placeholder="جمعدار" value="<?= $role === 'keeper' ? htmlspecialchars($_SESSION['fullname']) : '' ?>">
+        <input name="date" id="date" class="input-field" value="<?=jalali_date()?>">
+        <input name="description" id="description" class="input-field" placeholder="توضیحات" style="grid-column:1/-1">
     </div>
-    <?php endif; ?>
 
-    <div style="display:flex;gap:6px;margin-top:8px">
-    <button name="save" class="btn btn-primary" style="flex:1">💾 ذخیره</button>
-    <button type="button" onclick="closeModal()" class="btn btn-light" style="flex:1">انصراف</button>
+    <div style="display:flex;gap:6px;margin-top:12px">
+        <button name="save" class="btn btn-primary" style="flex:1">💾 ذخیره</button>
+        <button type="button" onclick="closeModal()" class="btn btn-light" style="flex:1">انصراف</button>
     </div>
     </form></div></div>
 
@@ -225,13 +206,18 @@ function toEnglishNum(str){
 const _isKeeper = <?= ($role === 'keeper') ? 'true' : 'false' ?>;
 
 function openModal() {
-    // اصلاح شناسه modalTitle جهت جلوگیری از خطای کرش جاوااسکریپت و باز شدن تضمینی مودال ثبت دستی
     if(document.getElementById('modalTitle')) document.getElementById('modalTitle').textContent = '➕ ثبت اموال جدید';
     if(document.getElementById('asset_id')) document.getElementById('asset_id').value = '';
     document.querySelector('form').reset();
+    
+    // در حالت ثبت اموال جدید، فیلد پلاک برای همه باز و قابل نوشتن است
     if(document.getElementById('plate')) {
         document.getElementById('plate').readOnly = false;
         document.getElementById('plate').style.pointerEvents = 'auto';
+    }
+    // در حالت ثبت جدید، تمام فیلدها برای جمعدار هم کامل باز هستند
+    if(document.getElementById('extraFieldsContainer')) {
+        document.getElementById('extraFieldsContainer').style.display = 'grid';
     }
     document.getElementById('assetModal').classList.add('show');
 }
@@ -252,31 +238,36 @@ async function editAsset(id) {
         if(document.getElementById('modalTitle')) document.getElementById('modalTitle').textContent = '✏️ ویرایش اموال';
         if(document.getElementById('asset_id')) document.getElementById('asset_id').value = d.id;
         
-        // بررسی نقش کاربر به صورت کاملاً پویا و بدون خطای ران‌تایم
+        // لود کامل اطلاعات مشترک
+        if(document.getElementById('plate')) document.getElementById('plate').value = d.plate || '';
+        if(document.getElementById('name')) document.getElementById('name').value = d.name || '';
+        if(document.getElementById('type')) document.getElementById('type').value = d.type || 'ثابت';
+        if(document.getElementById('status')) document.getElementById('status').value = d.status || 'سالم';
+        if(document.getElementById('floor')) document.getElementById('floor').value = d.floor || '';
+        if(document.getElementById('location')) document.getElementById('location').value = d.location || '';
+        if(document.getElementById('recipient')) document.getElementById('recipient').value = d.recipient || '';
+        if(document.getElementById('center')) document.getElementById('center').value = d.center || '';
+        if(document.getElementById('date')) document.getElementById('date').value = d.date || '';
+        if(document.getElementById('description')) document.getElementById('description').value = d.description || '';
+        
+        // بررسی نقش کاربر به صورت کاملاً پویا و بدون خطای ران‌تایم در حالت ویرایش
         if (typeof _isKeeper === 'undefined' || !_isKeeper) {
             if(document.getElementById('plate')) {
-                document.getElementById('plate').value = d.plate || '';
                 document.getElementById('plate').readOnly = false;
                 document.getElementById('plate').style.pointerEvents = 'auto';
             }
-            if(document.getElementById('name')) document.getElementById('name').value = d.name || '';
-            if(document.getElementById('type')) document.getElementById('type').value = d.type || 'ثابت';
-            if(document.getElementById('status')) document.getElementById('status').value = d.status || 'سالم';
-            if(document.getElementById('floor')) document.getElementById('floor').value = d.floor || '';
-            if(document.getElementById('location')) document.getElementById('location').value = d.location || '';
-            if(document.getElementById('recipient')) document.getElementById('recipient').value = d.recipient || '';
-            if(document.getElementById('center')) document.getElementById('center').value = d.center || '';
-            if(document.getElementById('date')) document.getElementById('date').value = d.date || '';
-            if(document.getElementById('description')) document.getElementById('description').value = d.description || '';
+            if(document.getElementById('extraFieldsContainer')) {
+                document.getElementById('extraFieldsContainer').style.display = 'grid';
+            }
         } else {
             if(document.getElementById('plate')) {
                 document.getElementById('plate').value = d.plate || '';
                 document.getElementById('plate').readOnly = true;
-                document.getElementById('plate').style.pointerEvents = 'auto';
+                document.getElementById('plate').style.pointerEvents = 'auto'; // فقط ریداونلی تعاملی
             }
-            if(document.getElementById('name')) document.getElementById('name').value = d.name || '';
-            if(document.getElementById('floor_keeper')) document.getElementById('floor_keeper').value = d.floor || '';
-            if(document.getElementById('location_keeper')) document.getElementById('location_keeper').value = d.location || '';
+            if(document.getElementById('extraFieldsContainer')) {
+                document.getElementById('extraFieldsContainer').style.display = 'none'; // مخفی کردن فیلدهای فرعی برای جمعدار در حالت ویرایش
+            }
         }
         
         document.getElementById('assetModal').classList.add('show');
@@ -337,7 +328,7 @@ function loadFloors(center){
     .then(d => {
         var html = "";
         d.forEach(function(f){ html += `<a href="#" onclick="pickFloor('${f}')" style="display:block;padding:10px;text-decoration:none;color:#0f172a;border-bottom:1px solid #f1f5f9;font-size:12px">${f}</a>`; });
-        document.getElementById("floorPickerList").innerHTML = html || "<div style=\\"padding:10px;color:#94a3b8\\">موردی یافت نشد</div>";
+        document.getElementById("floorPickerList").innerHTML = html || "<div style=\"padding:10px;color:#94a3b8\">موردی یافت نشد</div>";
     });
 }
 function pickFloor(f){
@@ -369,7 +360,7 @@ function loadLocations(center){
     .then(d => {
         var html = "";
         d.forEach(function(l){ html += `<a href="#" onclick="pickLocation('${l}')" style="display:block;padding:10px;text-decoration:none;color:#0f172a;border-bottom:1px solid #f1f5f9;font-size:12px">${l}</a>`; });
-        document.getElementById("locationPickerList").innerHTML = html || "<div style=\\"padding:10px;color:#94a3b8\\">موردی یافت نشد</div>";
+        document.getElementById("locationPickerList").innerHTML = html || "<div style=\"padding:10px;color:#94a3b8\">موردی یافت نشد</div>";
     });
 }
 </script>
