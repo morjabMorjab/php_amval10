@@ -1,0 +1,48 @@
+[21-Jul-2026 14:07:11 Asia/Tehran] PHP Fatal error:  Uncaught Error: Call to undefined function isLoggedIn() in /home/amval1/public_html/includes/bottom_nav.php:2
+Stack trace:
+#0 {main}
+  thrown in /home/amval1/public_html/includes/bottom_nav.php on line 2
+[21-Jul-2026 14:07:11 Asia/Tehran] PHP Warning:  Undefined global variable $_SESSION in /home/amval1/public_html/includes/navbar.php on line 12
+[21-Jul-2026 14:07:11 Asia/Tehran] PHP Warning:  Trying to access array offset on value of type null in /home/amval1/public_html/includes/navbar.php on line 12
+[22-Jul-2026 14:56:37 Asia/Tehran] PHP Fatal error:  Uncaught Error: Call to undefined function isLoggedIn() in /home/amval1/public_html/includes/bottom_nav.php:2
+Stack trace:
+#0 {main}
+  thrown in /home/amval1/public_html/includes/bottom_nav.php on line 2
+[22-Jul-2026 14:56:37 Asia/Tehran] PHP Warning:  Undefined global variable $_SESSION in /home/amval1/public_html/includes/navbar.php on line 12
+[22-Jul-2026 14:56:37 Asia/Tehran] PHP Warning:  Trying to access array offset on value of type null in /home/amval1/public_html/includes/navbar.php on line 12
+[23-Jul-2026 02:05:03 Asia/Tehran] PHP Fatal error:  Uncaught Error: Call to undefined function isLoggedIn() in /home/amval1/public_html/includes/bottom_nav.php:2
+Stack trace:
+#0 {main}
+  thrown in /home/amval1/public_html/includes/bottom_nav.php on line 2
+[23-Jul-2026 02:05:03 Asia/Tehran] PHP Warning:  Undefined global variable $_SESSION in /home/amval1/public_html/includes/navbar.php on line 12
+[23-Jul-2026 02:05:03 Asia/Tehran] PHP Warning:  Trying to access array offset on value of type null in /home/amval1/public_html/includes/navbar.php on line 12
+[23-Jul-2026 09:19:58 Asia/Tehran] PHP Fatal error:  Uncaught Error: Call to undefined function isLoggedIn() in /home/amval1/public_html/includes/bottom_nav.php:2
+Stack trace:
+#0 {main}
+  thrown in /home/amval1/public_html/includes/bottom_nav.php on line 2
+[23-Jul-2026 09:19:58 Asia/Tehran] PHP Warning:  Undefined global variable $_SESSION in /home/amval1/public_html/includes/navbar.php on line 12
+[23-Jul-2026 09:19:58 Asia/Tehran] PHP Warning:  Trying to access array offset on value of type null in /home/amval1/public_html/includes/navbar.php on line 12
+[23-Jul-2026 09:20:03 Asia/Tehran] PHP Fatal error:  Uncaught Error: Call to undefined function isLoggedIn() in /home/amval1/public_html/includes/bottom_nav.php:2
+Stack trace:
+#0 {main}
+  thrown in /home/amval1/public_html/includes/bottom_nav.php on line 2
+[23-Jul-2026 09:20:03 Asia/Tehran] PHP Warning:  Undefined global variable $_SESSION in /home/amval1/public_html/includes/navbar.php on line 12
+[23-Jul-2026 09:20:03 Asia/Tehran] PHP Warning:  Trying to access array offset on value of type null in /home/amval1/public_html/includes/navbar.php on line 12
+[23-Jul-2026 10:59:52 Asia/Tehran] PHP Fatal error:  Uncaught Error: Call to undefined function isLoggedIn() in /home/amval1/public_html/includes/bottom_nav.php:2
+Stack trace:
+#0 {main}
+  thrown in /home/amval1/public_html/includes/bottom_nav.php on line 2
+[23-Jul-2026 10:59:52 Asia/Tehran] PHP Warning:  Undefined global variable $_SESSION in /home/amval1/public_html/includes/navbar.php on line 12
+[23-Jul-2026 10:59:52 Asia/Tehran] PHP Warning:  Trying to access array offset on value of type null in /home/amval1/public_html/includes/navbar.php on line 12
+[23-Jul-2026 10:59:55 Asia/Tehran] PHP Fatal error:  Uncaught Error: Call to undefined function isLoggedIn() in /home/amval1/public_html/includes/bottom_nav.php:2
+Stack trace:
+#0 {main}
+  thrown in /home/amval1/public_html/includes/bottom_nav.php on line 2
+[23-Jul-2026 10:59:55 Asia/Tehran] PHP Warning:  Undefined global variable $_SESSION in /home/amval1/public_html/includes/navbar.php on line 12
+[23-Jul-2026 10:59:55 Asia/Tehran] PHP Warning:  Trying to access array offset on value of type null in /home/amval1/public_html/includes/navbar.php on line 12
+[23-Jul-2026 13:16:01 Asia/Tehran] PHP Fatal error:  Uncaught Error: Call to undefined function isLoggedIn() in /home/amval1/public_html/includes/bottom_nav.php:2
+Stack trace:
+#0 {main}
+  thrown in /home/amval1/public_html/includes/bottom_nav.php on line 2
+[23-Jul-2026 13:16:01 Asia/Tehran] PHP Warning:  Undefined global variable $_SESSION in /home/amval1/public_html/includes/navbar.php on line 12
+[23-Jul-2026 13:16:01 Asia/Tehran] PHP Warning:  Trying to access array offset on value of type null in /home/amval1/public_html/includes/navbar.php on line 12
