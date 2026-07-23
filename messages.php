@@ -69,13 +69,15 @@ $keepers = $db->query("SELECT id, fullname, username FROM users WHERE role = \"k
 <html lang="fa" dir="rtl">
 <head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0"><title>پیام‌ها</title><link rel="stylesheet" href="css/app.css">
 <style>
-.msg-card{background:#fff;border-radius:14px;padding:14px;margin-bottom:8px;box-shadow:0 1px 3px rgba(0,0,0,.04)}
+.msg-card{background:#fff;border-radius:14px;padding:14px;margin-bottom:8px;box-shadow:0 1px 3px rgba(0,0,0,.04);position:relative}
 .msg-card.unread{border-right:3px solid #4361ee;background:#eff6ff}
-.msg-subject{font-weight:700;font-size:13px;color:#0f172a;margin-bottom:4px}
+.msg-subject{font-weight:700;font-size:13px;color:#0f172a;margin-bottom:4px;padding-right:60px}
 .msg-body{font-size:11px;color:#64748b;margin-bottom:6px}
 .msg-meta{font-size:9px;color:#94a3b8;display:flex;gap:10px}
 .form-card{background:#fff;border-radius:16px;padding:16px;margin-bottom:10px;box-shadow:0 1px 3px rgba(0,0,0,.04)}
 textarea{width:100%;padding:10px;border:1.5px solid #e2e8f0;border-radius:10px;font-size:12px;font-family:inherit;resize:vertical;min-height:80px}
+.btn-resend{position:absolute;left:10px;top:10px;background:#e2e8f0;border:none;padding:4px 8px;border-radius:6px;font-size:10px;cursor:pointer;font-weight:bold}
+.btn-resend:hover{background:#cbd5e1}
 </style>
 </head>
 <body>
@@ -86,19 +88,19 @@ textarea{width:100%;padding:10px;border:1.5px solid #e2e8f0;border-radius:10px;f
 <div class="form-card">
 <h3 style="margin-bottom:12px">✉️ ارسال پیام جدید</h3>
 <form method="POST">
-<select name="target" class="input-field" style="margin-bottom:8px" onchange="toggleTarget(this.value)">
+<select name="target" id="msgTarget" class="input-field" style="margin-bottom:8px" onchange="toggleTarget(this.value)">
 <option value="all">📢 همه مراکز</option>
 <option value="center">🏢 یک مرکز خاص</option>
 <option value="keeper">👤 یک جمعدار خاص</option>
 </select>
 <div id="targetCenter" style="display:none;margin-bottom:8px">
-<select name="center" class="input-field"><?php foreach($centers as $c):?><option value="<?=$c["center"]?>"><?=$c["center"]?></option><?php endforeach?></select>
+<select name="center" id="selCenter" class="input-field"><?php foreach($centers as $c):?><option value="<?=$c["center"]?>"><?=$c["center"]?></option><?php endforeach?></select>
 </div>
 <div id="targetKeeper" style="display:none;margin-bottom:8px">
-<select name="keeper_id" class="input-field"><?php foreach($keepers as $k):?><option value="<?=$k["id"]?>"><?=$k["fullname"]?> (@<?=$k["username"]?>)</option><?php endforeach?></select>
+<select name="keeper_id" id="selKeeper" class="input-field"><?php foreach($keepers as $k):?><option value="<?=$k["id"]?>"><?=$k["fullname"]?> (@<?=$k["username"]?>)</option><?php endforeach?></select>
 </div>
-<input name="subject" class="input-field" placeholder="موضوع پیام..." required style="margin-bottom:8px">
-<textarea name="body" placeholder="متن پیام..." required></textarea>
+<input name="subject" id="msgSubject" class="input-field" placeholder="موضوع پیام..." required style="margin-bottom:8px">
+<textarea name="body" id="msgBody" placeholder="متن پیام..." required></textarea>
 <button name="send" class="btn btn-primary" style="margin-top:8px">📨 ارسال</button>
 </form>
 </div>
@@ -106,6 +108,12 @@ textarea{width:100%;padding:10px;border:1.5px solid #e2e8f0;border-radius:10px;f
 
 <?php while($m = $messages->fetch()): ?>
 <div class="msg-card <?=$m["is_read"] ? "" : "unread"?>" onclick="location.href='?read=<?=$m["id"]?>'">
+    <?php if($role === 'admin'): ?>
+        <button type="button" class="btn-resend" 
+            onclick="event.stopPropagation(); prepareResend('<?=addslashes($m['subject'])?>', '<?=addslashes(str_replace(["\r", "\n"], ' ', $m['body']))?>', '<?=$m['receiver_center'] ? 'center' : ($m['receiver_id'] ? 'keeper' : 'all')?>', '<?=$m['receiver_center'] ?: $m['receiver_id']?>')">
+            🔄 ارسال مجدد
+        </button>
+    <?php endif; ?>
 <div class="msg-subject"><?=htmlspecialchars($m["subject"])?></div>
 <div class="msg-body"><?=nl2br(htmlspecialchars($m["body"]))?></div>
 <div class="msg-meta">
@@ -122,6 +130,28 @@ textarea{width:100%;padding:10px;border:1.5px solid #e2e8f0;border-radius:10px;f
 function toggleTarget(v){
     document.getElementById("targetCenter").style.display = v==="center" ? "block" : "none";
     document.getElementById("targetKeeper").style.display = v==="keeper" ? "block" : "none";
+}
+
+function prepareResend(subject, body, targetType, targetVal) {
+    // ۱. پر کردن موضوع و متن
+    document.getElementById('msgSubject').value = subject;
+    document.getElementById('msgBody').value = body;
+    
+    // ۲. تنظیم نوع گیرنده (همه/مرکز/جمعدار)
+    document.getElementById('msgTarget').value = targetType;
+    
+    // ۳. فراخوانی تابع نمایش فیلدهای مربوطه
+    toggleTarget(targetType);
+    
+    // ۴. مقداردهی مرکز یا جمعدار خاص
+    if(targetType === 'center') {
+        document.getElementById('selCenter').value = targetVal;
+    } else if(targetType === 'keeper') {
+        document.getElementById('selKeeper').value = targetVal;
+    }
+    
+    // ۵. اسکرول نرم به سمت فرم در بالای صفحه
+    window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 </script>
 </body></html>
