@@ -378,3 +378,228 @@ Stack trace:
 Stack trace:
 #0 {main}
   thrown in /home/amval1/public_html/api_get_user_centers.php on line 2
+[23-Jul-2026 15:37:12 Asia/Tehran] PHP Fatal error:  Uncaught PDOException: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'AND floor!='' ORDER BY floor' at line 1 in /home/amval1/public_html/fix_all.php:74
+Stack trace:
+#0 /home/amval1/public_html/fix_all.php(74): PDO->query()
+#1 {main}
+  thrown in /home/amval1/public_html/fix_all.php on line 74
+[23-Jul-2026 15:37:24 Asia/Tehran] PHP Fatal error:  Uncaught PDOException: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'AND floor!='' ORDER BY floor' at line 1 in /home/amval1/public_html/fix_all.php:74
+Stack trace:
+#0 /home/amval1/public_html/fix_all.php(74): PDO->query()
+#1 {main}
+  thrown in /home/amval1/public_html/fix_all.php on line 74
+[23-Jul-2026 15:37:29 Asia/Tehran] PHP Fatal error:  Uncaught PDOException: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'AND floor!='' ORDER BY floor' at line 1 in /home/amval1/public_html/fix_all.php:74
+Stack trace:
+#0 /home/amval1/public_html/fix_all.php(74): PDO->query()
+#1 {main}
+  thrown in /home/amval1/public_html/fix_all.php on line 74
+[23-Jul-2026 15:37:41 Asia/Tehran] PHP Fatal error:  Uncaught PDOException: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'AND floor!='' ORDER BY floor' at line 1 in /home/amval1/public_html/fix_all.php:74
+Stack trace:
+#0 /home/amval1/public_html/fix_all.php(74): PDO->query()
+#1 {main}
+  thrown in /home/amval1/public_html/fix_all.php on line 74
+[23-Jul-2026 15:37:50 Asia/Tehran] PHP Fatal error:  Uncaught PDOException: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'AND floor!='' ORDER BY floor' at line 1 in /home/amval1/public_html/fix_all.php:74
+Stack trace:
+#0 /home/amval1/public_html/fix_all.php(74): PDO->query()
+#1 {main}
+  thrown in /home/amval1/public_html/fix_all.php on line 74
+[23-Jul-2026 15:56:14 Asia/Tehran] PHP Warning:  Undefined variable $chk in /home/amval1/public_html/fix_all.php on line 152
+[23-Jul-2026 15:56:14 Asia/Tehran] PHP Warning:  Undefined variable $chk in /home/amval1/public_html/fix_all.php on line 152
+[23-Jul-2026 15:56:14 Asia/Tehran] PHP Warning:  Undefined variable $chk in /home/amval1/public_html/fix_all.php on line 152
+[23-Jul-2026 15:56:14 Asia/Tehran] PHP Warning:  Undefined variable $chk in /home/amval1/public_html/fix_all.php on line 152
+[23-Jul-2026 15:56:14 Asia/Tehran] PHP Warning:  Undefined variable $chk in /home/amval1/public_html/fix_all.php on line 152
+[23-Jul-2026 15:56:14 Asia/Tehran] PHP Warning:  Undefined variable $chk in /home/amval1/public_html/fix_all.php on line 152
+[23-Jul-2026 15:56:14 Asia/Tehran] PHP Warning:  Undefined variable $chk in /home/amval1/public_html/fix_all.php on line 152
+[23-Jul-2026 15:56:14 Asia/Tehran] PHP Warning:  Undefined variable $chk in /home/amval1/public_html/fix_all.php on line 152
+[23-Jul-2026 15:56:14 Asia/Tehran] PHP Warning:  Undefined variable $chk in /home/amval1/public_html/fix_all.php on line 152
+[23-Jul-2026 15:56:14 Asia/Tehran] PHP Warning:  Undefined variable $chk in /home/amval1/public_html/fix_all.php on line 152
+[23-Jul-2026 15:56:14 Asia/Tehran] PHP Warning:  Undefined variable $chk in /home/amval1/public_html/fix_all.php on line 152
+[23-Jul-2026 15:56:14 Asia/Tehran] PHP Warning:  Undefined variable $chk in /home/amval1/public_html/fix_all.php on line 152
+[23-Jul-2026 15:56:14 Asia/Tehran] PHP Warning:  Undefined variable $chk in /home/amval1/public_html/fix_all.php on line 152
+[23-Jul-2026 15:56:14 Asia/Tehran] PHP Warning:  Undefined variable $chk in /home/amval1/public_html/fix_all.php on line 152
+[23-Jul-2026 15:56:14 Asia/Tehran] PHP Warning:  Undefined variable $chk in /home/amval1/public_html/fix_all.php on line 152
+[23-Jul-2026 15:56:14 Asia/Tehran] PHP Warning:  Undefined variable $chk in /home/amval1/public_html/fix_all.php on line 152
+[23-Jul-2026 15:56:14 Asia/Tehran] PHP Warning:  Undefined variable $chk in /home/amval1/public_html/fix_all.php on line 152
+[23-Jul-2026 15:56:14 Asia/Tehran] PHP Warning:  Undefined variable $chk in /home/amval1/public_html/fix_all.php on line 152
+[23-Jul-2026 15:56:14 Asia/Tehran] PHP Warning:  Undefined variable $chk in /home/amval1/public_html/fix_all.php on line 152
+[23-Jul-2026 15:56:14 Asia/Tehran] PHP Warning:  Undefined variable $chk in /home/amval1/public_html/fix_all.php on line 152
+[23-Jul-2026 15:56:14 Asia/Tehran] PHP Warning:  Undefined variable $chk in /home/amval1/public_html/fix_all.php on line 152
+[23-Jul-2026 15:56:14 Asia/Tehran] PHP Warning:  Undefined variable $chk in /home/amval1/public_html/fix_all.php on line 152
+[23-Jul-2026 15:56:14 Asia/Tehran] PHP Warning:  Undefined variable $chk in /home/amval1/public_html/fix_all.php on line 152
+[23-Jul-2026 15:56:14 Asia/Tehran] PHP Warning:  Undefined variable $chk in /home/amval1/public_html/fix_all.php on line 152
+[23-Jul-2026 15:56:14 Asia/Tehran] PHP Warning:  Undefined variable $chk in /home/amval1/public_html/fix_all.php on line 152
+[23-Jul-2026 15:56:14 Asia/Tehran] PHP Warning:  Undefined variable $chk in /home/amval1/public_html/fix_all.php on line 152
+[23-Jul-2026 15:56:14 Asia/Tehran] PHP Warning:  Undefined variable $chk in /home/amval1/public_html/fix_all.php on line 152
+[23-Jul-2026 15:56:14 Asia/Tehran] PHP Warning:  Undefined variable $chk in /home/amval1/public_html/fix_all.php on line 152
+[23-Jul-2026 15:56:14 Asia/Tehran] PHP Warning:  Undefined variable $chk in /home/amval1/public_html/fix_all.php on line 152
+[23-Jul-2026 15:56:14 Asia/Tehran] PHP Warning:  Undefined variable $chk in /home/amval1/public_html/fix_all.php on line 152
+[23-Jul-2026 15:56:14 Asia/Tehran] PHP Warning:  Undefined variable $chk in /home/amval1/public_html/fix_all.php on line 152
+[23-Jul-2026 15:56:14 Asia/Tehran] PHP Warning:  Undefined variable $chk in /home/amval1/public_html/fix_all.php on line 152
+[23-Jul-2026 15:56:14 Asia/Tehran] PHP Warning:  Undefined variable $chk in /home/amval1/public_html/fix_all.php on line 152
+[23-Jul-2026 15:56:14 Asia/Tehran] PHP Warning:  Undefined variable $chk in /home/amval1/public_html/fix_all.php on line 152
+[23-Jul-2026 15:56:14 Asia/Tehran] PHP Warning:  Undefined variable $chk in /home/amval1/public_html/fix_all.php on line 152
+[23-Jul-2026 15:56:14 Asia/Tehran] PHP Warning:  Undefined variable $chk in /home/amval1/public_html/fix_all.php on line 152
+[23-Jul-2026 15:56:14 Asia/Tehran] PHP Warning:  Undefined variable $chk in /home/amval1/public_html/fix_all.php on line 152
+[23-Jul-2026 15:56:14 Asia/Tehran] PHP Warning:  Undefined variable $chk in /home/amval1/public_html/fix_all.php on line 152
+[23-Jul-2026 15:56:14 Asia/Tehran] PHP Warning:  Undefined variable $chk in /home/amval1/public_html/fix_all.php on line 152
+[23-Jul-2026 15:56:14 Asia/Tehran] PHP Warning:  Undefined variable $chk in /home/amval1/public_html/fix_all.php on line 152
+[23-Jul-2026 15:56:14 Asia/Tehran] PHP Warning:  Undefined variable $chk in /home/amval1/public_html/fix_all.php on line 152
+[23-Jul-2026 15:56:14 Asia/Tehran] PHP Warning:  Undefined variable $chk in /home/amval1/public_html/fix_all.php on line 152
+[23-Jul-2026 15:56:14 Asia/Tehran] PHP Warning:  Undefined variable $chk in /home/amval1/public_html/fix_all.php on line 152
+[23-Jul-2026 15:56:14 Asia/Tehran] PHP Warning:  Undefined variable $chk in /home/amval1/public_html/fix_all.php on line 152
+[23-Jul-2026 15:56:14 Asia/Tehran] PHP Warning:  Undefined variable $chk in /home/amval1/public_html/fix_all.php on line 152
+[23-Jul-2026 15:56:14 Asia/Tehran] PHP Warning:  Undefined variable $chk in /home/amval1/public_html/fix_all.php on line 152
+[23-Jul-2026 15:56:14 Asia/Tehran] PHP Warning:  Undefined variable $chk in /home/amval1/public_html/fix_all.php on line 152
+[23-Jul-2026 15:56:14 Asia/Tehran] PHP Warning:  Undefined variable $chk in /home/amval1/public_html/fix_all.php on line 152
+[23-Jul-2026 15:56:14 Asia/Tehran] PHP Warning:  Undefined variable $chk in /home/amval1/public_html/fix_all.php on line 152
+[23-Jul-2026 15:56:14 Asia/Tehran] PHP Warning:  Undefined variable $chk in /home/amval1/public_html/fix_all.php on line 152
+[23-Jul-2026 15:56:14 Asia/Tehran] PHP Warning:  Undefined variable $chk in /home/amval1/public_html/fix_all.php on line 152
+[23-Jul-2026 15:56:14 Asia/Tehran] PHP Warning:  Undefined variable $chk in /home/amval1/public_html/fix_all.php on line 152
+[23-Jul-2026 15:56:14 Asia/Tehran] PHP Warning:  Undefined variable $chk in /home/amval1/public_html/fix_all.php on line 152
+[23-Jul-2026 15:56:14 Asia/Tehran] PHP Warning:  Undefined variable $chk in /home/amval1/public_html/fix_all.php on line 152
+[23-Jul-2026 15:56:14 Asia/Tehran] PHP Warning:  Undefined variable $chk in /home/amval1/public_html/fix_all.php on line 152
+[23-Jul-2026 15:56:14 Asia/Tehran] PHP Warning:  Undefined variable $chk in /home/amval1/public_html/fix_all.php on line 152
+[23-Jul-2026 15:56:14 Asia/Tehran] PHP Warning:  Undefined variable $chk in /home/amval1/public_html/fix_all.php on line 152
+[23-Jul-2026 15:56:14 Asia/Tehran] PHP Warning:  Undefined variable $chk in /home/amval1/public_html/fix_all.php on line 152
+[23-Jul-2026 15:56:14 Asia/Tehran] PHP Warning:  Undefined variable $chk in /home/amval1/public_html/fix_all.php on line 152
+[23-Jul-2026 15:56:14 Asia/Tehran] PHP Warning:  Undefined variable $chk in /home/amval1/public_html/fix_all.php on line 152
+[23-Jul-2026 15:56:14 Asia/Tehran] PHP Warning:  Undefined variable $chk in /home/amval1/public_html/fix_all.php on line 152
+[23-Jul-2026 15:56:14 Asia/Tehran] PHP Warning:  Undefined variable $chk in /home/amval1/public_html/fix_all.php on line 152
+[23-Jul-2026 15:56:14 Asia/Tehran] PHP Warning:  Undefined variable $chk in /home/amval1/public_html/fix_all.php on line 152
+[23-Jul-2026 15:56:14 Asia/Tehran] PHP Warning:  Undefined variable $chk in /home/amval1/public_html/fix_all.php on line 152
+[23-Jul-2026 15:56:14 Asia/Tehran] PHP Warning:  Undefined variable $chk in /home/amval1/public_html/fix_all.php on line 152
+[23-Jul-2026 15:56:14 Asia/Tehran] PHP Warning:  Undefined variable $chk in /home/amval1/public_html/fix_all.php on line 152
+[23-Jul-2026 15:56:14 Asia/Tehran] PHP Warning:  Undefined variable $chk in /home/amval1/public_html/fix_all.php on line 152
+[23-Jul-2026 15:56:14 Asia/Tehran] PHP Warning:  Undefined variable $chk in /home/amval1/public_html/fix_all.php on line 152
+[23-Jul-2026 15:56:14 Asia/Tehran] PHP Warning:  Undefined variable $chk in /home/amval1/public_html/fix_all.php on line 152
+[23-Jul-2026 15:56:14 Asia/Tehran] PHP Warning:  Undefined variable $chk in /home/amval1/public_html/fix_all.php on line 152
+[23-Jul-2026 15:56:14 Asia/Tehran] PHP Warning:  Undefined variable $chk in /home/amval1/public_html/fix_all.php on line 152
+[23-Jul-2026 15:56:14 Asia/Tehran] PHP Warning:  Undefined variable $chk in /home/amval1/public_html/fix_all.php on line 152
+[23-Jul-2026 15:56:14 Asia/Tehran] PHP Warning:  Undefined variable $chk in /home/amval1/public_html/fix_all.php on line 152
+[23-Jul-2026 15:56:14 Asia/Tehran] PHP Warning:  Undefined variable $chk in /home/amval1/public_html/fix_all.php on line 152
+[23-Jul-2026 15:56:14 Asia/Tehran] PHP Warning:  Undefined variable $chk in /home/amval1/public_html/fix_all.php on line 152
+[23-Jul-2026 15:56:14 Asia/Tehran] PHP Warning:  Undefined variable $chk in /home/amval1/public_html/fix_all.php on line 152
+[23-Jul-2026 15:56:14 Asia/Tehran] PHP Warning:  Undefined variable $chk in /home/amval1/public_html/fix_all.php on line 152
+[23-Jul-2026 15:56:14 Asia/Tehran] PHP Warning:  Undefined variable $chk in /home/amval1/public_html/fix_all.php on line 152
+[23-Jul-2026 15:56:14 Asia/Tehran] PHP Warning:  Undefined variable $chk in /home/amval1/public_html/fix_all.php on line 152
+[23-Jul-2026 15:56:14 Asia/Tehran] PHP Warning:  Undefined variable $chk in /home/amval1/public_html/fix_all.php on line 152
+[23-Jul-2026 15:56:14 Asia/Tehran] PHP Warning:  Undefined variable $chk in /home/amval1/public_html/fix_all.php on line 152
+[23-Jul-2026 15:56:14 Asia/Tehran] PHP Warning:  Undefined variable $chk in /home/amval1/public_html/fix_all.php on line 152
+[23-Jul-2026 15:56:14 Asia/Tehran] PHP Warning:  Undefined variable $chk in /home/amval1/public_html/fix_all.php on line 152
+[23-Jul-2026 15:56:14 Asia/Tehran] PHP Warning:  Undefined variable $chk in /home/amval1/public_html/fix_all.php on line 152
+[23-Jul-2026 15:56:14 Asia/Tehran] PHP Warning:  Undefined variable $chk in /home/amval1/public_html/fix_all.php on line 152
+[23-Jul-2026 15:56:14 Asia/Tehran] PHP Warning:  Undefined variable $chk in /home/amval1/public_html/fix_all.php on line 152
+[23-Jul-2026 15:56:14 Asia/Tehran] PHP Warning:  Undefined variable $chk in /home/amval1/public_html/fix_all.php on line 152
+[23-Jul-2026 15:56:14 Asia/Tehran] PHP Warning:  Undefined variable $chk in /home/amval1/public_html/fix_all.php on line 152
+[23-Jul-2026 15:56:14 Asia/Tehran] PHP Warning:  Undefined variable $chk in /home/amval1/public_html/fix_all.php on line 152
+[23-Jul-2026 15:56:14 Asia/Tehran] PHP Warning:  Undefined variable $chk in /home/amval1/public_html/fix_all.php on line 152
+[23-Jul-2026 15:56:14 Asia/Tehran] PHP Warning:  Undefined variable $chk in /home/amval1/public_html/fix_all.php on line 152
+[23-Jul-2026 15:56:14 Asia/Tehran] PHP Warning:  Undefined variable $chk in /home/amval1/public_html/fix_all.php on line 152
+[23-Jul-2026 15:56:14 Asia/Tehran] PHP Warning:  Undefined variable $chk in /home/amval1/public_html/fix_all.php on line 152
+[23-Jul-2026 15:56:14 Asia/Tehran] PHP Warning:  Undefined variable $chk in /home/amval1/public_html/fix_all.php on line 152
+[23-Jul-2026 15:56:34 Asia/Tehran] PHP Warning:  Undefined variable $chk in /home/amval1/public_html/fix_all.php on line 152
+[23-Jul-2026 15:56:34 Asia/Tehran] PHP Warning:  Undefined variable $chk in /home/amval1/public_html/fix_all.php on line 152
+[23-Jul-2026 15:56:34 Asia/Tehran] PHP Warning:  Undefined variable $chk in /home/amval1/public_html/fix_all.php on line 152
+[23-Jul-2026 15:56:34 Asia/Tehran] PHP Warning:  Undefined variable $chk in /home/amval1/public_html/fix_all.php on line 152
+[23-Jul-2026 15:56:34 Asia/Tehran] PHP Warning:  Undefined variable $chk in /home/amval1/public_html/fix_all.php on line 152
+[23-Jul-2026 15:56:34 Asia/Tehran] PHP Warning:  Undefined variable $chk in /home/amval1/public_html/fix_all.php on line 152
+[23-Jul-2026 15:56:34 Asia/Tehran] PHP Warning:  Undefined variable $chk in /home/amval1/public_html/fix_all.php on line 152
+[23-Jul-2026 15:56:34 Asia/Tehran] PHP Warning:  Undefined variable $chk in /home/amval1/public_html/fix_all.php on line 152
+[23-Jul-2026 15:56:34 Asia/Tehran] PHP Warning:  Undefined variable $chk in /home/amval1/public_html/fix_all.php on line 152
+[23-Jul-2026 15:56:34 Asia/Tehran] PHP Warning:  Undefined variable $chk in /home/amval1/public_html/fix_all.php on line 152
+[23-Jul-2026 15:56:34 Asia/Tehran] PHP Warning:  Undefined variable $chk in /home/amval1/public_html/fix_all.php on line 152
+[23-Jul-2026 15:56:34 Asia/Tehran] PHP Warning:  Undefined variable $chk in /home/amval1/public_html/fix_all.php on line 152
+[23-Jul-2026 15:56:34 Asia/Tehran] PHP Warning:  Undefined variable $chk in /home/amval1/public_html/fix_all.php on line 152
+[23-Jul-2026 15:56:34 Asia/Tehran] PHP Warning:  Undefined variable $chk in /home/amval1/public_html/fix_all.php on line 152
+[23-Jul-2026 15:56:34 Asia/Tehran] PHP Warning:  Undefined variable $chk in /home/amval1/public_html/fix_all.php on line 152
+[23-Jul-2026 15:56:34 Asia/Tehran] PHP Warning:  Undefined variable $chk in /home/amval1/public_html/fix_all.php on line 152
+[23-Jul-2026 15:56:34 Asia/Tehran] PHP Warning:  Undefined variable $chk in /home/amval1/public_html/fix_all.php on line 152
+[23-Jul-2026 15:56:34 Asia/Tehran] PHP Warning:  Undefined variable $chk in /home/amval1/public_html/fix_all.php on line 152
+[23-Jul-2026 15:56:34 Asia/Tehran] PHP Warning:  Undefined variable $chk in /home/amval1/public_html/fix_all.php on line 152
+[23-Jul-2026 15:56:34 Asia/Tehran] PHP Warning:  Undefined variable $chk in /home/amval1/public_html/fix_all.php on line 152
+[23-Jul-2026 15:56:34 Asia/Tehran] PHP Warning:  Undefined variable $chk in /home/amval1/public_html/fix_all.php on line 152
+[23-Jul-2026 15:56:34 Asia/Tehran] PHP Warning:  Undefined variable $chk in /home/amval1/public_html/fix_all.php on line 152
+[23-Jul-2026 15:56:34 Asia/Tehran] PHP Warning:  Undefined variable $chk in /home/amval1/public_html/fix_all.php on line 152
+[23-Jul-2026 15:56:34 Asia/Tehran] PHP Warning:  Undefined variable $chk in /home/amval1/public_html/fix_all.php on line 152
+[23-Jul-2026 15:56:34 Asia/Tehran] PHP Warning:  Undefined variable $chk in /home/amval1/public_html/fix_all.php on line 152
+[23-Jul-2026 15:56:34 Asia/Tehran] PHP Warning:  Undefined variable $chk in /home/amval1/public_html/fix_all.php on line 152
+[23-Jul-2026 15:56:34 Asia/Tehran] PHP Warning:  Undefined variable $chk in /home/amval1/public_html/fix_all.php on line 152
+[23-Jul-2026 15:56:34 Asia/Tehran] PHP Warning:  Undefined variable $chk in /home/amval1/public_html/fix_all.php on line 152
+[23-Jul-2026 15:56:34 Asia/Tehran] PHP Warning:  Undefined variable $chk in /home/amval1/public_html/fix_all.php on line 152
+[23-Jul-2026 15:56:34 Asia/Tehran] PHP Warning:  Undefined variable $chk in /home/amval1/public_html/fix_all.php on line 152
+[23-Jul-2026 15:56:34 Asia/Tehran] PHP Warning:  Undefined variable $chk in /home/amval1/public_html/fix_all.php on line 152
+[23-Jul-2026 15:56:34 Asia/Tehran] PHP Warning:  Undefined variable $chk in /home/amval1/public_html/fix_all.php on line 152
+[23-Jul-2026 15:56:34 Asia/Tehran] PHP Warning:  Undefined variable $chk in /home/amval1/public_html/fix_all.php on line 152
+[23-Jul-2026 15:56:34 Asia/Tehran] PHP Warning:  Undefined variable $chk in /home/amval1/public_html/fix_all.php on line 152
+[23-Jul-2026 15:56:34 Asia/Tehran] PHP Warning:  Undefined variable $chk in /home/amval1/public_html/fix_all.php on line 152
+[23-Jul-2026 15:56:34 Asia/Tehran] PHP Warning:  Undefined variable $chk in /home/amval1/public_html/fix_all.php on line 152
+[23-Jul-2026 15:56:34 Asia/Tehran] PHP Warning:  Undefined variable $chk in /home/amval1/public_html/fix_all.php on line 152
+[23-Jul-2026 15:56:34 Asia/Tehran] PHP Warning:  Undefined variable $chk in /home/amval1/public_html/fix_all.php on line 152
+[23-Jul-2026 15:56:34 Asia/Tehran] PHP Warning:  Undefined variable $chk in /home/amval1/public_html/fix_all.php on line 152
+[23-Jul-2026 15:56:34 Asia/Tehran] PHP Warning:  Undefined variable $chk in /home/amval1/public_html/fix_all.php on line 152
+[23-Jul-2026 15:56:34 Asia/Tehran] PHP Warning:  Undefined variable $chk in /home/amval1/public_html/fix_all.php on line 152
+[23-Jul-2026 15:56:34 Asia/Tehran] PHP Warning:  Undefined variable $chk in /home/amval1/public_html/fix_all.php on line 152
+[23-Jul-2026 15:56:34 Asia/Tehran] PHP Warning:  Undefined variable $chk in /home/amval1/public_html/fix_all.php on line 152
+[23-Jul-2026 15:56:34 Asia/Tehran] PHP Warning:  Undefined variable $chk in /home/amval1/public_html/fix_all.php on line 152
+[23-Jul-2026 15:56:34 Asia/Tehran] PHP Warning:  Undefined variable $chk in /home/amval1/public_html/fix_all.php on line 152
+[23-Jul-2026 15:56:34 Asia/Tehran] PHP Warning:  Undefined variable $chk in /home/amval1/public_html/fix_all.php on line 152
+[23-Jul-2026 15:56:34 Asia/Tehran] PHP Warning:  Undefined variable $chk in /home/amval1/public_html/fix_all.php on line 152
+[23-Jul-2026 15:56:34 Asia/Tehran] PHP Warning:  Undefined variable $chk in /home/amval1/public_html/fix_all.php on line 152
+[23-Jul-2026 15:56:34 Asia/Tehran] PHP Warning:  Undefined variable $chk in /home/amval1/public_html/fix_all.php on line 152
+[23-Jul-2026 15:56:34 Asia/Tehran] PHP Warning:  Undefined variable $chk in /home/amval1/public_html/fix_all.php on line 152
+[23-Jul-2026 15:56:34 Asia/Tehran] PHP Warning:  Undefined variable $chk in /home/amval1/public_html/fix_all.php on line 152
+[23-Jul-2026 15:56:34 Asia/Tehran] PHP Warning:  Undefined variable $chk in /home/amval1/public_html/fix_all.php on line 152
+[23-Jul-2026 15:56:34 Asia/Tehran] PHP Warning:  Undefined variable $chk in /home/amval1/public_html/fix_all.php on line 152
+[23-Jul-2026 15:56:34 Asia/Tehran] PHP Warning:  Undefined variable $chk in /home/amval1/public_html/fix_all.php on line 152
+[23-Jul-2026 15:56:34 Asia/Tehran] PHP Warning:  Undefined variable $chk in /home/amval1/public_html/fix_all.php on line 152
+[23-Jul-2026 15:56:34 Asia/Tehran] PHP Warning:  Undefined variable $chk in /home/amval1/public_html/fix_all.php on line 152
+[23-Jul-2026 15:56:34 Asia/Tehran] PHP Warning:  Undefined variable $chk in /home/amval1/public_html/fix_all.php on line 152
+[23-Jul-2026 15:56:34 Asia/Tehran] PHP Warning:  Undefined variable $chk in /home/amval1/public_html/fix_all.php on line 152
+[23-Jul-2026 15:56:34 Asia/Tehran] PHP Warning:  Undefined variable $chk in /home/amval1/public_html/fix_all.php on line 152
+[23-Jul-2026 15:56:34 Asia/Tehran] PHP Warning:  Undefined variable $chk in /home/amval1/public_html/fix_all.php on line 152
+[23-Jul-2026 15:56:34 Asia/Tehran] PHP Warning:  Undefined variable $chk in /home/amval1/public_html/fix_all.php on line 152
+[23-Jul-2026 15:56:34 Asia/Tehran] PHP Warning:  Undefined variable $chk in /home/amval1/public_html/fix_all.php on line 152
+[23-Jul-2026 15:56:34 Asia/Tehran] PHP Warning:  Undefined variable $chk in /home/amval1/public_html/fix_all.php on line 152
+[23-Jul-2026 15:56:34 Asia/Tehran] PHP Warning:  Undefined variable $chk in /home/amval1/public_html/fix_all.php on line 152
+[23-Jul-2026 15:56:34 Asia/Tehran] PHP Warning:  Undefined variable $chk in /home/amval1/public_html/fix_all.php on line 152
+[23-Jul-2026 15:56:34 Asia/Tehran] PHP Warning:  Undefined variable $chk in /home/amval1/public_html/fix_all.php on line 152
+[23-Jul-2026 15:56:34 Asia/Tehran] PHP Warning:  Undefined variable $chk in /home/amval1/public_html/fix_all.php on line 152
+[23-Jul-2026 15:56:34 Asia/Tehran] PHP Warning:  Undefined variable $chk in /home/amval1/public_html/fix_all.php on line 152
+[23-Jul-2026 15:56:34 Asia/Tehran] PHP Warning:  Undefined variable $chk in /home/amval1/public_html/fix_all.php on line 152
+[23-Jul-2026 15:56:34 Asia/Tehran] PHP Warning:  Undefined variable $chk in /home/amval1/public_html/fix_all.php on line 152
+[23-Jul-2026 15:56:34 Asia/Tehran] PHP Warning:  Undefined variable $chk in /home/amval1/public_html/fix_all.php on line 152
+[23-Jul-2026 15:56:34 Asia/Tehran] PHP Warning:  Undefined variable $chk in /home/amval1/public_html/fix_all.php on line 152
+[23-Jul-2026 15:56:34 Asia/Tehran] PHP Warning:  Undefined variable $chk in /home/amval1/public_html/fix_all.php on line 152
+[23-Jul-2026 15:56:34 Asia/Tehran] PHP Warning:  Undefined variable $chk in /home/amval1/public_html/fix_all.php on line 152
+[23-Jul-2026 15:56:34 Asia/Tehran] PHP Warning:  Undefined variable $chk in /home/amval1/public_html/fix_all.php on line 152
+[23-Jul-2026 15:56:34 Asia/Tehran] PHP Warning:  Undefined variable $chk in /home/amval1/public_html/fix_all.php on line 152
+[23-Jul-2026 15:56:34 Asia/Tehran] PHP Warning:  Undefined variable $chk in /home/amval1/public_html/fix_all.php on line 152
+[23-Jul-2026 15:56:34 Asia/Tehran] PHP Warning:  Undefined variable $chk in /home/amval1/public_html/fix_all.php on line 152
+[23-Jul-2026 15:56:34 Asia/Tehran] PHP Warning:  Undefined variable $chk in /home/amval1/public_html/fix_all.php on line 152
+[23-Jul-2026 15:56:34 Asia/Tehran] PHP Warning:  Undefined variable $chk in /home/amval1/public_html/fix_all.php on line 152
+[23-Jul-2026 15:56:34 Asia/Tehran] PHP Warning:  Undefined variable $chk in /home/amval1/public_html/fix_all.php on line 152
+[23-Jul-2026 15:56:34 Asia/Tehran] PHP Warning:  Undefined variable $chk in /home/amval1/public_html/fix_all.php on line 152
+[23-Jul-2026 15:56:34 Asia/Tehran] PHP Warning:  Undefined variable $chk in /home/amval1/public_html/fix_all.php on line 152
+[23-Jul-2026 15:56:34 Asia/Tehran] PHP Warning:  Undefined variable $chk in /home/amval1/public_html/fix_all.php on line 152
+[23-Jul-2026 15:56:34 Asia/Tehran] PHP Warning:  Undefined variable $chk in /home/amval1/public_html/fix_all.php on line 152
+[23-Jul-2026 15:56:34 Asia/Tehran] PHP Warning:  Undefined variable $chk in /home/amval1/public_html/fix_all.php on line 152
+[23-Jul-2026 15:56:34 Asia/Tehran] PHP Warning:  Undefined variable $chk in /home/amval1/public_html/fix_all.php on line 152
+[23-Jul-2026 15:56:34 Asia/Tehran] PHP Warning:  Undefined variable $chk in /home/amval1/public_html/fix_all.php on line 152
+[23-Jul-2026 15:56:34 Asia/Tehran] PHP Warning:  Undefined variable $chk in /home/amval1/public_html/fix_all.php on line 152
+[23-Jul-2026 15:56:34 Asia/Tehran] PHP Warning:  Undefined variable $chk in /home/amval1/public_html/fix_all.php on line 152
+[23-Jul-2026 15:56:34 Asia/Tehran] PHP Warning:  Undefined variable $chk in /home/amval1/public_html/fix_all.php on line 152
+[23-Jul-2026 15:56:34 Asia/Tehran] PHP Warning:  Undefined variable $chk in /home/amval1/public_html/fix_all.php on line 152
+[23-Jul-2026 15:56:34 Asia/Tehran] PHP Warning:  Undefined variable $chk in /home/amval1/public_html/fix_all.php on line 152
+[23-Jul-2026 15:56:34 Asia/Tehran] PHP Warning:  Undefined variable $chk in /home/amval1/public_html/fix_all.php on line 152
+[23-Jul-2026 16:31:04 Asia/Tehran] PHP Fatal error:  Uncaught Error: Undefined constant RecursiveIteratorIterator::SKIP_DOTS in /home/amval1/public_html/fix_all.php:82
+Stack trace:
+#0 {main}
+  thrown in /home/amval1/public_html/fix_all.php on line 82
+[23-Jul-2026 16:32:44 Asia/Tehran] PHP Fatal error:  Uncaught Error: Call to undefined method SplFileInfo::getRelativePathname() in /home/amval1/public_html/fix_all.php:103
+Stack trace:
+#0 {main}
+  thrown in /home/amval1/public_html/fix_all.php on line 103
+[23-Jul-2026 16:32:54 Asia/Tehran] PHP Fatal error:  Uncaught Error: Call to undefined method SplFileInfo::getRelativePathname() in /home/amval1/public_html/fix_all.php:103
+Stack trace:
+#0 {main}
+  thrown in /home/amval1/public_html/fix_all.php on line 103
