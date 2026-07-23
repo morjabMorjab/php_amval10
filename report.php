@@ -110,7 +110,8 @@ $stmt_up = $db->prepare("SELECT DISTINCT plate FROM assets WHERE $sub_where AND 
 $stmt_up->execute($sub_params);
 $unique_plates = $stmt_up->fetchAll(PDO::FETCH_COLUMN);
 
-$stmt_un = $db->prepare("SELECT DISTINCT name FROM assets WHERE $sub_where AND name IS NOT NULL AND name != '' ORDER BY name LIMIT 150");
+// اصلاح ۱: حذف LIMIT 150 برای نمایش تمام نام‌ها از جمله یخچال
+$stmt_un = $db->prepare("SELECT DISTINCT name FROM assets WHERE $sub_where AND name IS NOT NULL AND name != '' ORDER BY name");
 $stmt_un->execute($sub_params);
 $unique_names = $stmt_un->fetchAll(PDO::FETCH_COLUMN);
 
@@ -199,6 +200,12 @@ function toEnglishNum(str){
         str = str.replace(new RegExp(arabic[i],"g"), i);
     }
     return str;
+}
+
+// اصلاح ۲: افزودن تابع نرمال‌ساز برای یکسان‌سازی نویسه‌های فارسی و عربی
+function norm(s) {
+    if (!s) return "";
+    return s.replace(/ي/g, "ی").replace(/ك/g, "ک").replace(/[\u200B-\u200D\uFEFF]/g, "").trim().toLowerCase();
 }
 </script></head>
 <body>
@@ -447,12 +454,12 @@ function toEnglishNum(str){
         }
     }
 
-    // تصفیه دراپ‌داون در زمان واقعی هنگام تایپ کاربر در فیلد سرچ درون دراپ‌داون
+    // اصلاح ۳: استفاده از تابع norm برای جستجوی هوشمند بدون حساسیت به نویسه‌های فارسی/عربی
     function filterDropdownItems(inputEl, listId) {
-        var q = inputEl.value.toLowerCase();
+        var q = norm(inputEl.value);
         var items = document.querySelectorAll('#' + listId + ' label');
         items.forEach(function(item) {
-            var text = item.textContent.toLowerCase();
+            var text = norm(item.textContent);
             item.style.display = text.includes(q) ? 'flex' : 'none';
         });
     }
