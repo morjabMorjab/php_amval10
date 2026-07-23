@@ -355,7 +355,7 @@ document.addEventListener('click',function(e){if(!e.target.closest('.user-menu')
 <div style="font-size:40px;margin-bottom:8px">📨</div>
 <h3 style="margin-bottom:8px"><?=htmlspecialchars($popup_message["subject"])?></h3>
 <p style="font-size:13px;color:#475569;margin-bottom:16px;line-height:1.8"><?=nl2br(htmlspecialchars($popup_message["body"]))?></p>
-<div style="font-size:10px;color:#94a3b8;margin-bottom:12px">از: <?=$popup_message["sender_name"]?> | formatDate($popup_message["created_at"])?></div>
+<div style="font-size:10px;color:#94a3b8;margin-bottom:12px">از: <?=htmlspecialchars($popup_message["sender_name"])?> | <?=formatDate($popup_message["created_at"])?></div>
 <div style="display:flex;gap:6px">
 <button onclick="closeMsgPopup(<?=$popup_message["id"]?>)" class="btn btn-primary" style="flex:1">✅ متوجه شدم</button>
 <a href="messages.php" class="btn btn-light" style="flex:1;text-decoration:none">📋 همه پیام‌ها</a>
