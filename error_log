@@ -1,0 +1,380 @@
+[19-Jul-2026 17:17:48 Asia/Tehran] PHP Warning:  Array to string conversion in /home/amval1/public_html/print_report.php on line 25
+[20-Jul-2026 15:18:08 Asia/Tehran] PHP Warning:  Array to string conversion in /home/amval1/public_html/print_report.php on line 29
+[20-Jul-2026 15:18:08 Asia/Tehran] PHP Warning:  Array to string conversion in /home/amval1/public_html/print_report.php on line 71
+[20-Jul-2026 15:18:53 Asia/Tehran] PHP Warning:  Array to string conversion in /home/amval1/public_html/print_report.php on line 29
+[20-Jul-2026 15:18:53 Asia/Tehran] PHP Warning:  Array to string conversion in /home/amval1/public_html/print_report.php on line 71
+[21-Jul-2026 09:17:16 Asia/Tehran] PHP Warning:  require_once(../config/database.php): Failed to open stream: No such file or directory in /home/amval1/public_html/api_get_user_centers.php on line 2
+[21-Jul-2026 09:17:16 Asia/Tehran] PHP Fatal error:  Uncaught Error: Failed opening required '../config/database.php' (include_path='.:/opt/alt/php81/usr/share/pear:/opt/alt/php81/usr/share/php:/usr/share/pear:/usr/share/php') in /home/amval1/public_html/api_get_user_centers.php:2
+Stack trace:
+#0 {main}
+  thrown in /home/amval1/public_html/api_get_user_centers.php on line 2
+[21-Jul-2026 13:24:06 Asia/Tehran] PHP Warning:  require_once(../config/database.php): Failed to open stream: No such file or directory in /home/amval1/public_html/api_get_user_centers.php on line 2
+[21-Jul-2026 13:24:06 Asia/Tehran] PHP Fatal error:  Uncaught Error: Failed opening required '../config/database.php' (include_path='.:/opt/alt/php81/usr/share/pear:/opt/alt/php81/usr/share/php:/usr/share/pear:/usr/share/php') in /home/amval1/public_html/api_get_user_centers.php:2
+Stack trace:
+#0 {main}
+  thrown in /home/amval1/public_html/api_get_user_centers.php on line 2
+[22-Jul-2026 15:27:52 Asia/Tehran] PHP Warning:  mkdir(): Permission denied in /home/amval1/public_html/fix_all.php on line 13
+[22-Jul-2026 15:27:52 Asia/Tehran] PHP Warning:  file_put_contents(../../db_backups/amval_db_20260722_152752.sql): Failed to open stream: No such file or directory in /home/amval1/public_html/fix_all.php on line 43
+[22-Jul-2026 15:27:52 Asia/Tehran] PHP Warning:  filesize(): stat failed for ../../db_backups/amval_db_20260722_152752.sql in /home/amval1/public_html/fix_all.php on line 44
+[23-Jul-2026 12:47:23 Asia/Tehran] PHP Warning:  Undefined variable $prefix📁 in /home/amval1/public_html/fix_all.php on line 16
+[23-Jul-2026 12:47:23 Asia/Tehran] PHP Warning:  Undefined variable $prefix📄 in /home/amval1/public_html/fix_all.php on line 20
+[23-Jul-2026 12:47:23 Asia/Tehran] PHP Warning:  Undefined variable $prefix📄 in /home/amval1/public_html/fix_all.php on line 20
+[23-Jul-2026 12:47:23 Asia/Tehran] PHP Warning:  Undefined variable $prefix📄 in /home/amval1/public_html/fix_all.php on line 20
+[23-Jul-2026 12:47:23 Asia/Tehran] PHP Warning:  Undefined variable $prefix📄 in /home/amval1/public_html/fix_all.php on line 20
+[23-Jul-2026 12:47:23 Asia/Tehran] PHP Warning:  Undefined variable $prefix📁 in /home/amval1/public_html/fix_all.php on line 16
+[23-Jul-2026 12:47:23 Asia/Tehran] PHP Warning:  Undefined variable $prefix📄 in /home/amval1/public_html/fix_all.php on line 20
+[23-Jul-2026 12:47:23 Asia/Tehran] PHP Warning:  Undefined variable $prefix📄 in /home/amval1/public_html/fix_all.php on line 20
+[23-Jul-2026 12:47:23 Asia/Tehran] PHP Warning:  Undefined variable $prefix📄 in /home/amval1/public_html/fix_all.php on line 20
+[23-Jul-2026 12:47:23 Asia/Tehran] PHP Warning:  Undefined variable $prefix📄 in /home/amval1/public_html/fix_all.php on line 20
+[23-Jul-2026 12:47:23 Asia/Tehran] PHP Warning:  Undefined variable $prefix📄 in /home/amval1/public_html/fix_all.php on line 20
+[23-Jul-2026 12:47:23 Asia/Tehran] PHP Warning:  Undefined variable $prefix📄 in /home/amval1/public_html/fix_all.php on line 20
+[23-Jul-2026 12:47:23 Asia/Tehran] PHP Warning:  Undefined variable $prefix📄 in /home/amval1/public_html/fix_all.php on line 20
+[23-Jul-2026 12:47:23 Asia/Tehran] PHP Warning:  Undefined variable $prefix📄 in /home/amval1/public_html/fix_all.php on line 20
+[23-Jul-2026 12:47:23 Asia/Tehran] PHP Warning:  Undefined variable $prefix📄 in /home/amval1/public_html/fix_all.php on line 20
+[23-Jul-2026 12:47:23 Asia/Tehran] PHP Warning:  Undefined variable $prefix📄 in /home/amval1/public_html/fix_all.php on line 20
+[23-Jul-2026 12:47:23 Asia/Tehran] PHP Warning:  Undefined variable $prefix📄 in /home/amval1/public_html/fix_all.php on line 20
+[23-Jul-2026 12:47:23 Asia/Tehran] PHP Warning:  Undefined variable $prefix📄 in /home/amval1/public_html/fix_all.php on line 20
+[23-Jul-2026 12:47:23 Asia/Tehran] PHP Warning:  Undefined variable $prefix📄 in /home/amval1/public_html/fix_all.php on line 20
+[23-Jul-2026 12:47:23 Asia/Tehran] PHP Warning:  Undefined variable $prefix📄 in /home/amval1/public_html/fix_all.php on line 20
+[23-Jul-2026 12:47:23 Asia/Tehran] PHP Warning:  Undefined variable $prefix📄 in /home/amval1/public_html/fix_all.php on line 20
+[23-Jul-2026 12:47:23 Asia/Tehran] PHP Warning:  Undefined variable $prefix📁 in /home/amval1/public_html/fix_all.php on line 16
+[23-Jul-2026 12:47:23 Asia/Tehran] PHP Warning:  Undefined variable $prefix📄 in /home/amval1/public_html/fix_all.php on line 20
+[23-Jul-2026 12:47:23 Asia/Tehran] PHP Warning:  Undefined variable $prefix📁 in /home/amval1/public_html/fix_all.php on line 16
+[23-Jul-2026 12:47:23 Asia/Tehran] PHP Warning:  Undefined variable $prefix📄 in /home/amval1/public_html/fix_all.php on line 20
+[23-Jul-2026 12:47:23 Asia/Tehran] PHP Warning:  Undefined variable $prefix📁 in /home/amval1/public_html/fix_all.php on line 16
+[23-Jul-2026 12:47:23 Asia/Tehran] PHP Warning:  Undefined variable $prefix📁 in /home/amval1/public_html/fix_all.php on line 16
+[23-Jul-2026 12:47:23 Asia/Tehran] PHP Warning:  Undefined variable $prefix📄 in /home/amval1/public_html/fix_all.php on line 20
+[23-Jul-2026 12:47:23 Asia/Tehran] PHP Warning:  Undefined variable $prefix📁 in /home/amval1/public_html/fix_all.php on line 16
+[23-Jul-2026 12:47:23 Asia/Tehran] PHP Warning:  Undefined variable $prefix📁 in /home/amval1/public_html/fix_all.php on line 16
+[23-Jul-2026 12:47:23 Asia/Tehran] PHP Warning:  Undefined variable $prefix📄 in /home/amval1/public_html/fix_all.php on line 20
+[23-Jul-2026 12:47:23 Asia/Tehran] PHP Warning:  Undefined variable $prefix📁 in /home/amval1/public_html/fix_all.php on line 16
+[23-Jul-2026 12:47:23 Asia/Tehran] PHP Warning:  Undefined variable $prefix📁 in /home/amval1/public_html/fix_all.php on line 16
+[23-Jul-2026 12:47:23 Asia/Tehran] PHP Warning:  Undefined variable $prefix📄 in /home/amval1/public_html/fix_all.php on line 20
+[23-Jul-2026 12:47:23 Asia/Tehran] PHP Warning:  Undefined variable $prefix📁 in /home/amval1/public_html/fix_all.php on line 16
+[23-Jul-2026 12:47:23 Asia/Tehran] PHP Warning:  Undefined variable $prefix📄 in /home/amval1/public_html/fix_all.php on line 20
+[23-Jul-2026 12:47:23 Asia/Tehran] PHP Warning:  Undefined variable $prefix📁 in /home/amval1/public_html/fix_all.php on line 16
+[23-Jul-2026 12:47:23 Asia/Tehran] PHP Warning:  Undefined variable $prefix📄 in /home/amval1/public_html/fix_all.php on line 20
+[23-Jul-2026 12:47:23 Asia/Tehran] PHP Warning:  Undefined variable $prefix📁 in /home/amval1/public_html/fix_all.php on line 16
+[23-Jul-2026 12:47:23 Asia/Tehran] PHP Warning:  Undefined variable $prefix📄 in /home/amval1/public_html/fix_all.php on line 20
+[23-Jul-2026 12:47:23 Asia/Tehran] PHP Warning:  Undefined variable $prefix📄 in /home/amval1/public_html/fix_all.php on line 20
+[23-Jul-2026 12:47:23 Asia/Tehran] PHP Warning:  Undefined variable $prefix📁 in /home/amval1/public_html/fix_all.php on line 16
+[23-Jul-2026 12:47:23 Asia/Tehran] PHP Warning:  Undefined variable $prefix📄 in /home/amval1/public_html/fix_all.php on line 20
+[23-Jul-2026 12:47:23 Asia/Tehran] PHP Warning:  Undefined variable $prefix📄 in /home/amval1/public_html/fix_all.php on line 20
+[23-Jul-2026 12:47:23 Asia/Tehran] PHP Warning:  Undefined variable $prefix📁 in /home/amval1/public_html/fix_all.php on line 16
+[23-Jul-2026 12:47:23 Asia/Tehran] PHP Warning:  Undefined variable $prefix📄 in /home/amval1/public_html/fix_all.php on line 20
+[23-Jul-2026 12:47:23 Asia/Tehran] PHP Warning:  Undefined variable $prefix📁 in /home/amval1/public_html/fix_all.php on line 16
+[23-Jul-2026 12:47:23 Asia/Tehran] PHP Warning:  Undefined variable $prefix📄 in /home/amval1/public_html/fix_all.php on line 20
+[23-Jul-2026 12:47:23 Asia/Tehran] PHP Warning:  Undefined variable $prefix📄 in /home/amval1/public_html/fix_all.php on line 20
+[23-Jul-2026 12:47:23 Asia/Tehran] PHP Warning:  Undefined variable $prefix📁 in /home/amval1/public_html/fix_all.php on line 16
+[23-Jul-2026 12:47:23 Asia/Tehran] PHP Warning:  Undefined variable $prefix📄 in /home/amval1/public_html/fix_all.php on line 20
+[23-Jul-2026 12:47:23 Asia/Tehran] PHP Warning:  Undefined variable $prefix📄 in /home/amval1/public_html/fix_all.php on line 20
+[23-Jul-2026 12:47:23 Asia/Tehran] PHP Warning:  Undefined variable $prefix📁 in /home/amval1/public_html/fix_all.php on line 16
+[23-Jul-2026 12:47:23 Asia/Tehran] PHP Warning:  Undefined variable $prefix📄 in /home/amval1/public_html/fix_all.php on line 20
+[23-Jul-2026 12:47:23 Asia/Tehran] PHP Warning:  Undefined variable $prefix📁 in /home/amval1/public_html/fix_all.php on line 16
+[23-Jul-2026 12:47:23 Asia/Tehran] PHP Warning:  Undefined variable $prefix📄 in /home/amval1/public_html/fix_all.php on line 20
+[23-Jul-2026 12:47:23 Asia/Tehran] PHP Warning:  Undefined variable $prefix📁 in /home/amval1/public_html/fix_all.php on line 16
+[23-Jul-2026 12:47:23 Asia/Tehran] PHP Warning:  Undefined variable $prefix📄 in /home/amval1/public_html/fix_all.php on line 20
+[23-Jul-2026 12:47:23 Asia/Tehran] PHP Warning:  Undefined variable $prefix📁 in /home/amval1/public_html/fix_all.php on line 16
+[23-Jul-2026 12:47:23 Asia/Tehran] PHP Warning:  Undefined variable $prefix📄 in /home/amval1/public_html/fix_all.php on line 20
+[23-Jul-2026 12:47:23 Asia/Tehran] PHP Warning:  Undefined variable $prefix📁 in /home/amval1/public_html/fix_all.php on line 16
+[23-Jul-2026 12:47:23 Asia/Tehran] PHP Warning:  Undefined variable $prefix📄 in /home/amval1/public_html/fix_all.php on line 20
+[23-Jul-2026 12:47:23 Asia/Tehran] PHP Warning:  Undefined variable $prefix📁 in /home/amval1/public_html/fix_all.php on line 16
+[23-Jul-2026 12:47:23 Asia/Tehran] PHP Warning:  Undefined variable $prefix📄 in /home/amval1/public_html/fix_all.php on line 20
+[23-Jul-2026 12:47:23 Asia/Tehran] PHP Warning:  Undefined variable $prefix📄 in /home/amval1/public_html/fix_all.php on line 20
+[23-Jul-2026 12:47:23 Asia/Tehran] PHP Warning:  Undefined variable $prefix📁 in /home/amval1/public_html/fix_all.php on line 16
+[23-Jul-2026 12:47:23 Asia/Tehran] PHP Warning:  Undefined variable $prefix📄 in /home/amval1/public_html/fix_all.php on line 20
+[23-Jul-2026 12:47:23 Asia/Tehran] PHP Warning:  Undefined variable $prefix📁 in /home/amval1/public_html/fix_all.php on line 16
+[23-Jul-2026 12:47:23 Asia/Tehran] PHP Warning:  Undefined variable $prefix📄 in /home/amval1/public_html/fix_all.php on line 20
+[23-Jul-2026 12:47:23 Asia/Tehran] PHP Warning:  Undefined variable $prefix📄 in /home/amval1/public_html/fix_all.php on line 20
+[23-Jul-2026 12:47:23 Asia/Tehran] PHP Warning:  Undefined variable $prefix📁 in /home/amval1/public_html/fix_all.php on line 16
+[23-Jul-2026 12:47:23 Asia/Tehran] PHP Warning:  Undefined variable $prefix📄 in /home/amval1/public_html/fix_all.php on line 20
+[23-Jul-2026 12:47:23 Asia/Tehran] PHP Warning:  Undefined variable $prefix📁 in /home/amval1/public_html/fix_all.php on line 16
+[23-Jul-2026 12:47:23 Asia/Tehran] PHP Warning:  Undefined variable $prefix📄 in /home/amval1/public_html/fix_all.php on line 20
+[23-Jul-2026 12:47:23 Asia/Tehran] PHP Warning:  Undefined variable $prefix📁 in /home/amval1/public_html/fix_all.php on line 16
+[23-Jul-2026 12:47:23 Asia/Tehran] PHP Warning:  Undefined variable $prefix📄 in /home/amval1/public_html/fix_all.php on line 20
+[23-Jul-2026 12:47:23 Asia/Tehran] PHP Warning:  Undefined variable $prefix📁 in /home/amval1/public_html/fix_all.php on line 16
+[23-Jul-2026 12:47:23 Asia/Tehran] PHP Warning:  Undefined variable $prefix📄 in /home/amval1/public_html/fix_all.php on line 20
+[23-Jul-2026 12:47:23 Asia/Tehran] PHP Warning:  Undefined variable $prefix📁 in /home/amval1/public_html/fix_all.php on line 16
+[23-Jul-2026 12:47:23 Asia/Tehran] PHP Warning:  Undefined variable $prefix📄 in /home/amval1/public_html/fix_all.php on line 20
+[23-Jul-2026 12:47:23 Asia/Tehran] PHP Warning:  Undefined variable $prefix📁 in /home/amval1/public_html/fix_all.php on line 16
+[23-Jul-2026 12:47:23 Asia/Tehran] PHP Warning:  Undefined variable $prefix📄 in /home/amval1/public_html/fix_all.php on line 20
+[23-Jul-2026 12:47:23 Asia/Tehran] PHP Warning:  Undefined variable $prefix📄 in /home/amval1/public_html/fix_all.php on line 20
+[23-Jul-2026 12:47:23 Asia/Tehran] PHP Warning:  Undefined variable $prefix📁 in /home/amval1/public_html/fix_all.php on line 16
+[23-Jul-2026 12:47:23 Asia/Tehran] PHP Warning:  Undefined variable $prefix📄 in /home/amval1/public_html/fix_all.php on line 20
+[23-Jul-2026 12:47:23 Asia/Tehran] PHP Warning:  Undefined variable $prefix📄 in /home/amval1/public_html/fix_all.php on line 20
+[23-Jul-2026 12:47:23 Asia/Tehran] PHP Warning:  Undefined variable $prefix📁 in /home/amval1/public_html/fix_all.php on line 16
+[23-Jul-2026 12:47:23 Asia/Tehran] PHP Warning:  Undefined variable $prefix📄 in /home/amval1/public_html/fix_all.php on line 20
+[23-Jul-2026 12:47:23 Asia/Tehran] PHP Warning:  Undefined variable $prefix📁 in /home/amval1/public_html/fix_all.php on line 16
+[23-Jul-2026 12:47:23 Asia/Tehran] PHP Warning:  Undefined variable $prefix📄 in /home/amval1/public_html/fix_all.php on line 20
+[23-Jul-2026 12:47:23 Asia/Tehran] PHP Warning:  Undefined variable $prefix📁 in /home/amval1/public_html/fix_all.php on line 16
+[23-Jul-2026 12:47:23 Asia/Tehran] PHP Warning:  Undefined variable $prefix📄 in /home/amval1/public_html/fix_all.php on line 20
+[23-Jul-2026 12:47:23 Asia/Tehran] PHP Warning:  Undefined variable $prefix📁 in /home/amval1/public_html/fix_all.php on line 16
+[23-Jul-2026 12:47:23 Asia/Tehran] PHP Warning:  Undefined variable $prefix📄 in /home/amval1/public_html/fix_all.php on line 20
+[23-Jul-2026 12:47:23 Asia/Tehran] PHP Warning:  Undefined variable $prefix📄 in /home/amval1/public_html/fix_all.php on line 20
+[23-Jul-2026 12:47:23 Asia/Tehran] PHP Warning:  Undefined variable $prefix📁 in /home/amval1/public_html/fix_all.php on line 16
+[23-Jul-2026 12:47:23 Asia/Tehran] PHP Warning:  Undefined variable $prefix📄 in /home/amval1/public_html/fix_all.php on line 20
+[23-Jul-2026 12:47:23 Asia/Tehran] PHP Warning:  Undefined variable $prefix📄 in /home/amval1/public_html/fix_all.php on line 20
+[23-Jul-2026 12:47:23 Asia/Tehran] PHP Warning:  Undefined variable $prefix📁 in /home/amval1/public_html/fix_all.php on line 16
+[23-Jul-2026 12:47:23 Asia/Tehran] PHP Warning:  Undefined variable $prefix📄 in /home/amval1/public_html/fix_all.php on line 20
+[23-Jul-2026 12:47:23 Asia/Tehran] PHP Warning:  Undefined variable $prefix📁 in /home/amval1/public_html/fix_all.php on line 16
+[23-Jul-2026 12:47:23 Asia/Tehran] PHP Warning:  Undefined variable $prefix📄 in /home/amval1/public_html/fix_all.php on line 20
+[23-Jul-2026 12:47:23 Asia/Tehran] PHP Warning:  Undefined variable $prefix📁 in /home/amval1/public_html/fix_all.php on line 16
+[23-Jul-2026 12:47:23 Asia/Tehran] PHP Warning:  Undefined variable $prefix📄 in /home/amval1/public_html/fix_all.php on line 20
+[23-Jul-2026 12:47:23 Asia/Tehran] PHP Warning:  Undefined variable $prefix📄 in /home/amval1/public_html/fix_all.php on line 20
+[23-Jul-2026 12:47:23 Asia/Tehran] PHP Warning:  Undefined variable $prefix📁 in /home/amval1/public_html/fix_all.php on line 16
+[23-Jul-2026 12:47:23 Asia/Tehran] PHP Warning:  Undefined variable $prefix📄 in /home/amval1/public_html/fix_all.php on line 20
+[23-Jul-2026 12:47:23 Asia/Tehran] PHP Warning:  Undefined variable $prefix📁 in /home/amval1/public_html/fix_all.php on line 16
+[23-Jul-2026 12:47:23 Asia/Tehran] PHP Warning:  Undefined variable $prefix📄 in /home/amval1/public_html/fix_all.php on line 20
+[23-Jul-2026 12:47:23 Asia/Tehran] PHP Warning:  Undefined variable $prefix📄 in /home/amval1/public_html/fix_all.php on line 20
+[23-Jul-2026 12:47:23 Asia/Tehran] PHP Warning:  Undefined variable $prefix📁 in /home/amval1/public_html/fix_all.php on line 16
+[23-Jul-2026 12:47:23 Asia/Tehran] PHP Warning:  Undefined variable $prefix📄 in /home/amval1/public_html/fix_all.php on line 20
+[23-Jul-2026 12:47:23 Asia/Tehran] PHP Warning:  Undefined variable $prefix📁 in /home/amval1/public_html/fix_all.php on line 16
+[23-Jul-2026 12:47:23 Asia/Tehran] PHP Warning:  Undefined variable $prefix📄 in /home/amval1/public_html/fix_all.php on line 20
+[23-Jul-2026 12:47:23 Asia/Tehran] PHP Warning:  Undefined variable $prefix📁 in /home/amval1/public_html/fix_all.php on line 16
+[23-Jul-2026 12:47:23 Asia/Tehran] PHP Warning:  Undefined variable $prefix📄 in /home/amval1/public_html/fix_all.php on line 20
+[23-Jul-2026 12:47:23 Asia/Tehran] PHP Warning:  Undefined variable $prefix📁 in /home/amval1/public_html/fix_all.php on line 16
+[23-Jul-2026 12:47:23 Asia/Tehran] PHP Warning:  Undefined variable $prefix📄 in /home/amval1/public_html/fix_all.php on line 20
+[23-Jul-2026 12:47:23 Asia/Tehran] PHP Warning:  Undefined variable $prefix📁 in /home/amval1/public_html/fix_all.php on line 16
+[23-Jul-2026 12:47:23 Asia/Tehran] PHP Warning:  Undefined variable $prefix📄 in /home/amval1/public_html/fix_all.php on line 20
+[23-Jul-2026 12:47:23 Asia/Tehran] PHP Warning:  Undefined variable $prefix📁 in /home/amval1/public_html/fix_all.php on line 16
+[23-Jul-2026 12:47:23 Asia/Tehran] PHP Warning:  Undefined variable $prefix📄 in /home/amval1/public_html/fix_all.php on line 20
+[23-Jul-2026 12:47:23 Asia/Tehran] PHP Warning:  Undefined variable $prefix📄 in /home/amval1/public_html/fix_all.php on line 20
+[23-Jul-2026 12:47:23 Asia/Tehran] PHP Warning:  Undefined variable $prefix📁 in /home/amval1/public_html/fix_all.php on line 16
+[23-Jul-2026 12:47:23 Asia/Tehran] PHP Warning:  Undefined variable $prefix📄 in /home/amval1/public_html/fix_all.php on line 20
+[23-Jul-2026 12:47:23 Asia/Tehran] PHP Warning:  Undefined variable $prefix📁 in /home/amval1/public_html/fix_all.php on line 16
+[23-Jul-2026 12:47:23 Asia/Tehran] PHP Warning:  Undefined variable $prefix📄 in /home/amval1/public_html/fix_all.php on line 20
+[23-Jul-2026 12:47:23 Asia/Tehran] PHP Warning:  Undefined variable $prefix📁 in /home/amval1/public_html/fix_all.php on line 16
+[23-Jul-2026 12:47:23 Asia/Tehran] PHP Warning:  Undefined variable $prefix📄 in /home/amval1/public_html/fix_all.php on line 20
+[23-Jul-2026 12:47:23 Asia/Tehran] PHP Warning:  Undefined variable $prefix📄 in /home/amval1/public_html/fix_all.php on line 20
+[23-Jul-2026 12:47:23 Asia/Tehran] PHP Warning:  Undefined variable $prefix📄 in /home/amval1/public_html/fix_all.php on line 20
+[23-Jul-2026 12:47:23 Asia/Tehran] PHP Warning:  Undefined variable $prefix📁 in /home/amval1/public_html/fix_all.php on line 16
+[23-Jul-2026 12:47:23 Asia/Tehran] PHP Warning:  Undefined variable $prefix📄 in /home/amval1/public_html/fix_all.php on line 20
+[23-Jul-2026 12:47:23 Asia/Tehran] PHP Warning:  Undefined variable $prefix📁 in /home/amval1/public_html/fix_all.php on line 16
+[23-Jul-2026 12:47:23 Asia/Tehran] PHP Warning:  Undefined variable $prefix📄 in /home/amval1/public_html/fix_all.php on line 20
+[23-Jul-2026 12:47:23 Asia/Tehran] PHP Warning:  Undefined variable $prefix📁 in /home/amval1/public_html/fix_all.php on line 16
+[23-Jul-2026 12:47:23 Asia/Tehran] PHP Warning:  Undefined variable $prefix📄 in /home/amval1/public_html/fix_all.php on line 20
+[23-Jul-2026 12:47:23 Asia/Tehran] PHP Warning:  Undefined variable $prefix📄 in /home/amval1/public_html/fix_all.php on line 20
+[23-Jul-2026 12:47:23 Asia/Tehran] PHP Warning:  Undefined variable $prefix📁 in /home/amval1/public_html/fix_all.php on line 16
+[23-Jul-2026 12:47:23 Asia/Tehran] PHP Warning:  Undefined variable $prefix📄 in /home/amval1/public_html/fix_all.php on line 20
+[23-Jul-2026 12:47:23 Asia/Tehran] PHP Warning:  Undefined variable $prefix📁 in /home/amval1/public_html/fix_all.php on line 16
+[23-Jul-2026 12:47:23 Asia/Tehran] PHP Warning:  Undefined variable $prefix📄 in /home/amval1/public_html/fix_all.php on line 20
+[23-Jul-2026 12:47:23 Asia/Tehran] PHP Warning:  Undefined variable $prefix📁 in /home/amval1/public_html/fix_all.php on line 16
+[23-Jul-2026 12:47:23 Asia/Tehran] PHP Warning:  Undefined variable $prefix📄 in /home/amval1/public_html/fix_all.php on line 20
+[23-Jul-2026 12:47:23 Asia/Tehran] PHP Warning:  Undefined variable $prefix📄 in /home/amval1/public_html/fix_all.php on line 20
+[23-Jul-2026 12:47:23 Asia/Tehran] PHP Warning:  Undefined variable $prefix📁 in /home/amval1/public_html/fix_all.php on line 16
+[23-Jul-2026 12:47:23 Asia/Tehran] PHP Warning:  Undefined variable $prefix📄 in /home/amval1/public_html/fix_all.php on line 20
+[23-Jul-2026 12:47:23 Asia/Tehran] PHP Warning:  Undefined variable $prefix📁 in /home/amval1/public_html/fix_all.php on line 16
+[23-Jul-2026 12:47:23 Asia/Tehran] PHP Warning:  Undefined variable $prefix📄 in /home/amval1/public_html/fix_all.php on line 20
+[23-Jul-2026 12:47:23 Asia/Tehran] PHP Warning:  Undefined variable $prefix📁 in /home/amval1/public_html/fix_all.php on line 16
+[23-Jul-2026 12:47:23 Asia/Tehran] PHP Warning:  Undefined variable $prefix📄 in /home/amval1/public_html/fix_all.php on line 20
+[23-Jul-2026 12:47:23 Asia/Tehran] PHP Warning:  Undefined variable $prefix📁 in /home/amval1/public_html/fix_all.php on line 16
+[23-Jul-2026 12:47:23 Asia/Tehran] PHP Warning:  Undefined variable $prefix📄 in /home/amval1/public_html/fix_all.php on line 20
+[23-Jul-2026 12:47:23 Asia/Tehran] PHP Warning:  Undefined variable $prefix📁 in /home/amval1/public_html/fix_all.php on line 16
+[23-Jul-2026 12:47:23 Asia/Tehran] PHP Warning:  Undefined variable $prefix📄 in /home/amval1/public_html/fix_all.php on line 20
+[23-Jul-2026 12:47:23 Asia/Tehran] PHP Warning:  Undefined variable $prefix📁 in /home/amval1/public_html/fix_all.php on line 16
+[23-Jul-2026 12:47:23 Asia/Tehran] PHP Warning:  Undefined variable $prefix📄 in /home/amval1/public_html/fix_all.php on line 20
+[23-Jul-2026 12:47:23 Asia/Tehran] PHP Warning:  Undefined variable $prefix📁 in /home/amval1/public_html/fix_all.php on line 16
+[23-Jul-2026 12:47:23 Asia/Tehran] PHP Warning:  Undefined variable $prefix📄 in /home/amval1/public_html/fix_all.php on line 20
+[23-Jul-2026 12:47:23 Asia/Tehran] PHP Warning:  Undefined variable $prefix📁 in /home/amval1/public_html/fix_all.php on line 16
+[23-Jul-2026 12:47:23 Asia/Tehran] PHP Warning:  Undefined variable $prefix📄 in /home/amval1/public_html/fix_all.php on line 20
+[23-Jul-2026 12:47:23 Asia/Tehran] PHP Warning:  Undefined variable $prefix📁 in /home/amval1/public_html/fix_all.php on line 16
+[23-Jul-2026 12:47:23 Asia/Tehran] PHP Warning:  Undefined variable $prefix📄 in /home/amval1/public_html/fix_all.php on line 20
+[23-Jul-2026 12:47:23 Asia/Tehran] PHP Warning:  Undefined variable $prefix📄 in /home/amval1/public_html/fix_all.php on line 20
+[23-Jul-2026 12:47:23 Asia/Tehran] PHP Warning:  Undefined variable $prefix📄 in /home/amval1/public_html/fix_all.php on line 20
+[23-Jul-2026 12:47:23 Asia/Tehran] PHP Warning:  Undefined variable $prefix📁 in /home/amval1/public_html/fix_all.php on line 16
+[23-Jul-2026 12:47:23 Asia/Tehran] PHP Warning:  Undefined variable $prefix📄 in /home/amval1/public_html/fix_all.php on line 20
+[23-Jul-2026 12:47:23 Asia/Tehran] PHP Warning:  Undefined variable $prefix📁 in /home/amval1/public_html/fix_all.php on line 16
+[23-Jul-2026 12:47:23 Asia/Tehran] PHP Warning:  Undefined variable $prefix📄 in /home/amval1/public_html/fix_all.php on line 20
+[23-Jul-2026 12:47:23 Asia/Tehran] PHP Warning:  Undefined variable $prefix📁 in /home/amval1/public_html/fix_all.php on line 16
+[23-Jul-2026 12:47:23 Asia/Tehran] PHP Warning:  Undefined variable $prefix📄 in /home/amval1/public_html/fix_all.php on line 20
+[23-Jul-2026 12:47:23 Asia/Tehran] PHP Warning:  Undefined variable $prefix📁 in /home/amval1/public_html/fix_all.php on line 16
+[23-Jul-2026 12:47:23 Asia/Tehran] PHP Warning:  Undefined variable $prefix📄 in /home/amval1/public_html/fix_all.php on line 20
+[23-Jul-2026 12:47:23 Asia/Tehran] PHP Warning:  Undefined variable $prefix📁 in /home/amval1/public_html/fix_all.php on line 16
+[23-Jul-2026 12:47:23 Asia/Tehran] PHP Warning:  Undefined variable $prefix📄 in /home/amval1/public_html/fix_all.php on line 20
+[23-Jul-2026 12:47:23 Asia/Tehran] PHP Warning:  Undefined variable $prefix📄 in /home/amval1/public_html/fix_all.php on line 20
+[23-Jul-2026 12:47:23 Asia/Tehran] PHP Warning:  Undefined variable $prefix📁 in /home/amval1/public_html/fix_all.php on line 16
+[23-Jul-2026 12:47:23 Asia/Tehran] PHP Warning:  Undefined variable $prefix📄 in /home/amval1/public_html/fix_all.php on line 20
+[23-Jul-2026 12:47:23 Asia/Tehran] PHP Warning:  Undefined variable $prefix📁 in /home/amval1/public_html/fix_all.php on line 16
+[23-Jul-2026 12:47:23 Asia/Tehran] PHP Warning:  Undefined variable $prefix📄 in /home/amval1/public_html/fix_all.php on line 20
+[23-Jul-2026 12:47:23 Asia/Tehran] PHP Warning:  Undefined variable $prefix📁 in /home/amval1/public_html/fix_all.php on line 16
+[23-Jul-2026 12:47:23 Asia/Tehran] PHP Warning:  Undefined variable $prefix📄 in /home/amval1/public_html/fix_all.php on line 20
+[23-Jul-2026 12:47:23 Asia/Tehran] PHP Warning:  Undefined variable $prefix📁 in /home/amval1/public_html/fix_all.php on line 16
+[23-Jul-2026 12:47:23 Asia/Tehran] PHP Warning:  Undefined variable $prefix📄 in /home/amval1/public_html/fix_all.php on line 20
+[23-Jul-2026 12:47:23 Asia/Tehran] PHP Warning:  Undefined variable $prefix📁 in /home/amval1/public_html/fix_all.php on line 16
+[23-Jul-2026 12:47:23 Asia/Tehran] PHP Warning:  Undefined variable $prefix📄 in /home/amval1/public_html/fix_all.php on line 20
+[23-Jul-2026 12:47:23 Asia/Tehran] PHP Warning:  Undefined variable $prefix📄 in /home/amval1/public_html/fix_all.php on line 20
+[23-Jul-2026 12:47:23 Asia/Tehran] PHP Warning:  Undefined variable $prefix📄 in /home/amval1/public_html/fix_all.php on line 20
+[23-Jul-2026 12:47:23 Asia/Tehran] PHP Warning:  Undefined variable $prefix📁 in /home/amval1/public_html/fix_all.php on line 16
+[23-Jul-2026 12:47:23 Asia/Tehran] PHP Warning:  Undefined variable $prefix📄 in /home/amval1/public_html/fix_all.php on line 20
+[23-Jul-2026 12:47:23 Asia/Tehran] PHP Warning:  Undefined variable $prefix📁 in /home/amval1/public_html/fix_all.php on line 16
+[23-Jul-2026 12:47:23 Asia/Tehran] PHP Warning:  Undefined variable $prefix📄 in /home/amval1/public_html/fix_all.php on line 20
+[23-Jul-2026 12:47:23 Asia/Tehran] PHP Warning:  Undefined variable $prefix📁 in /home/amval1/public_html/fix_all.php on line 16
+[23-Jul-2026 12:47:23 Asia/Tehran] PHP Warning:  Undefined variable $prefix📄 in /home/amval1/public_html/fix_all.php on line 20
+[23-Jul-2026 12:47:23 Asia/Tehran] PHP Warning:  Undefined variable $prefix📁 in /home/amval1/public_html/fix_all.php on line 16
+[23-Jul-2026 12:47:23 Asia/Tehran] PHP Warning:  Undefined variable $prefix📄 in /home/amval1/public_html/fix_all.php on line 20
+[23-Jul-2026 12:47:23 Asia/Tehran] PHP Warning:  Undefined variable $prefix📁 in /home/amval1/public_html/fix_all.php on line 16
+[23-Jul-2026 12:47:23 Asia/Tehran] PHP Warning:  Undefined variable $prefix📄 in /home/amval1/public_html/fix_all.php on line 20
+[23-Jul-2026 12:47:23 Asia/Tehran] PHP Warning:  Undefined variable $prefix📄 in /home/amval1/public_html/fix_all.php on line 20
+[23-Jul-2026 12:47:23 Asia/Tehran] PHP Warning:  Undefined variable $prefix📁 in /home/amval1/public_html/fix_all.php on line 16
+[23-Jul-2026 12:47:23 Asia/Tehran] PHP Warning:  Undefined variable $prefix📄 in /home/amval1/public_html/fix_all.php on line 20
+[23-Jul-2026 12:47:23 Asia/Tehran] PHP Warning:  Undefined variable $prefix📄 in /home/amval1/public_html/fix_all.php on line 20
+[23-Jul-2026 12:47:23 Asia/Tehran] PHP Warning:  Undefined variable $prefix📁 in /home/amval1/public_html/fix_all.php on line 16
+[23-Jul-2026 12:47:23 Asia/Tehran] PHP Warning:  Undefined variable $prefix📄 in /home/amval1/public_html/fix_all.php on line 20
+[23-Jul-2026 12:47:23 Asia/Tehran] PHP Warning:  Undefined variable $prefix📁 in /home/amval1/public_html/fix_all.php on line 16
+[23-Jul-2026 12:47:23 Asia/Tehran] PHP Warning:  Undefined variable $prefix📄 in /home/amval1/public_html/fix_all.php on line 20
+[23-Jul-2026 12:47:23 Asia/Tehran] PHP Warning:  Undefined variable $prefix📁 in /home/amval1/public_html/fix_all.php on line 16
+[23-Jul-2026 12:47:23 Asia/Tehran] PHP Warning:  Undefined variable $prefix📄 in /home/amval1/public_html/fix_all.php on line 20
+[23-Jul-2026 12:47:23 Asia/Tehran] PHP Warning:  Undefined variable $prefix📁 in /home/amval1/public_html/fix_all.php on line 16
+[23-Jul-2026 12:47:23 Asia/Tehran] PHP Warning:  Undefined variable $prefix📄 in /home/amval1/public_html/fix_all.php on line 20
+[23-Jul-2026 12:47:23 Asia/Tehran] PHP Warning:  Undefined variable $prefix📁 in /home/amval1/public_html/fix_all.php on line 16
+[23-Jul-2026 12:47:23 Asia/Tehran] PHP Warning:  Undefined variable $prefix📄 in /home/amval1/public_html/fix_all.php on line 20
+[23-Jul-2026 12:47:23 Asia/Tehran] PHP Warning:  Undefined variable $prefix📄 in /home/amval1/public_html/fix_all.php on line 20
+[23-Jul-2026 12:47:23 Asia/Tehran] PHP Warning:  Undefined variable $prefix📁 in /home/amval1/public_html/fix_all.php on line 16
+[23-Jul-2026 12:47:23 Asia/Tehran] PHP Warning:  Undefined variable $prefix📄 in /home/amval1/public_html/fix_all.php on line 20
+[23-Jul-2026 12:47:23 Asia/Tehran] PHP Warning:  Undefined variable $prefix📁 in /home/amval1/public_html/fix_all.php on line 16
+[23-Jul-2026 12:47:23 Asia/Tehran] PHP Warning:  Undefined variable $prefix📄 in /home/amval1/public_html/fix_all.php on line 20
+[23-Jul-2026 12:47:23 Asia/Tehran] PHP Warning:  Undefined variable $prefix📁 in /home/amval1/public_html/fix_all.php on line 16
+[23-Jul-2026 12:47:23 Asia/Tehran] PHP Warning:  Undefined variable $prefix📄 in /home/amval1/public_html/fix_all.php on line 20
+[23-Jul-2026 12:47:23 Asia/Tehran] PHP Warning:  Undefined variable $prefix📁 in /home/amval1/public_html/fix_all.php on line 16
+[23-Jul-2026 12:47:23 Asia/Tehran] PHP Warning:  Undefined variable $prefix📄 in /home/amval1/public_html/fix_all.php on line 20
+[23-Jul-2026 12:47:23 Asia/Tehran] PHP Warning:  Undefined variable $prefix📁 in /home/amval1/public_html/fix_all.php on line 16
+[23-Jul-2026 12:47:23 Asia/Tehran] PHP Warning:  Undefined variable $prefix📄 in /home/amval1/public_html/fix_all.php on line 20
+[23-Jul-2026 12:47:23 Asia/Tehran] PHP Warning:  Undefined variable $prefix📁 in /home/amval1/public_html/fix_all.php on line 16
+[23-Jul-2026 12:47:23 Asia/Tehran] PHP Warning:  Undefined variable $prefix📄 in /home/amval1/public_html/fix_all.php on line 20
+[23-Jul-2026 12:47:23 Asia/Tehran] PHP Warning:  Undefined variable $prefix📁 in /home/amval1/public_html/fix_all.php on line 16
+[23-Jul-2026 12:47:23 Asia/Tehran] PHP Warning:  Undefined variable $prefix📄 in /home/amval1/public_html/fix_all.php on line 20
+[23-Jul-2026 12:47:23 Asia/Tehran] PHP Warning:  Undefined variable $prefix📄 in /home/amval1/public_html/fix_all.php on line 20
+[23-Jul-2026 12:47:23 Asia/Tehran] PHP Warning:  Undefined variable $prefix📁 in /home/amval1/public_html/fix_all.php on line 16
+[23-Jul-2026 12:47:23 Asia/Tehran] PHP Warning:  Undefined variable $prefix📄 in /home/amval1/public_html/fix_all.php on line 20
+[23-Jul-2026 12:47:23 Asia/Tehran] PHP Warning:  Undefined variable $prefix📁 in /home/amval1/public_html/fix_all.php on line 16
+[23-Jul-2026 12:47:23 Asia/Tehran] PHP Warning:  Undefined variable $prefix📄 in /home/amval1/public_html/fix_all.php on line 20
+[23-Jul-2026 12:47:23 Asia/Tehran] PHP Warning:  Undefined variable $prefix📁 in /home/amval1/public_html/fix_all.php on line 16
+[23-Jul-2026 12:47:23 Asia/Tehran] PHP Warning:  Undefined variable $prefix📁 in /home/amval1/public_html/fix_all.php on line 16
+[23-Jul-2026 12:47:23 Asia/Tehran] PHP Warning:  Undefined variable $prefix📁 in /home/amval1/public_html/fix_all.php on line 16
+[23-Jul-2026 12:47:23 Asia/Tehran] PHP Warning:  Undefined variable $prefix📁 in /home/amval1/public_html/fix_all.php on line 16
+[23-Jul-2026 12:47:23 Asia/Tehran] PHP Warning:  Undefined variable $prefix📄 in /home/amval1/public_html/fix_all.php on line 20
+[23-Jul-2026 12:47:23 Asia/Tehran] PHP Warning:  Undefined variable $prefix📁 in /home/amval1/public_html/fix_all.php on line 16
+[23-Jul-2026 12:47:23 Asia/Tehran] PHP Warning:  Undefined variable $prefix📁 in /home/amval1/public_html/fix_all.php on line 16
+[23-Jul-2026 12:47:23 Asia/Tehran] PHP Warning:  Undefined variable $prefix📄 in /home/amval1/public_html/fix_all.php on line 20
+[23-Jul-2026 12:47:23 Asia/Tehran] PHP Warning:  Undefined variable $prefix📁 in /home/amval1/public_html/fix_all.php on line 16
+[23-Jul-2026 12:47:23 Asia/Tehran] PHP Warning:  Undefined variable $prefix📄 in /home/amval1/public_html/fix_all.php on line 20
+[23-Jul-2026 12:47:23 Asia/Tehran] PHP Warning:  Undefined variable $prefix📁 in /home/amval1/public_html/fix_all.php on line 16
+[23-Jul-2026 12:47:23 Asia/Tehran] PHP Warning:  Undefined variable $prefix📄 in /home/amval1/public_html/fix_all.php on line 20
+[23-Jul-2026 12:47:23 Asia/Tehran] PHP Warning:  Undefined variable $prefix📄 in /home/amval1/public_html/fix_all.php on line 20
+[23-Jul-2026 12:47:23 Asia/Tehran] PHP Warning:  Undefined variable $prefix📄 in /home/amval1/public_html/fix_all.php on line 20
+[23-Jul-2026 12:47:23 Asia/Tehran] PHP Warning:  Undefined variable $prefix📄 in /home/amval1/public_html/fix_all.php on line 20
+[23-Jul-2026 12:47:23 Asia/Tehran] PHP Warning:  Undefined variable $prefix📄 in /home/amval1/public_html/fix_all.php on line 20
+[23-Jul-2026 12:47:23 Asia/Tehran] PHP Warning:  Undefined variable $prefix📄 in /home/amval1/public_html/fix_all.php on line 20
+[23-Jul-2026 12:47:23 Asia/Tehran] PHP Warning:  Undefined variable $prefix📁 in /home/amval1/public_html/fix_all.php on line 16
+[23-Jul-2026 12:47:23 Asia/Tehran] PHP Warning:  Undefined variable $prefix📄 in /home/amval1/public_html/fix_all.php on line 20
+[23-Jul-2026 12:47:23 Asia/Tehran] PHP Warning:  Undefined variable $prefix📄 in /home/amval1/public_html/fix_all.php on line 20
+[23-Jul-2026 12:47:23 Asia/Tehran] PHP Warning:  Undefined variable $prefix📄 in /home/amval1/public_html/fix_all.php on line 20
+[23-Jul-2026 12:47:23 Asia/Tehran] PHP Warning:  Undefined variable $prefix📄 in /home/amval1/public_html/fix_all.php on line 20
+[23-Jul-2026 12:47:23 Asia/Tehran] PHP Warning:  Undefined variable $prefix📄 in /home/amval1/public_html/fix_all.php on line 20
+[23-Jul-2026 12:47:23 Asia/Tehran] PHP Warning:  Undefined variable $prefix📄 in /home/amval1/public_html/fix_all.php on line 20
+[23-Jul-2026 12:47:23 Asia/Tehran] PHP Warning:  Undefined variable $prefix📄 in /home/amval1/public_html/fix_all.php on line 20
+[23-Jul-2026 12:47:23 Asia/Tehran] PHP Warning:  Undefined variable $prefix📄 in /home/amval1/public_html/fix_all.php on line 20
+[23-Jul-2026 12:47:23 Asia/Tehran] PHP Warning:  Undefined variable $prefix📄 in /home/amval1/public_html/fix_all.php on line 20
+[23-Jul-2026 12:47:23 Asia/Tehran] PHP Warning:  Undefined variable $prefix📄 in /home/amval1/public_html/fix_all.php on line 20
+[23-Jul-2026 12:47:23 Asia/Tehran] PHP Warning:  Undefined variable $prefix📄 in /home/amval1/public_html/fix_all.php on line 20
+[23-Jul-2026 12:47:23 Asia/Tehran] PHP Warning:  Undefined variable $prefix📄 in /home/amval1/public_html/fix_all.php on line 20
+[23-Jul-2026 12:47:23 Asia/Tehran] PHP Warning:  Undefined variable $prefix📄 in /home/amval1/public_html/fix_all.php on line 20
+[23-Jul-2026 12:47:23 Asia/Tehran] PHP Warning:  Undefined variable $prefix📄 in /home/amval1/public_html/fix_all.php on line 20
+[23-Jul-2026 12:47:23 Asia/Tehran] PHP Warning:  Undefined variable $prefix📁 in /home/amval1/public_html/fix_all.php on line 16
+[23-Jul-2026 12:47:23 Asia/Tehran] PHP Warning:  Undefined variable $prefix📄 in /home/amval1/public_html/fix_all.php on line 20
+[23-Jul-2026 12:47:23 Asia/Tehran] PHP Warning:  Undefined variable $prefix📄 in /home/amval1/public_html/fix_all.php on line 20
+[23-Jul-2026 12:47:23 Asia/Tehran] PHP Warning:  Undefined variable $prefix📄 in /home/amval1/public_html/fix_all.php on line 20
+[23-Jul-2026 12:47:23 Asia/Tehran] PHP Warning:  Undefined variable $prefix📄 in /home/amval1/public_html/fix_all.php on line 20
+[23-Jul-2026 12:47:23 Asia/Tehran] PHP Warning:  Undefined variable $prefix📄 in /home/amval1/public_html/fix_all.php on line 20
+[23-Jul-2026 12:47:23 Asia/Tehran] PHP Warning:  Undefined variable $prefix📁 in /home/amval1/public_html/fix_all.php on line 16
+[23-Jul-2026 12:47:23 Asia/Tehran] PHP Warning:  Undefined variable $prefix📄 in /home/amval1/public_html/fix_all.php on line 20
+[23-Jul-2026 12:47:23 Asia/Tehran] PHP Warning:  Undefined variable $prefix📄 in /home/amval1/public_html/fix_all.php on line 20
+[23-Jul-2026 12:47:23 Asia/Tehran] PHP Warning:  Undefined variable $prefix📄 in /home/amval1/public_html/fix_all.php on line 20
+[23-Jul-2026 12:47:23 Asia/Tehran] PHP Warning:  Undefined variable $prefix📄 in /home/amval1/public_html/fix_all.php on line 20
+[23-Jul-2026 12:47:23 Asia/Tehran] PHP Warning:  Undefined variable $prefix📄 in /home/amval1/public_html/fix_all.php on line 20
+[23-Jul-2026 12:47:23 Asia/Tehran] PHP Warning:  Undefined variable $prefix📁 in /home/amval1/public_html/fix_all.php on line 16
+[23-Jul-2026 12:47:23 Asia/Tehran] PHP Warning:  Undefined variable $prefix📄 in /home/amval1/public_html/fix_all.php on line 20
+[23-Jul-2026 12:47:23 Asia/Tehran] PHP Warning:  Undefined variable $prefix📄 in /home/amval1/public_html/fix_all.php on line 20
+[23-Jul-2026 12:47:23 Asia/Tehran] PHP Warning:  Undefined variable $prefix📄 in /home/amval1/public_html/fix_all.php on line 20
+[23-Jul-2026 12:47:23 Asia/Tehran] PHP Warning:  Undefined variable $prefix📄 in /home/amval1/public_html/fix_all.php on line 20
+[23-Jul-2026 12:47:23 Asia/Tehran] PHP Warning:  Undefined variable $prefix📄 in /home/amval1/public_html/fix_all.php on line 20
+[23-Jul-2026 12:47:23 Asia/Tehran] PHP Warning:  Undefined variable $prefix📄 in /home/amval1/public_html/fix_all.php on line 20
+[23-Jul-2026 12:47:23 Asia/Tehran] PHP Warning:  Undefined variable $prefix📄 in /home/amval1/public_html/fix_all.php on line 20
+[23-Jul-2026 12:47:23 Asia/Tehran] PHP Warning:  Undefined variable $prefix📄 in /home/amval1/public_html/fix_all.php on line 20
+[23-Jul-2026 12:47:23 Asia/Tehran] PHP Warning:  Undefined variable $prefix📁 in /home/amval1/public_html/fix_all.php on line 16
+[23-Jul-2026 12:47:23 Asia/Tehran] PHP Warning:  Undefined variable $prefix📄 in /home/amval1/public_html/fix_all.php on line 20
+[23-Jul-2026 12:47:23 Asia/Tehran] PHP Warning:  Undefined variable $prefix📄 in /home/amval1/public_html/fix_all.php on line 20
+[23-Jul-2026 12:47:23 Asia/Tehran] PHP Warning:  Undefined variable $prefix📄 in /home/amval1/public_html/fix_all.php on line 20
+[23-Jul-2026 12:47:23 Asia/Tehran] PHP Warning:  Undefined variable $prefix📄 in /home/amval1/public_html/fix_all.php on line 20
+[23-Jul-2026 12:47:23 Asia/Tehran] PHP Warning:  Undefined variable $prefix📁 in /home/amval1/public_html/fix_all.php on line 16
+[23-Jul-2026 12:47:23 Asia/Tehran] PHP Warning:  Undefined variable $prefix📄 in /home/amval1/public_html/fix_all.php on line 20
+[23-Jul-2026 12:47:23 Asia/Tehran] PHP Warning:  Undefined variable $prefix📄 in /home/amval1/public_html/fix_all.php on line 20
+[23-Jul-2026 12:47:23 Asia/Tehran] PHP Warning:  Undefined variable $prefix📄 in /home/amval1/public_html/fix_all.php on line 20
+[23-Jul-2026 12:47:23 Asia/Tehran] PHP Warning:  Undefined variable $prefix📄 in /home/amval1/public_html/fix_all.php on line 20
+[23-Jul-2026 12:47:23 Asia/Tehran] PHP Warning:  Undefined variable $prefix📄 in /home/amval1/public_html/fix_all.php on line 20
+[23-Jul-2026 12:47:23 Asia/Tehran] PHP Warning:  Undefined variable $prefix📄 in /home/amval1/public_html/fix_all.php on line 20
+[23-Jul-2026 12:47:23 Asia/Tehran] PHP Warning:  Undefined variable $prefix📄 in /home/amval1/public_html/fix_all.php on line 20
+[23-Jul-2026 12:47:23 Asia/Tehran] PHP Warning:  Undefined variable $prefix📄 in /home/amval1/public_html/fix_all.php on line 20
+[23-Jul-2026 12:47:23 Asia/Tehran] PHP Warning:  Undefined variable $prefix📄 in /home/amval1/public_html/fix_all.php on line 20
+[23-Jul-2026 12:47:23 Asia/Tehran] PHP Warning:  Undefined variable $prefix📁 in /home/amval1/public_html/fix_all.php on line 16
+[23-Jul-2026 12:47:23 Asia/Tehran] PHP Warning:  Undefined variable $prefix📄 in /home/amval1/public_html/fix_all.php on line 20
+[23-Jul-2026 12:47:23 Asia/Tehran] PHP Warning:  Undefined variable $prefix📄 in /home/amval1/public_html/fix_all.php on line 20
+[23-Jul-2026 12:47:23 Asia/Tehran] PHP Warning:  Undefined variable $prefix📄 in /home/amval1/public_html/fix_all.php on line 20
+[23-Jul-2026 12:47:23 Asia/Tehran] PHP Warning:  Undefined variable $prefix📄 in /home/amval1/public_html/fix_all.php on line 20
+[23-Jul-2026 12:47:23 Asia/Tehran] PHP Warning:  Undefined variable $prefix📄 in /home/amval1/public_html/fix_all.php on line 20
+[23-Jul-2026 12:47:23 Asia/Tehran] PHP Warning:  Undefined variable $prefix📄 in /home/amval1/public_html/fix_all.php on line 20
+[23-Jul-2026 12:47:23 Asia/Tehran] PHP Warning:  Undefined variable $prefix📄 in /home/amval1/public_html/fix_all.php on line 20
+[23-Jul-2026 12:47:23 Asia/Tehran] PHP Warning:  Undefined variable $prefix📄 in /home/amval1/public_html/fix_all.php on line 20
+[23-Jul-2026 12:47:23 Asia/Tehran] PHP Warning:  Undefined variable $prefix📄 in /home/amval1/public_html/fix_all.php on line 20
+[23-Jul-2026 12:47:23 Asia/Tehran] PHP Warning:  Undefined variable $prefix📄 in /home/amval1/public_html/fix_all.php on line 20
+[23-Jul-2026 12:47:23 Asia/Tehran] PHP Warning:  Undefined variable $prefix📄 in /home/amval1/public_html/fix_all.php on line 20
+[23-Jul-2026 12:47:23 Asia/Tehran] PHP Warning:  Undefined variable $prefix📄 in /home/amval1/public_html/fix_all.php on line 20
+[23-Jul-2026 12:47:23 Asia/Tehran] PHP Warning:  Undefined variable $prefix📁 in /home/amval1/public_html/fix_all.php on line 16
+[23-Jul-2026 12:47:23 Asia/Tehran] PHP Warning:  Undefined variable $prefix📄 in /home/amval1/public_html/fix_all.php on line 20
+[23-Jul-2026 12:47:23 Asia/Tehran] PHP Warning:  Undefined variable $prefix📄 in /home/amval1/public_html/fix_all.php on line 20
+[23-Jul-2026 12:47:23 Asia/Tehran] PHP Warning:  Undefined variable $prefix📄 in /home/amval1/public_html/fix_all.php on line 20
+[23-Jul-2026 12:47:23 Asia/Tehran] PHP Warning:  Undefined variable $prefix📄 in /home/amval1/public_html/fix_all.php on line 20
+[23-Jul-2026 12:47:23 Asia/Tehran] PHP Warning:  Undefined variable $prefix📄 in /home/amval1/public_html/fix_all.php on line 20
+[23-Jul-2026 12:47:23 Asia/Tehran] PHP Warning:  Undefined variable $prefix📄 in /home/amval1/public_html/fix_all.php on line 20
+[23-Jul-2026 12:47:23 Asia/Tehran] PHP Warning:  Undefined variable $prefix📄 in /home/amval1/public_html/fix_all.php on line 20
+[23-Jul-2026 12:47:23 Asia/Tehran] PHP Warning:  Undefined variable $prefix📄 in /home/amval1/public_html/fix_all.php on line 20
+[23-Jul-2026 12:47:23 Asia/Tehran] PHP Warning:  Undefined variable $prefix📄 in /home/amval1/public_html/fix_all.php on line 20
+[23-Jul-2026 12:47:23 Asia/Tehran] PHP Warning:  Undefined variable $prefix📄 in /home/amval1/public_html/fix_all.php on line 20
+[23-Jul-2026 12:47:23 Asia/Tehran] PHP Warning:  Undefined variable $prefix📄 in /home/amval1/public_html/fix_all.php on line 20
+[23-Jul-2026 12:47:23 Asia/Tehran] PHP Warning:  Undefined variable $prefix📄 in /home/amval1/public_html/fix_all.php on line 20
+[23-Jul-2026 12:47:23 Asia/Tehran] PHP Warning:  Undefined variable $prefix📄 in /home/amval1/public_html/fix_all.php on line 20
+[23-Jul-2026 12:47:23 Asia/Tehran] PHP Warning:  Undefined variable $prefix📄 in /home/amval1/public_html/fix_all.php on line 20
+[23-Jul-2026 12:47:23 Asia/Tehran] PHP Warning:  Undefined variable $prefix📄 in /home/amval1/public_html/fix_all.php on line 20
+[23-Jul-2026 12:47:23 Asia/Tehran] PHP Warning:  Undefined variable $prefix📄 in /home/amval1/public_html/fix_all.php on line 20
+[23-Jul-2026 12:47:23 Asia/Tehran] PHP Warning:  Undefined variable $prefix📄 in /home/amval1/public_html/fix_all.php on line 20
+[23-Jul-2026 12:47:23 Asia/Tehran] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/amval1/public_html/fix_all.php:16) in /home/amval1/public_html/fix_all.php on line 30
+[23-Jul-2026 12:47:23 Asia/Tehran] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/amval1/public_html/fix_all.php:16) in /home/amval1/public_html/fix_all.php on line 31
+[23-Jul-2026 13:39:36 Asia/Tehran] PHP Warning:  require_once(config_website/database.php): Failed to open stream: No such file or directory in /home/amval1/public_html/fix_all.php on line 25
+[23-Jul-2026 13:39:36 Asia/Tehran] PHP Fatal error:  Uncaught Error: Failed opening required 'config_website/database.php' (include_path='.:/opt/alt/php81/usr/share/pear:/opt/alt/php81/usr/share/php:/usr/share/pear:/usr/share/php') in /home/amval1/public_html/fix_all.php:25
+Stack trace:
+#0 /home/amval1/public_html/fix_all.php(64): backup_database()
+#1 {main}
+  thrown in /home/amval1/public_html/fix_all.php on line 25
+[23-Jul-2026 13:40:12 Asia/Tehran] PHP Fatal error:  Uncaught Error: Call to undefined function exec() in /home/amval1/public_html/fix_all.php:55
+Stack trace:
+#0 /home/amval1/public_html/fix_all.php(70): sync_to_github()
+#1 {main}
+  thrown in /home/amval1/public_html/fix_all.php on line 55
+[23-Jul-2026 13:40:29 Asia/Tehran] PHP Warning:  require_once(config_website/database.php): Failed to open stream: No such file or directory in /home/amval1/public_html/fix_all.php on line 25
+[23-Jul-2026 13:40:29 Asia/Tehran] PHP Fatal error:  Uncaught Error: Failed opening required 'config_website/database.php' (include_path='.:/opt/alt/php81/usr/share/pear:/opt/alt/php81/usr/share/php:/usr/share/pear:/usr/share/php') in /home/amval1/public_html/fix_all.php:25
+Stack trace:
+#0 /home/amval1/public_html/fix_all.php(75): backup_database()
+#1 {main}
+  thrown in /home/amval1/public_html/fix_all.php on line 25
+[23-Jul-2026 13:49:55 Asia/Tehran] PHP Parse error:  syntax error, unexpected double-quoted string "" in /home/amval1/public_html/fix_all.php on line 54
+[23-Jul-2026 13:50:04 Asia/Tehran] PHP Parse error:  syntax error, unexpected double-quoted string "" in /home/amval1/public_html/fix_all.php on line 54
+[23-Jul-2026 13:50:08 Asia/Tehran] PHP Parse error:  syntax error, unexpected double-quoted string "" in /home/amval1/public_html/fix_all.php on line 54
+[23-Jul-2026 13:50:11 Asia/Tehran] PHP Parse error:  syntax error, unexpected double-quoted string "" in /home/amval1/public_html/fix_all.php on line 54
+[23-Jul-2026 15:04:42 Asia/Tehran] PHP Warning:  Undefined array key "type" in /home/amval1/public_html/assets.php on line 16
+[23-Jul-2026 15:04:42 Asia/Tehran] PHP Warning:  Undefined array key "center" in /home/amval1/public_html/assets.php on line 20
+[23-Jul-2026 15:04:42 Asia/Tehran] PHP Warning:  Undefined array key "description" in /home/amval1/public_html/assets.php on line 22
+[23-Jul-2026 15:16:40 Asia/Tehran] PHP Warning:  require_once(../config/database.php): Failed to open stream: No such file or directory in /home/amval1/public_html/api_get_user_centers.php on line 2
+[23-Jul-2026 15:16:40 Asia/Tehran] PHP Fatal error:  Uncaught Error: Failed opening required '../config/database.php' (include_path='.:/opt/alt/php81/usr/share/pear:/opt/alt/php81/usr/share/php:/usr/share/pear:/usr/share/php') in /home/amval1/public_html/api_get_user_centers.php:2
+Stack trace:
+#0 {main}
+  thrown in /home/amval1/public_html/api_get_user_centers.php on line 2
